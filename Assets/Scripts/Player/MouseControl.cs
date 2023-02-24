@@ -7,12 +7,20 @@ using UnityEngine;
 */
 public class MouseControl : MonoBehaviour
 {
+	void OnApplicationFocus(bool hasFocus) {
+		if (hasFocus) {
+			Cursor.visible = false;
+			Debug.Log("Application is focussed");
+		} else {
+			Debug.Log("Application lost focus");
+		}
+	}
 
 	void FixedUpdate()
     {
 		DetectInputMethod();
-
 	}
+
 
 	private void DetectInputMethod() {
 

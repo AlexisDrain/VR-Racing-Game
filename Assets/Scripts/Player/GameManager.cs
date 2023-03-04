@@ -8,10 +8,15 @@ using UnityEngine.XR.Management;
 */
 public class GameManager : MonoBehaviour
 {
-    void Awake()
+	public static GameObject gameManagerObj;
+	public static GameObject mainCameraObj;
+
+	void Awake()
     {
-        
-    }
+		gameManagerObj = gameObject;
+		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
+	}
+
 
 	//VR
 	/*

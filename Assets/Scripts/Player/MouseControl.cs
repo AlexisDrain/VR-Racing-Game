@@ -30,9 +30,9 @@ public class MouseControl : MonoBehaviour {
 	// convert number ranges to tiny crosshair
 	private Vector2 ConvertNumberRangeToCrosshair() {
 		Vector2 oldMouseRange = new Vector2(Screen.width / 2, Screen.height / 2);
-		Vector2 newMouseRange = new Vector2(25f, 25f);
-		Vector2 newValue = new Vector2(((((mousePosPixel.x - Screen.width / 2) * newMouseRange.x) / oldMouseRange.x) + 25f),
-									   ((((mousePosPixel.y - Screen.height / 2) * newMouseRange.y) / oldMouseRange.y) + 25f));
+		Vector2 newMouseRange = new Vector2(35f, 35f);
+		Vector2 newValue = new Vector2(((((mousePosPixel.x - Screen.width / 2) * newMouseRange.x) / oldMouseRange.x) + 35f),
+									   ((((mousePosPixel.y - Screen.height / 2) * newMouseRange.y) / oldMouseRange.y) + 35f));
 		return Vector2.ClampMagnitude(newValue, 25f);
 	}
 

@@ -6,6 +6,12 @@ using UnityEngine;
 * Author: Alexis Clay Drain
 */
 public class MouseControl : MonoBehaviour {
+
+	[Header("Options")]
+	public float worldRange = 4.8f;
+
+
+	[Header("Stats")]
 	public Vector2 mousePosPixel;
 	public Vector2 mousePosNormalized;
 	public Vector2 mousePosCrosshair;
@@ -39,10 +45,10 @@ public class MouseControl : MonoBehaviour {
 	// convert number ranges to world position
 	private Vector2 ConvertNumberRangeToWorldPos() {
 		Vector2 oldMouseRange = new Vector2(Screen.width / 2, Screen.height / 2);
-		Vector2 newMouseRange = new Vector2(5f, 5f);
-		Vector2 newValue = new Vector2(((((mousePosPixel.x - Screen.width / 2) * newMouseRange.x) / oldMouseRange.x) + 5f),
-									   ((((mousePosPixel.y - Screen.height / 2) * newMouseRange.y) / oldMouseRange.y) + 5f));
-		return Vector2.ClampMagnitude(newValue, 5f);
+		Vector2 newMouseRange = new Vector2(worldRange, worldRange);
+		Vector2 newValue = new Vector2(((((mousePosPixel.x - Screen.width / 2) * newMouseRange.x) / oldMouseRange.x) + worldRange),
+									   ((((mousePosPixel.y - Screen.height / 2) * newMouseRange.y) / oldMouseRange.y) + worldRange));
+		return Vector2.ClampMagnitude(newValue, worldRange);
 	}
 	private void CalculateMousePixel() {
 		Vector2 mousePos = Input.mousePosition;

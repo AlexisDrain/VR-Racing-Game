@@ -5,7 +5,8 @@ using UnityEngine;
 public class MoveForward : MonoBehaviour
 {
 
-    public float moveSpeed;
+    public float moveSpeed = 5f;
+    public float maxSpeed = 50f;
     private Rigidbody myRigidbody;
 
     // Start is called before the first frame update
@@ -18,7 +19,11 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-		myRigidbody.AddForce(new Vector3(0f,0f,1f) * moveSpeed);
-
+        if (myRigidbody.velocity.z < maxSpeed) {
+		    myRigidbody.AddForce(new Vector3(0f,0f,1f) * moveSpeed);
+        }
+		else if (myRigidbody.velocity.z > maxSpeed) {
+			myRigidbody.velocity = new Vector3(0f, 0f, maxSpeed);
+		}
 	}
 }

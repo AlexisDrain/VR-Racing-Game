@@ -8,19 +8,30 @@ using UnityEngine.XR.Management;
 */
 public class GameManager : MonoBehaviour
 {
+
 	public static GameObject gameManagerObj;
+	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
 
 	void Awake()
     {
 		gameManagerObj = gameObject;
+
+		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 	}
 
 	public void ResetWorldPos() {
 		GetComponent<GenerateObstacles>().PushBackEnemies();
+	}
+	public static AudioSource SpawnLoudAudio(AudioClip newAudioClip, float newVolume = 1f) {
+
+		AudioSource audioObject = pool_LoudAudioSource.Spawn(new Vector3(0f, 0f, 0f)).GetComponent<AudioSource>();
+		audioObject.PlayWebGL(newAudioClip, newVolume);
+		return audioObject;
+		// audio object will set itself to inactive after done playing.
 	}
 	//VR
 	/*

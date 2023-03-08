@@ -1,0 +1,3 @@
+Curve world up, floor and enemies come to player. jump button. 3rd person view or 1st person.
+
+falling and 1-hit kills

@@ -10,14 +10,18 @@ public class GameManager : MonoBehaviour
 {
 	public static GameObject gameManagerObj;
 	public static GameObject mainCameraObj;
+	public static GameObject playerXRig;
 
 	void Awake()
     {
 		gameManagerObj = gameObject;
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
+		playerXRig = GameObject.Find("XRRig");
 	}
 
-
+	public void ResetWorldPos() {
+		GetComponent<GenerateObstacles>().PushBackEnemies();
+	}
 	//VR
 	/*
 	void Start() {

@@ -7,6 +7,6 @@ public class ResumeGame : MonoBehaviour
     // Update is called once per frame
     public void Resume()
     {
-        Time.timeScale = 1f;
+        GameManager.StartGame();
     }
 }

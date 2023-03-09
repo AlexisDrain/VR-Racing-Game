@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
+	public static UIScoreCounter uiScoreCounter;
+
+	public static bool playerIsAlive = false;
 
 	void Awake()
     {
@@ -21,10 +24,16 @@ public class GameManager : MonoBehaviour
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
+		uiScoreCounter = GameObject.Find("Canvas/TimeScore").GetComponent<UIScoreCounter>();
 	}
 
 	private void Start() {
 		Time.timeScale = 0f;
+	}
+	public static void StartGame() {
+		uiScoreCounter.timeElapsedWhileAlive = 0f;
+		playerIsAlive = true;
+		Time.timeScale = 1f;
 	}
 
 	public void ResetWorldPos() {

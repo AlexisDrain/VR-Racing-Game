@@ -10,15 +10,18 @@ Blue Vortex
 
 -TODO
 - Song - https://www.jamendo.com/album/13125/dogma
+- Whoosh sounds when close
+- Pause game using esc. Allows snd control (seperate from dying)
 - Instructions (press r to restart, move mouse to dodge obstacles)
 - IfPlayerDead + pressedR = restart
 - Change obstacle material/shader = to white or red
-- time score
-- Achievement on 1 minute "Hexagon"
-- VR version
+- Obstacle types from drawn notes
+- Newgrounds time score
+- Newgrounds Achievement on 1 minute "Hexagon"
+- Oculus+PC VR version
 
 MAAYBE TODO
-- change/vibrate cylindar color
+- change/vibrate cylindar color (Using Color.lerp)
 - mobile
 
 ------------------

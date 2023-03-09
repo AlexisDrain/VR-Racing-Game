@@ -324,6 +324,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2456712219151948331}
+  - component: {fileID: 3268105991030543739}
+  - component: {fileID: 369970505656747120}
   m_Layer: 0
   m_Name: World_block1_fan
   m_TagString: Untagged
@@ -350,6 +352,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &3268105991030543739
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456712219151948328}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 62
+  m_CollisionDetection: 0
+--- !u!114 &369970505656747120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456712219151948328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13146d7f97d2a94fb3cc3cba95e4dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeedRange: {x: 15, y: 80}
 --- !u!1 &2456712219397880064
 GameObject:
   m_ObjectHideFlags: 0

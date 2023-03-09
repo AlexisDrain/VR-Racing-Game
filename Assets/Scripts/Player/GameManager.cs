@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 		playerXRig = GameObject.Find("XRRig");
 	}
 
+	private void Start() {
+		Time.timeScale = 0f;
+	}
+
 	public void ResetWorldPos() {
 		GetComponent<GenerateObstacles>().PushBackEnemies();
 	}

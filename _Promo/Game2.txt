@@ -5,8 +5,30 @@ Dodge
 Vortex
 Vortexal
 Blue Vortex
+Hyper Speed
 
+----------------------------------------
 
+[Short Description]
+Adrenaline-fueled, high-speed arcade game
+
+----------------------------------------
+
+[Long Description]
+Adrenaline-fueled, high-speed arcade game.
+
+VR version on SideQuest/Lab
+
+Controls:
+Move player using mouse. Make sure the game is focused (accepts mouse position) by clicking once.
+
+Music:
+https://www.jamendo.com/album/13125/dogma
+
+SFX:
+"Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
+
+----------------------------------------
 
 -TODO
 - Song - https://www.jamendo.com/album/13125/dogma
@@ -23,6 +45,8 @@ Blue Vortex
 MAAYBE TODO
 - change/vibrate cylindar color (Using Color.lerp)
 - mobile
+https://www.youtube.com/watch?v=t52yhi0C98o&ab_channel=WilmerLinGASchool
+
 
 ------------------
 

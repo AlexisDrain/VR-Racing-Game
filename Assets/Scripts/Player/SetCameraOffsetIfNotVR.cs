@@ -14,7 +14,7 @@ public class SetCameraOffsetIfNotVR : MonoBehaviour
 	void Start()
     {
 		GetComponent<CameraOffset>().cameraYOffset = 0f;
-
+		/*
 		// Input devices from https://docs.unity3d.com/Manual/xr_input.html
 
 		var inputDevices = new List<UnityEngine.XR.InputDevice>();
@@ -25,6 +25,6 @@ public class SetCameraOffsetIfNotVR : MonoBehaviour
 			Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.role.ToString()));
 			GetComponent<CameraOffset>().cameraYOffset = _cameraYOffset;
 		}
-
+		*/
 	}
 }

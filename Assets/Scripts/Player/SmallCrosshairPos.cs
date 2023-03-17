@@ -22,6 +22,9 @@ public class SmallCrosshairPos : MonoBehaviour
 	{
 
 		myRectTransform.anchoredPosition = mouseControl.mousePosCrosshair;
+		if (GameManager.playerIsAlive == false || Time.timeScale == 0f) {
+			myRectTransform.anchoredPosition = new Vector2(0, 0);
+		}
 	}
 
 }

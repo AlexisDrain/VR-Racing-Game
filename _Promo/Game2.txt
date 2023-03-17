@@ -1,21 +1,41 @@
+
+-TODO
+- Song - https://www.jamendo.com/album/13125/dogma
+- Pause game using esc. Allows snd control (seperate from dying)
+- Instructions (press r to restart, move mouse to dodge obstacles)
+- IfPlayerDead + pressedR = restart
+- Change obstacle material/shader = to white or red
+- Obstacle types from notes I drew
+- Newgrounds time score
+- Newgrounds Achievement on 1 minute "Hexagon"
+- 3 songs. Play song when start game. stop when not
+- Oculus+PC VR version
+
+MAAYBE TODO
+- more cylindar colors
+- mobile
+
+
+---------------------
+
 Name of game:
 Web cylindar
 Web race
 Dodge
 Vortex
 Vortexal
-Blue Vortex
++Blue Vortex
 Hyper Speed
 
 ----------------------------------------
 
 [Short Description]
-Adrenaline-fueled, high-speed arcade game
+Adrenaline-fueled, high-speed arcade game!
 
 ----------------------------------------
 
 [Long Description]
-Adrenaline-fueled, high-speed arcade game.
+Adrenaline-fueled, high-speed arcade game!
 
 VR version on SideQuest/Lab
 
@@ -26,29 +46,12 @@ Music:
 https://www.jamendo.com/album/13125/dogma
 
 SFX:
+Menu button sounds from Halfquake by Muddasheep
 "Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
 
 ----------------------------------------
 
--TODO
-- Song - https://www.jamendo.com/album/13125/dogma
-- Whoosh sounds when close
-- Pause game using esc. Allows snd control (seperate from dying)
-- Instructions (press r to restart, move mouse to dodge obstacles)
-- IfPlayerDead + pressedR = restart
-- Change obstacle material/shader = to white or red
-- Obstacle types from drawn notes
-- Newgrounds time score
-- Newgrounds Achievement on 1 minute "Hexagon"
-- Oculus+PC VR version
-
-MAAYBE TODO
-- change/vibrate cylindar color (Using Color.lerp)
-- mobile
-https://www.youtube.com/watch?v=t52yhi0C98o&ab_channel=WilmerLinGASchool
-
-
-------------------
+Game 2 TODO
 
 - Curve world up, floor and enemies come to player.
 - jump button. (Pressed or held)

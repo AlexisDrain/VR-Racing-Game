@@ -136,7 +136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1238
+  m_Name: pb_Mesh-1256
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1472,11 +1472,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5207075645694807373, guid: ad1e87f46f856814a86ae979aa680ce2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5207075645694807374, guid: ad1e87f46f856814a86ae979aa680ce2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1903,10 +1898,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 976509880}
-  - component: {fileID: 976509884}
   - component: {fileID: 976509883}
   - component: {fileID: 976509882}
   - component: {fileID: 976509881}
+  - component: {fileID: 976509884}
   m_Layer: 0
   m_Name: PlayerWhooshSFX
   m_TagString: Untagged
@@ -2057,8 +2052,8 @@ MonoBehaviour:
   killPlayer: 0
   playWhooshSFX: 1
   sfxPitchRange: {x: 0.8, y: 1.5}
---- !u!135 &976509884
-SphereCollider:
+--- !u!65 &976509884
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2068,8 +2063,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 20, y: 20, z: 1}
+  m_Center: {x: 0, y: 0, z: -1}
 --- !u!1 &1032127159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,7 +2458,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1248
+  m_Name: pb_Mesh-1266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2633,7 +2628,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1804
+  m_Name: pb_Mesh-1822
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

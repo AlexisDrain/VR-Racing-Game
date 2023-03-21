@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
+	public static AudioSource musicAudioSrc;
 	public static GameObject pauseMenu;
 	public static GameObject deathMenu;
 	public static UIScoreCounter uiScoreCounter;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
+		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		pauseMenu = GameObject.Find("Canvas/PauseMenu");
 		deathMenu = GameObject.Find("Canvas/DeathMenu");
 		uiScoreCounter = GameObject.Find("Canvas/TimeScore").GetComponent<UIScoreCounter>();
@@ -47,23 +49,26 @@ public class GameManager : MonoBehaviour
 				pauseMenu.SetActive(true);
 				deathMenu.SetActive(false);
 			} else if (Input.GetButtonDown("Restart") && hasLaunchedGame == true) {
-				GetComponent<GenerateObstacles>().KillAllEnemies();
-				playerIsAlive = true;
-				pauseMenu.SetActive(false);
-				deathMenu.SetActive(false);
+				StartGame();
 			}
 		}
 	}
 	public static void StartGame() {
-		timeElapsedWhileAlive = 0f;
-		hasLaunchedGame = true;
+
+		gameManagerObj.GetComponent<GenerateObstacles>().KillAllEnemies();
 
 		Time.timeScale = 1f;
 		playerIsAlive = true;
 		uiScoreCounter.gameObject.SetActive(true);
+		timeElapsedWhileAlive = 0f;
+		if (hasLaunchedGame == true) {
+			musicAudioSrc.GetComponent<AudioSource>().Play();
+		}
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
+		
+		hasLaunchedGame = true;
 	}
 
 	public static void EndGame() {
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 0f;
 		playerIsAlive = false;
 		uiScoreCounter.gameObject.SetActive(false);
+		musicAudioSrc.GetComponent<AudioSource>().StopWebGL();
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(true);

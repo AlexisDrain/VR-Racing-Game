@@ -39,7 +39,7 @@ public class MouseControl : MonoBehaviour {
 		Vector2 newMouseRange = new Vector2(tinyCrosshairRange.x, tinyCrosshairRange.y);
 		Vector2 newValue = new Vector2(((((mousePosPixel.x - Screen.width / 2) * newMouseRange.x) / oldMouseRange.x) + tinyCrosshairRange.x),
 									   ((((mousePosPixel.y - Screen.height / 2) * newMouseRange.y) / oldMouseRange.y) + tinyCrosshairRange.y));
-		return Vector2.ClampMagnitude(newValue, 25f);
+		return Vector2.ClampMagnitude(newValue, 65f);
 	}
 
 	// convert number ranges to world position

@@ -26,7 +26,11 @@ public class GenerateObstacles : MonoBehaviour
 		
 	}
 
-
+	public void KillAllEnemies() {
+		for (int i = 0; i < enemyCollectionTrans.childCount; i++) {
+			Destroy(enemyCollectionTrans.GetChild(i).gameObject);
+		}
+	}
 	public void Generate()
 	{
 		int randObjIndex = Random.Range(0, obstaclePrefabs.Count);

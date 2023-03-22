@@ -18,19 +18,17 @@ public class PlayerEnemyCollision : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if(col.CompareTag("Enemy")) {
-            if (killPlayer) {
+            if (killPlayer && GameManager.playerIsAlive) {
                 print("Collision with: " + col.gameObject.name);
                 GameManager.EndGame();
                 Destroy(col.gameObject);
             }
-            if (playWhooshSFX && canWooshAgain) {
+            if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive) {
 				canWooshAgain = false;
                 StartCoroutine(WhooshDelay());
 
-
 				GetComponent<AudioSource>().pitch = Random.Range(sfxPitchRange.x, sfxPitchRange.y);
                 GetComponent<AudioSource>().Play();
-                
             }
         }
     }

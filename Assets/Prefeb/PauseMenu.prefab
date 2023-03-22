@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 5207075645259235666}
   - component: {fileID: 2141755217345015874}
   - component: {fileID: 5207075645259235665}
+  - component: {fileID: 919919928}
   m_Layer: 5
   m_Name: Start Game
   m_TagString: Untagged
@@ -567,6 +568,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &919919928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075645259235661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b77255a94d134b99ff3bdf68a5e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideAudioSourceVolume: 1
 --- !u!1 &5207075645273483186
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5207075645694807374}
   - component: {fileID: 5207075645694807375}
+  - component: {fileID: 278134827}
   m_Layer: 5
   m_Name: Slider_sfx
   m_TagString: Untagged
@@ -949,7 +964,32 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 278134827}
+        m_TargetAssemblyTypeName: UI_Volume, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &278134827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075645694807373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2b849be01317a4d826f673c7c1217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 74c75a232f652ec48bb81dc4a7654b47, type: 2}
 --- !u!1 &5207075645842667334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1420,7 @@ GameObject:
   - component: {fileID: 5207075646276375417}
   - component: {fileID: 1379794667396338925}
   - component: {fileID: 5207075646276375416}
+  - component: {fileID: 588225768713337878}
   m_Layer: 5
   m_Name: Resume Game
   m_TagString: Untagged
@@ -1548,6 +1589,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &588225768713337878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075646276375412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b77255a94d134b99ff3bdf68a5e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideAudioSourceVolume: 1
 --- !u!1 &5207075646447350347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5207075646564717450}
   - component: {fileID: 5207075646564717451}
+  - component: {fileID: 1176421781}
   m_Layer: 5
   m_Name: Slider_music
   m_TagString: Untagged
@@ -1799,7 +1854,32 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1176421781}
+        m_TargetAssemblyTypeName: UI_Volume, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1176421781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075646564717449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2b849be01317a4d826f673c7c1217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 74c75a232f652ec48bb81dc4a7654b47, type: 2}
 --- !u!1 &5207075646593043980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,6 +2396,7 @@ GameObject:
   - component: {fileID: 5207075647061861332}
   - component: {fileID: 5207075647061861331}
   - component: {fileID: 5207075647061861330}
+  - component: {fileID: 5470298509369450185}
   m_Layer: 5
   m_Name: Extra
   m_TagString: Untagged
@@ -2472,6 +2553,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5470298509369450185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075647061861327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b77255a94d134b99ff3bdf68a5e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideAudioSourceVolume: 1
 --- !u!1 &5207075647099098608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,6 +2698,7 @@ GameObject:
   - component: {fileID: 5207075647184446199}
   - component: {fileID: 5207075647184446198}
   - component: {fileID: 5207075647184446197}
+  - component: {fileID: 1859990107907017814}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -2760,6 +2855,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1859990107907017814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207075647184446194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b77255a94d134b99ff3bdf68a5e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideAudioSourceVolume: 1
 --- !u!1 &6039200278293362731
 GameObject:
   m_ObjectHideFlags: 0

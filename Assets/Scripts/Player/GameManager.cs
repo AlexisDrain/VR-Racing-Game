@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 	public static UIScoreCounter uiScoreCounter;
 
 	public static bool playerIsAlive = false;
-	public static bool hasLaunchedGame = false;
+	public static bool playerInPauseMenu = false;
 	public static float timeElapsedWhileAlive; // score
 
 	void Awake()
@@ -39,16 +39,20 @@ public class GameManager : MonoBehaviour
 
 		deathMenu.SetActive(false);
 	}
+
 	public void FixedUpdate() {
 		if (GameManager.playerIsAlive) {
 			timeElapsedWhileAlive += Time.deltaTime;
 		}
-		else {
+	}
+	public void Update() {
+		if (GameManager.playerIsAlive == false) {
 			// player is dead
 			if (Input.GetButtonDown("Pause")) {
 				pauseMenu.SetActive(true);
 				deathMenu.SetActive(false);
-			} else if (Input.GetButtonDown("Restart") && hasLaunchedGame == true) {
+				playerInPauseMenu = true;
+			} else if (Input.GetButtonDown("Restart") && playerInPauseMenu == false) {
 				StartGame();
 			}
 		}
@@ -61,23 +65,23 @@ public class GameManager : MonoBehaviour
 		playerIsAlive = true;
 		uiScoreCounter.gameObject.SetActive(true);
 		timeElapsedWhileAlive = 0f;
-		if (hasLaunchedGame == true) {
-			musicAudioSrc.GetComponent<AudioSource>().Play();
-		}
+		//if (hasLaunchedGame == true) {
+		//	musicAudioSrc.GetComponent<AudioSource>().Play();
+		//}
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
 		
-		hasLaunchedGame = true;
+		playerInPauseMenu = false;
 	}
 
 	public static void EndGame() {
 		// todo: upload score to NG. check achievement
 
-		Time.timeScale = 0f;
+		Time.timeScale = 0.15f;
 		playerIsAlive = false;
 		uiScoreCounter.gameObject.SetActive(false);
-		musicAudioSrc.GetComponent<AudioSource>().StopWebGL();
+		//musicAudioSrc.GetComponent<AudioSource>().StopWebGL();
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(true);

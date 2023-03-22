@@ -20,17 +20,20 @@ public class MouseControl : MonoBehaviour {
 	void OnApplicationFocus(bool hasFocus) {
 		if (hasFocus) {
 			Cursor.visible = false;
-			Debug.Log("Application is focussed");
-		} else {
-			Debug.Log("Application lost focus");
+			//Debug.Log("Application is focussed");
 		}
+		// else {
+			//Debug.Log("Application lost focus");
+		//}
 	}
 
 	void FixedUpdate() {
 		CalculateMousePixel();
 		mousePosCrosshair = ConvertNumberRangeToCrosshair();
 		mousePosWorld = ConvertNumberRangeToWorldPos();
-		transform.position = new Vector3(mousePosWorld.x, mousePosWorld.y, transform.position.z);
+		if (GameManager.playerIsAlive == true) {
+			transform.position = new Vector3(mousePosWorld.x, mousePosWorld.y, transform.position.z);
+		}
 	}
 
 	// convert number ranges to tiny crosshair

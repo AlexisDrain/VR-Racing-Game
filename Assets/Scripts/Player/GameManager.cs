@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.XR.Management;
 
 /*
@@ -8,6 +9,9 @@ using UnityEngine.XR.Management;
 */
 public class GameManager : MonoBehaviour
 {
+
+	public AudioMixer audioMixer;
+	public static float audioCutoffDistort = 1200f;
 
 	public static GameObject gameManagerObj;
 	private static Pool pool_LoudAudioSource;
@@ -19,7 +23,7 @@ public class GameManager : MonoBehaviour
 	public static UIScoreCounter uiScoreCounter;
 
 	public static bool playerIsAlive = false;
-	public static bool playerInPauseMenu = false;
+	public static bool playerInPauseMenu = true;
 	public static float timeElapsedWhileAlive; // score
 
 	void Awake()
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
 	}
 	private void Start() {
 		Time.timeScale = 0f;
+		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
 		deathMenu.SetActive(false);
 	}
@@ -46,13 +51,13 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	public void Update() {
+		if (Input.GetButtonDown("Pause")) {
+			PauseGame();
+		}
+
 		if (GameManager.playerIsAlive == false) {
 			// player is dead
-			if (Input.GetButtonDown("Pause")) {
-				pauseMenu.SetActive(true);
-				deathMenu.SetActive(false);
-				playerInPauseMenu = true;
-			} else if (Input.GetButtonDown("Restart") && playerInPauseMenu == false) {
+			 if (Input.GetButtonDown("Restart") && playerInPauseMenu == false) {
 				StartGame();
 			}
 		}
@@ -65,14 +70,30 @@ public class GameManager : MonoBehaviour
 		playerIsAlive = true;
 		uiScoreCounter.gameObject.SetActive(true);
 		timeElapsedWhileAlive = 0f;
-		//if (hasLaunchedGame == true) {
-		//	musicAudioSrc.GetComponent<AudioSource>().Play();
-		//}
-
+		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
+		
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
 		
 		playerInPauseMenu = false;
+	}
+	public static void ResumeGame() {
+		Time.timeScale = 1f;
+		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
+
+		pauseMenu.SetActive(false);
+		deathMenu.SetActive(false);
+
+		playerInPauseMenu = false;
+	}
+	public static void PauseGame() {
+
+		Time.timeScale = 0f;
+		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
+
+		pauseMenu.SetActive(true);
+		deathMenu.SetActive(false);
+		playerInPauseMenu = true;
 	}
 
 	public static void EndGame() {
@@ -81,7 +102,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;
 		uiScoreCounter.gameObject.SetActive(false);
-		//musicAudioSrc.GetComponent<AudioSource>().StopWebGL();
+		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(true);

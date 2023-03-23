@@ -1,7 +1,5 @@
 
 -TODO
-- Mouse is always on focus after clicking away
-- music+sfx sliders dont work
 - Song - https://www.jamendo.com/album/13125/dogma
 - Pause game using esc. Allows snd control (seperate from dying)
 - DeathSFX
@@ -12,9 +10,13 @@
 - Newgrounds time score
 - Newgrounds Achievement on 1 minute "Hexagon"
 - 3 songs. Play song when start game. stop when not
+
+VR:
 - Oculus+PC VR version
+- camera offset in VR builds BUT NOT on Android
 
 MAAYBE TODO
+- Mouse is always on focus after clicking away
 - more cylindar colors
 - mobile
 

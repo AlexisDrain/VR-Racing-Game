@@ -18,10 +18,10 @@ public class MouseControl : MonoBehaviour {
 	public Vector2 mousePosWorld;
 
 	void OnApplicationFocus(bool hasFocus) {
-		if (hasFocus) {
-			Cursor.visible = false;
+		Cursor.visible = false;
+		//if (hasFocus) {
 			//Debug.Log("Application is focussed");
-		}
+		//}
 		// else {
 			//Debug.Log("Application lost focus");
 		//}

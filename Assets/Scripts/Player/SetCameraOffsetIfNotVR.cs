@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.XR.LegacyInputHelpers;
@@ -14,6 +15,10 @@ public class SetCameraOffsetIfNotVR : MonoBehaviour
 	void Start()
     {
 		GetComponent<CameraOffset>().cameraYOffset = 0f;
+		if (Application.platform == RuntimePlatform.Android) {
+			print("Platform is Android. Adding cameraYOffset");
+			GetComponent<CameraOffset>().cameraYOffset = _cameraYOffset;
+		}
 		/*
 		// Input devices from https://docs.unity3d.com/Manual/xr_input.html
 

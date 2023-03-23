@@ -1,5 +1,6 @@
 
 -TODO
+- more obstacles
 - Song - https://www.jamendo.com/album/13125/dogma
 - Pause game using esc. Allows snd control (seperate from dying)
 - DeathSFX

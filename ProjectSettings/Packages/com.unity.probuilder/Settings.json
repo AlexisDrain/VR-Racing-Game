@@ -151,7 +151,7 @@
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-                "value": "{\"m_Value\":3}"
+                "value": "{\"m_Value\":2}"
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -161,12 +161,12 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastPivotPosition",
-                "value": "{\"m_Value\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                "value": "{\"m_Value\":{\"x\":-0.8015117645263672,\"y\":-1.0155776739120484,\"z\":-0.7787857055664063}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize",
-                "value": "{\"m_Value\":{\"x\":10.0,\"y\":30.0,\"z\":10.0}}"
+                "value": "{\"m_Value\":{\"x\":1.6030240058898926,\"y\":2.0311553478240969,\"z\":1.5575714111328126}}"
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -179,9 +179,19 @@
                 "value": "{}"
             },
             {
+                "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "key": "ShapeBuilder.Cube",
+                "value": "{}"
+            },
+            {
                 "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "uv.uvEditorGridSnapIncrement",
                 "value": "{\"m_Value\":0.125}"
+            },
+            {
+                "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "ExtrudeFaces.distance",
+                "value": "{\"m_Value\":0.5}"
             },
             {
                 "type": "UnityEngine.ProBuilder.ExtrudeMethod, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 	public static bool playerIsAlive = false;
 	public static bool playerInPauseMenu = true;
 	public static float timeElapsedWhileAlive; // score
+	public static float timeElapsedWhileAliveBest; // score
 
 	void Awake()
 	{
@@ -98,6 +99,8 @@ public class GameManager : MonoBehaviour
 
 	public static void EndGame() {
 		// todo: upload score to NG. check achievement
+		timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
+
 
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;

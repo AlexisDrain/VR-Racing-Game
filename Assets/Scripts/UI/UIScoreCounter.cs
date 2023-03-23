@@ -4,29 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Drawing;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UIScoreCounter : MonoBehaviour
 {
-    public bool deathText = false;
+	public bool deathText = false;
 
-    private Text myText;
-    // Start is called before the first frame update
-    void Awake()
-    {
+	private Text myText;
+	// Start is called before the first frame update
+	void Awake()
+	{
 		myText = GetComponent<Text>();
 
 	}
 
-    // Update is called once per frame
-    void FixedUpdate() {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(GameManager.timeElapsedWhileAlive);
+	string FormatTime(float time) {
+		TimeSpan timeSpan = TimeSpan.FromSeconds(time);
 
 		string scoreString = "";
 
-        if (timeSpan.Days != 0) {
+		if (timeSpan.Days != 0) {
 			scoreString = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
-                timeSpan.Days,timeSpan.Hours,timeSpan.Minutes,timeSpan.Seconds);
-        } else if (timeSpan.Hours != 0) {
+				timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+		} else if (timeSpan.Hours != 0) {
 
 			scoreString = string.Format("{0:D2}:{1:D2}:{2:D2}",
 				timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
@@ -36,10 +36,20 @@ public class UIScoreCounter : MonoBehaviour
 				timeSpan.Minutes, timeSpan.Seconds);
 		}
 
+		return scoreString;
+	}
+	void FixedUpdate() {
+		
+
 		if (deathText == true) {
-			myText.text = "Your score is:\n<color=#0095FF>" + scoreString + "</color>";
+
+			myText.text = "<size=30>Your score is:</size>\n"
+				+ "<color=#0095FF>" + FormatTime(GameManager.timeElapsedWhileAlive) + "</color>"
+				+ "<color=#aaaaaa><size=30>\nYour personal best is:</size>\n"
+				+ FormatTime(GameManager.timeElapsedWhileAliveBest)
+				+ "</color>";
 		} else {
-			myText.text = scoreString;
+			myText.text = FormatTime(GameManager.timeElapsedWhileAlive);
 		}
 	}
 }

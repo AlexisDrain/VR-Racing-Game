@@ -407,7 +407,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &122765859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2131,7 +2131,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &976509883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3402,6 +3402,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1849959562}
     m_Modifications:
+    - target: {fileID: 1219291067, guid: eb71fd9ab6ee4da4d955f898c389f4fd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219291067, guid: eb71fd9ab6ee4da4d955f898c389f4fd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219291069, guid: eb71fd9ab6ee4da4d955f898c389f4fd, type: 3}
+      propertyPath: m_Text
+      value: '<size=30>Your score is:</size>
+
+        <color=#0095FF>00:05</color>
+
+        <color=#aaaaaa><size=30>Your
+        personal best is:</size>
+
+        00:07</color>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219291069, guid: eb71fd9ab6ee4da4d955f898c389f4fd, type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641765810, guid: eb71fd9ab6ee4da4d955f898c389f4fd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 3925817181544809414, guid: eb71fd9ab6ee4da4d955f898c389f4fd,
         type: 3}
       propertyPath: m_Name

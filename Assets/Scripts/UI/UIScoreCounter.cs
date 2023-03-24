@@ -47,7 +47,8 @@ public class UIScoreCounter : MonoBehaviour
 				+ "<color=#0095FF>" + FormatTime(GameManager.timeElapsedWhileAlive) + "</color>"
 				+ "<color=#aaaaaa><size=30>\nYour personal best is:</size>\n"
 				+ FormatTime(GameManager.timeElapsedWhileAliveBest)
-				+ "</color>";
+				+ "</color>\n"
+				+ "<color=#aaaaaa><size=25>Scores on Newgrounds.com</size></color>";
 		} else {
 			myText.text = FormatTime(GameManager.timeElapsedWhileAlive);
 		}

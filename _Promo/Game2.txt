@@ -4,7 +4,6 @@
 - Obstacle types from notes I drew
 - Newgrounds time score
 - Newgrounds Achievement on 1 minute "Hexagon"
-- 3 songs. Play song when start game. stop when not
 
 VR:
 - Oculus+PC VR version

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 	public static AudioSource musicAudioSrc;
 	public static GameObject pauseMenu;
 	public static GameObject deathMenu;
+	public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
 
 	public static bool playerIsAlive = false;
@@ -37,7 +38,8 @@ public class GameManager : MonoBehaviour
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		pauseMenu = GameObject.Find("Canvas/PauseMenu");
 		deathMenu = GameObject.Find("Canvas/DeathMenu");
-		uiScoreCounter = GameObject.Find("Canvas/TimeScore").GetComponent<UIScoreCounter>();
+		uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+		uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 	}
 	private void Start() {
 		Time.timeScale = 0f;
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
 
 		Time.timeScale = 1f;
 		playerIsAlive = true;
-		uiScoreCounter.gameObject.SetActive(true);
+		uiScoreCounterBG.SetActive(true);
 		timeElapsedWhileAlive = 0f;
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
 		
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
 	public static void ResumeGame() {
 		Time.timeScale = 1f;
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
+		uiScoreCounterBG.SetActive(true);
 
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
 
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;
-		uiScoreCounter.gameObject.SetActive(false);
+		uiScoreCounterBG.SetActive(false);
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
 		pauseMenu.SetActive(false);

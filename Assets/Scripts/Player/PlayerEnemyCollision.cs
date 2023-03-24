@@ -14,6 +14,35 @@ public class PlayerEnemyCollision : MonoBehaviour
 
 	private bool canWooshAgain = true;
 
+	void OnTriggerEnter(Collider col)
+	{
+
+		if (col.CompareTag("Enemy")) {
+			
+			if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive
+				&& (col.GetComponent<RemoveKillEnemy>() == null || killPlayer == false)) {
+				// an object with <RemoveKillEnemy>() means that hitting it will remove the collider that kills the player
+
+				canWooshAgain = false;
+				StartCoroutine(WhooshDelay());
+
+				GetComponent<AudioSource>().pitch = Random.Range(sfxPitchRange.x, sfxPitchRange.y);
+				GetComponent<AudioSource>().Play();
+			}
+			if (killPlayer && GameManager.playerIsAlive) {
+				if (col.GetComponent<RemoveKillEnemy>() != null){
+					col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
+				} else {
+					GameManager.EndGame();
+				}
+			}
+		}
+	}
+
+	private IEnumerator WhooshDelay() {
+		yield return new WaitForSeconds(0.1f);
+		canWooshAgain = true;
+	}
 	/*
 	void OnCollisionEnter(Collision col) {
 		print(col);
@@ -34,28 +63,4 @@ public class PlayerEnemyCollision : MonoBehaviour
 
 	}
 	*/
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.CompareTag("Enemy")) {
-			if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive) {
-				canWooshAgain = false;
-				StartCoroutine(WhooshDelay());
-
-				GetComponent<AudioSource>().pitch = Random.Range(sfxPitchRange.x, sfxPitchRange.y);
-				GetComponent<AudioSource>().Play();
-			}
-			if (killPlayer && GameManager.playerIsAlive) {
-				print("Collision with: " + col.gameObject.name);
-				GameManager.EndGame();
-				//Destroy(col.gameObject);
-			}
-		}
-	}
-
-	private IEnumerator WhooshDelay() {
-
-		yield return new WaitForSeconds(0.1f);
-		canWooshAgain = true;
-
-	}
 }

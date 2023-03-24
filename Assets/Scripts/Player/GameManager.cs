@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public static float audioCutoffDistort = 1200f;
 
 	public static GameObject gameManagerObj;
+	public static NGHelper ngHelper;
 	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 	{
 		gameManagerObj = gameObject;
 
+		ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
@@ -101,9 +103,17 @@ public class GameManager : MonoBehaviour
 	}
 
 	public static void EndGame() {
-		// todo: upload score to NG. check achievement
 		timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
 
+		print(timeElapsedWhileAliveBest);
+		if (NGIO.hasUser) {
+			print("posting scores");
+			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+			if (timeInMilliSeconds >= 60000) { // 1 minute
+				ngHelper.UnlockMedalHexagon();
+			}
+			ngHelper.SubmitScores(timeInMilliSeconds);
+		}
 
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;

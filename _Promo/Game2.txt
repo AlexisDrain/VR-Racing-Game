@@ -1,21 +1,12 @@
-
--TODO
-- rewrite Extra tab
-- Bug: WebGL version has double the mouse screen pos
-- Logo
-- Thumbnail
-- Song - https://www.jamendo.com/album/13125/dogma
-- Newgrounds time score
-- Newgrounds Achievement on 1 minute "Hexagon" - "Survive for 1 minute."
-- medal icon
+Todo:
+- publish on Itch.io
 
 VR:
 - Oculus+PC VR version
 - camera offset in VR builds BUT NOT on Android
+- Bug: WebGL version has double the mouse screen pos (we won't need to fix it)
 
 MAAYBE TODO
-- Mouse is always on focus after clicking away
-- more cylindar colors
 - mobile
 
 
@@ -38,20 +29,37 @@ Adrenaline-fueled, high-speed arcade game!
 ----------------------------------------
 
 [Long Description]
+Controls:
+Move player using mouse.
+Make sure the game is focused (accepts mouse position) by clicking once.
+-
 Adrenaline-fueled, high-speed arcade game!
 
-VR version on SideQuest/Lab
-
-Controls:
-Move player using mouse. Make sure the game is focused (accepts mouse position) by clicking once.
-
 Music:
+Fallen & Dirty Angel by THE PHASE
 https://www.jamendo.com/album/13125/dogma
 
 SFX:
 Menu button sounds from Halfquake by Muddasheep
 "Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
 BFXR explosion
+
+----------------------------------------
+Credits:
+Made by Alexis Clay
+https://alexclay.itch.io
+
+Music:
+Fallen & Dirty Angel by THE PHASE
+https://www.jamendo.com/album/13125/dogma 
+
+SFX:
+-"Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
+-BFXR explosion
+-Menu: Half-quake by Muddasheep: https://www.muddasheep.com/#creations/games/halfquaketrilogy
+
+Font:
+-Tschichold Alt Bold https://www.dafont.com/tschichold.font
 
 ----------------------------------------
 

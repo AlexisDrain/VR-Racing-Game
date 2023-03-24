@@ -2536,6 +2536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1084806155}
   - component: {fileID: 1084806156}
+  - component: {fileID: 1084806157}
   m_Layer: 0
   m_Name: NewgroundsIO
   m_TagString: Untagged
@@ -2570,6 +2571,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1d914d470f5a84bb4172efa1063df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ngio_core: {fileID: 1084806157}
+--- !u!114 &1084806157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084806154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970ccf33680893b4a89fbfb6b32ff995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  app_id: 56110:Lnuvw67a
+  session_id: 
+  aes_base64_key: lt1FajqUmgZ7vJQkY1tMRw==
+  output_network_data: 0
 --- !u!1 &1139749241
 GameObject:
   m_ObjectHideFlags: 0

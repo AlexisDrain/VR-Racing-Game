@@ -5,40 +5,21 @@ using UnityEngine.Networking.Types;
 
 public class NGHelper : MonoBehaviour
 {
-
-    void Start()
-    {
-		var ngioOptions = new Dictionary<string, object>()
-        {
-            { "version",            "1.0.0" },
-			{ "preloadMedals",      true },
-	        { "preloadScoreBoards", true },
-        };
-
-        string appID = "56110:Lnuvw67a";
-        string aesKey = "lt1FajqUmgZ7vJQkY1tMRw==";
-		// initialize the API, using the App ID and AES key from your Newgrounds project
-		NGIO.Init(appID, aesKey, ngioOptions);
-    }
-	void Update() {
-		/** 
-		 * Even though we call this on every frame, it will only trigger OnConnectionStatusChanged
-		 * when there is an actual status change
-		 **/
-		StartCoroutine(NGIO.GetConnectionStatus(OnConnectionStatusChanged));
-		StartCoroutine(NGIO.KeepSessionAlive());
+	public io.newgrounds.core ngio_core;
+	//string appID = "56110:Lnuvw67a";
+	//string aesKey = "lt1FajqUmgZ7vJQkY1tMRw==";
+	void Start() {
+		ngio_core.onReady(() => {
+			ngio_core.checkLogin((bool logged_in) => {
+				if (logged_in) {
+					onLoggedIn();
+				}// else {
+				 //   requestLogin();
+				 //}
+			});
+		});
 	}
-	public void OnConnectionStatusChanged(string status) {
 
-		//if(status == NGIO.STATUS_LOGIN_REQUIRED) {
-		//	NGIO.OpenLoginPage();
-		//}
-
-		if (status == NGIO.STATUS_READY) {
-			print("user is logged in");
-		}
-	}
-	/*
 	void onLoggedIn() {
 		io.newgrounds.objects.user player = ngio_core.current_user;
 	}
@@ -52,17 +33,20 @@ public class NGHelper : MonoBehaviour
 	void onLoginCancelled() {
 		print("NG io login canceled");
 	}
-	*/
+
 	public void UnlockMedalHexagon() {
 
-        int medalID = 73231;
+		io.newgrounds.components.Medal.unlock medal_unlock = new io.newgrounds.components.Medal.unlock();
+		medal_unlock.id = 73231;
 
-		StartCoroutine(NGIO.UnlockMedal(medalID));
+		medal_unlock.callWith(ngio_core);
 		print("Medal Unlocked");
     }
     public void SubmitScores(int scoreValue) {
-        int scoreboardID = 12650;
-		StartCoroutine(NGIO.PostScore(scoreboardID, scoreValue, null));
+		io.newgrounds.components.ScoreBoard.postScore submit_score = new io.newgrounds.components.ScoreBoard.postScore();
+		submit_score.id = 12650;
+		submit_score.value = scoreValue;
+		submit_score.callWith(ngio_core);
 		print("Submitted Points: " + scoreValue);
 
     }

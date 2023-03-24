@@ -105,15 +105,13 @@ public class GameManager : MonoBehaviour
 	public static void EndGame() {
 		timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
 
-		print(timeElapsedWhileAliveBest);
-		if (NGIO.hasUser) {
-			print("posting scores");
-			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
-			if (timeInMilliSeconds >= 60000) { // 1 minute
-				ngHelper.UnlockMedalHexagon();
-			}
-			ngHelper.SubmitScores(timeInMilliSeconds);
+		print("posting scores");
+		int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+		if (timeInMilliSeconds >= 60000) { // 1 minute
+			ngHelper.UnlockMedalHexagon();
 		}
+		ngHelper.SubmitScores(timeInMilliSeconds);
+
 
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;

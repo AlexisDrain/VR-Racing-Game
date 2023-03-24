@@ -1,9 +1,13 @@
 
 -TODO
+- rewrite Extra tab
+- Bug: WebGL version has double the mouse screen pos
+- Logo
+- Thumbnail
 - Song - https://www.jamendo.com/album/13125/dogma
-- Obstacle types from notes I drew
 - Newgrounds time score
-- Newgrounds Achievement on 1 minute "Hexagon"
+- Newgrounds Achievement on 1 minute "Hexagon" - "Survive for 1 minute."
+- medal icon
 
 VR:
 - Oculus+PC VR version
@@ -47,6 +51,7 @@ https://www.jamendo.com/album/13125/dogma
 SFX:
 Menu button sounds from Halfquake by Muddasheep
 "Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
+BFXR explosion
 
 ----------------------------------------
 

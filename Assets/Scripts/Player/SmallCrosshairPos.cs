@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 /*
 * Author: Alexis Clay Drain
@@ -22,9 +22,9 @@ public class SmallCrosshairPos : MonoBehaviour
 	{
 
 		myRectTransform.anchoredPosition = mouseControl.mousePosCrosshair;
-		if (GameManager.playerIsAlive == false || Time.timeScale == 0f) {
-			myRectTransform.anchoredPosition = new Vector2(0, 0);
-		}
+		//if (GameManager.playerIsAlive == false || Time.timeScale == 0f) {
+		//	myRectTransform.anchoredPosition = new Vector2(0, 0);
+		//}
 	}
 
 }

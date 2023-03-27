@@ -1,6 +1,3 @@
-Todo:
-- publish on Itch.io
-
 VR:
 - Oculus+PC VR version
 - camera offset in VR builds BUT NOT on Android
@@ -8,6 +5,7 @@ VR:
 
 MAAYBE TODO
 - mobile
+- Newgrounds Scores are being uploaded even when they're not a record
 
 
 ---------------------

@@ -7,9 +7,15 @@ using UnityEngine.XR.Management;
 /*
 * Author: Alexis Clay Drain
 */
+
+public enum GameBuild {
+	WebGL,
+	VR_Android
+}
+
 public class GameManager : MonoBehaviour
 {
-
+	public GameBuild gameBuild = GameBuild.WebGL;
 	public AudioMixer audioMixer;
 	public static float audioCutoffDistort = 1200f;
 
@@ -103,14 +109,28 @@ public class GameManager : MonoBehaviour
 	}
 
 	public static void EndGame() {
-		timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
 
-		print("posting scores");
-		int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
-		if (timeInMilliSeconds >= 60000) { // 1 minute
-			ngHelper.UnlockMedalHexagon();
+		if(gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.WebGL) {
+			timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
+			print("posting scores");
+			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+			if (timeInMilliSeconds >= 60000) { // 1 minute
+				ngHelper.UnlockMedalHexagon();
+			}
+			ngHelper.SubmitScores(timeInMilliSeconds);
+		} else if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			print("posting scores");
+			if(timeElapsedWhileAliveBest < timeElapsedWhileAlive) {
+				timeElapsedWhileAliveBest = timeElapsedWhileAlive;
+
+				int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+				if (timeInMilliSeconds >= 60000) { // 1 minute
+					Oculus.Platform.Achievements.Unlock("Hexagon");
+				}
+				Oculus.Platform.Leaderboards.WriteEntry("SurvivalTime", (long) timeInMilliSeconds);
+			}
+
 		}
-		ngHelper.SubmitScores(timeInMilliSeconds);
 
 
 		Time.timeScale = 0.15f;

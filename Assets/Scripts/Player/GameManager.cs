@@ -39,15 +39,24 @@ public class GameManager : MonoBehaviour
 	{
 		gameManagerObj = gameObject;
 
-		ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
-		pauseMenu = GameObject.Find("Canvas/PauseMenu");
-		deathMenu = GameObject.Find("Canvas/DeathMenu");
-		uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
-		uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+		if (gameBuild == GameBuild.WebGL) {
+			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
+			pauseMenu = GameObject.Find("Canvas/PauseMenu");
+			deathMenu = GameObject.Find("Canvas/DeathMenu");
+			uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+		} else if (gameBuild == GameBuild.VR_Android) {
+
+			pauseMenu = GameObject.Find("XRRig/Camera Offset/Main Camera/CanvasVR/PauseMenu");
+			deathMenu = GameObject.Find("XRRig/Camera Offset/Main Camera/CanvasVR/DeathMenu");
+			uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
+			uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+		}
+
 	}
 	private void Start() {
 		Time.timeScale = 0f;
@@ -115,9 +124,9 @@ public class GameManager : MonoBehaviour
 			print("posting scores");
 			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
 			if (timeInMilliSeconds >= 60000) { // 1 minute
-				ngHelper.UnlockMedalHexagon();
+				//ngHelper.UnlockMedalHexagon();
 			}
-			ngHelper.SubmitScores(timeInMilliSeconds);
+			//ngHelper.SubmitScores(timeInMilliSeconds);
 		} else if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
 			print("posting scores");
 			if(timeElapsedWhileAliveBest < timeElapsedWhileAlive) {

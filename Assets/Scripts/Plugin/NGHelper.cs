@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking.Types;
+//using UnityEngine.Networking.Types;
 
 public class NGHelper : MonoBehaviour
 {
+	/*
 	public io.newgrounds.core ngio_core;
 	//string appID = "56110:Lnuvw67a";
 	//string aesKey = "lt1FajqUmgZ7vJQkY1tMRw==";
@@ -41,13 +42,14 @@ public class NGHelper : MonoBehaviour
 
 		medal_unlock.callWith(ngio_core);
 		print("Medal Unlocked");
-    }
-    public void SubmitScores(int scoreValue) {
+	}
+	public void SubmitScores(int scoreValue) {
 		io.newgrounds.components.ScoreBoard.postScore submit_score = new io.newgrounds.components.ScoreBoard.postScore();
 		submit_score.id = 12650;
 		submit_score.value = scoreValue;
 		submit_score.callWith(ngio_core);
 		print("Submitted Points: " + scoreValue);
 
-    }
+	}
+	*/
 }

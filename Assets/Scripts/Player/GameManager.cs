@@ -1,3 +1,4 @@
+using Oculus.Interaction.Unity.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class GameManager : MonoBehaviour
 	public static float audioCutoffDistort = 1200f;
 
 	public static GameObject gameManagerObj;
-	public static NGHelper ngHelper;
 	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
 	public static GameObject deathMenu;
 	public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
+	// WebGL only
+	public static NGHelper ngHelper;
+
+	// VR only
+
+	public static GameObject controllerRight;
+	public static GameObject controllerLeft;
 
 	public static bool playerIsAlive = false;
 	public static bool playerInPauseMenu = true;
@@ -51,10 +58,14 @@ public class GameManager : MonoBehaviour
 			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 		} else if (gameBuild == GameBuild.VR_Android) {
 
-			pauseMenu = GameObject.Find("XRRig/Camera Offset/Main Camera/CanvasVR/PauseMenu");
-			deathMenu = GameObject.Find("XRRig/Camera Offset/Main Camera/CanvasVR/DeathMenu");
+
+			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenu");
+			deathMenu = GameObject.Find("World/CanvasVRWorld/DeathMenu");
 			uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
 			uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+
+			controllerRight = playerXRig.transform.Find("RightController").gameObject;
+			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
 		}
 
 	}
@@ -66,20 +77,29 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void FixedUpdate() {
+		//OVRInput.FixedUpdate(); // Contrary to the Meta docs DO NOT CALL THIS
 		if (GameManager.playerIsAlive) {
 			timeElapsedWhileAlive += Time.deltaTime;
 		}
 	}
 	public void Update() {
-		if (Input.GetButtonDown("Pause")) {
+		//OVRInput.Update(); // Contrary to the Meta docs DO NOT CALL THIS
+		if (Input.GetButtonDown("Pause") || OVRInput.GetDown(OVRInput.Button.Start)) {
 			PauseGame();
 		}
+		
+
 
 		if (GameManager.playerIsAlive == false) {
 			// player is dead
-			 if (Input.GetButtonDown("Restart") && playerInPauseMenu == false) {
+			 if ((Input.GetButtonDown("Restart") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
 			}
+		}
+
+		// TESTING. For VR only
+		if (OVRInput.GetDown(OVRInput.Button.One) && playerInPauseMenu == true) {
+			StartGame();
 		}
 	}
 	public static void StartGame() {
@@ -96,16 +116,28 @@ public class GameManager : MonoBehaviour
 		deathMenu.SetActive(false);
 		
 		playerInPauseMenu = false;
+
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(false);
+			controllerLeft.gameObject.SetActive(false);
+		}
+		
 	}
 	public static void ResumeGame() {
 		Time.timeScale = 1f;
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
 		uiScoreCounterBG.SetActive(true);
-
+		
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
 
 		playerInPauseMenu = false;
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(false);
+			controllerLeft.gameObject.SetActive(false);
+		}
 	}
 	public static void PauseGame() {
 
@@ -115,6 +147,11 @@ public class GameManager : MonoBehaviour
 		pauseMenu.SetActive(true);
 		deathMenu.SetActive(false);
 		playerInPauseMenu = true;
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(true);
+			controllerLeft.gameObject.SetActive(true);
+		}
 	}
 
 	public static void EndGame() {
@@ -141,14 +178,19 @@ public class GameManager : MonoBehaviour
 
 		}
 
-
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;
-		uiScoreCounterBG.SetActive(false);
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
-
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.WebGL) {
+			uiScoreCounterBG.SetActive(false);
+		}
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(true);
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(true);
+			controllerLeft.gameObject.SetActive(true);
+		}
 	}
 
 	public void ResetWorldPos() {

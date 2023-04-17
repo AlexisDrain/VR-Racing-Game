@@ -1,11 +1,10 @@
 VR:
-- Oculus+PC VR version
-- camera offset in VR builds BUT NOT on Android
-- Bug: WebGL version has double the mouse screen pos (we won't need to fix it)
+- camera offset in VR builds
 
 MAAYBE TODO
 - mobile
 - Newgrounds Scores are being uploaded even when they're not a record
+- Bug: WebGL version has double the mouse screen pos (we won't need to fix it)
 
 
 ---------------------

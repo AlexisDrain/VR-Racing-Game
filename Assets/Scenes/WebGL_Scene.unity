@@ -2572,7 +2572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1d914d470f5a84bb4172efa1063df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ngio_core: {fileID: 1084806157}
 --- !u!114 &1084806157
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,10 +43,10 @@ BFXR explosion
 ----------------------------------------
 
 [Long Description - VR]
-Download from SideQuest:
-https://sidequestvr.com/app/15595/blue-vortex
+Install using SideQuest:
+https://sidequestvr.com/app/15595
 
-Online, 2d version on Newgrounds.com
+Play the online, 2d version of this game on Newgrounds.com
 https://www.newgrounds.com/portal/view/878417
 
 Adrenaline-fueled, high-speed arcade game!
@@ -57,11 +57,6 @@ Move head to dodge obstacles.
 Music:
 Fallen & Dirty Angel by THE PHASE
 https://www.jamendo.com/album/13125/dogma
-
-SFX:
-Menu button sounds from Halfquake by Muddasheep
-"Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
-BFXR explosion
 
 ----------------------------------------
 Credits:

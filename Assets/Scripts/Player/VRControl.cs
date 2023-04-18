@@ -8,11 +8,11 @@ using UnityEngine;
 public class VRControl : MonoBehaviour
 {
 	//public Vector2 xyMagnitude = new Vector2(4.8f, 4.8f);
+	//public Vector3 offset;
 	public float maxWorldMagnitude = 4.8f;
-	public Vector3 offset;
 
 	private void Start() {
-		offset = GameManager.playerXRig.transform.position;
+		//offset = GameManager.playerXRig.transform.position;
 	}
 
 	public void Update() {
@@ -22,7 +22,8 @@ public class VRControl : MonoBehaviour
 
 
 		// clamp x and y to 4.8. set z to zero
-		Vector3 clampedXY = Vector3.ClampMagnitude(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y), maxWorldMagnitude);
+		//Vector3 clampedXY = Vector3.ClampMagnitude(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y), maxWorldMagnitude);
+		Vector3 clampedXY = Vector3.ClampMagnitude(new Vector2(transform.position.x, transform.position.y), maxWorldMagnitude);
 		transform.position = new Vector3(clampedXY.x, clampedXY.y, transform.position.z);
 	}
 

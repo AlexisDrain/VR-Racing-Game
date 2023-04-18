@@ -32298,8 +32298,6 @@ struct VRControl_t6674BE5271976455045CFE0B86A5A31FF544BAA9  : public MonoBehavio
 {
 	// System.Single VRControl::maxWorldMagnitude
 	float ___maxWorldMagnitude_4;
-	// UnityEngine.Vector3 VRControl::offset
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset_5;
 };
 
 // Oculus.Platform.Samples.VrHoops.VREyeRaycaster

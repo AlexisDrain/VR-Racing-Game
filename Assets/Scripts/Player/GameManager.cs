@@ -96,8 +96,11 @@ public class GameManager : MonoBehaviour
 				StartGame();
 			}
 		}
-
-		// TESTING. For VR only
+		// testing VR only
+		if (Input.GetKeyUp(KeyCode.F1) && gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			StartGame();
+		}
+		// For VR only
 		if (OVRInput.GetDown(OVRInput.Button.One) && playerInPauseMenu == true) {
 			StartGame();
 		}

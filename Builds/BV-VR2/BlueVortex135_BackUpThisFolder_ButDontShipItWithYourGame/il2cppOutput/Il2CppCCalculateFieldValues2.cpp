@@ -21190,8 +21190,6 @@ struct VRControl_t6674BE5271976455045CFE0B86A5A31FF544BAA9  : public MonoBehavio
 {
 	// System.Single VRControl::maxWorldMagnitude
 	float ___maxWorldMagnitude_4;
-	// UnityEngine.Vector3 VRControl::offset
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset_5;
 };
 
 // Oculus.Platform.Samples.VrHoops.VREyeRaycaster
@@ -32771,9 +32769,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6844[1] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6845[2] = 
 {
 	static_cast<int32_t>(offsetof(SmallCrosshairPos_t374ADB1CDA299DECC77E5FEFD7A01DCBCD14BF6D, ___mouseControl_4)),static_cast<int32_t>(offsetof(SmallCrosshairPos_t374ADB1CDA299DECC77E5FEFD7A01DCBCD14BF6D, ___myRectTransform_5)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6846[2] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6846[1] = 
 {
-	static_cast<int32_t>(offsetof(VRControl_t6674BE5271976455045CFE0B86A5A31FF544BAA9, ___maxWorldMagnitude_4)),static_cast<int32_t>(offsetof(VRControl_t6674BE5271976455045CFE0B86A5A31FF544BAA9, ___offset_5)),};
+	static_cast<int32_t>(offsetof(VRControl_t6674BE5271976455045CFE0B86A5A31FF544BAA9, ___maxWorldMagnitude_4)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6848[6] = 
 {
 	static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___pooledObjects_4)),static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___objectsToCreate_5)),static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___setPoolTransformAsParent_6)),static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___reuseActiveObjects_7)),static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___currentReuseIndex_8)),static_cast<int32_t>(offsetof(Pool_tD26C4E724DD443CEB143293744A568DB49E0A6B5, ___prefeb_9)),};

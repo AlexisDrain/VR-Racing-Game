@@ -47,5 +47,9 @@ public class PlayerControllerChasm : MonoBehaviour
 		else if (myRigidbody.velocity.z > forwardMaxSpeed) {
 			myRigidbody.velocity = new Vector3(0f, 0f, forwardMaxSpeed);
 		}
+
+		if (transform.position.y <= -15f) {
+			GameManagerChasm.EndGame(); // end game has a check that player should be alive to endgame()
+		}
 	}
 }

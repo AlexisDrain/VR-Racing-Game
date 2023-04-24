@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayAudioSourceSFX: MonoBehaviour {
 
+	public bool chasm = false;
 	public float overrideAudioSourceVolume = 1f;
 	//private Transform myTransform;
 
@@ -14,7 +15,11 @@ public class PlayAudioSourceSFX: MonoBehaviour {
 	}
 	public void PlayLoudSFXInGameManager(AudioClip newAudioClip) {
 
-		GameManager.SpawnLoudAudio(newAudioClip, overrideAudioSourceVolume);
+		if (chasm == true) {
+			GameManagerChasm.SpawnLoudAudio(newAudioClip, overrideAudioSourceVolume);
+		} else {
+			GameManager.SpawnLoudAudio(newAudioClip, overrideAudioSourceVolume);
+		}
 		//myTransform = transform;
 	}
 

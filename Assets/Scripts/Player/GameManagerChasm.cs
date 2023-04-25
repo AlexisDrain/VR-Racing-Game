@@ -8,12 +8,21 @@ using UnityEngine.XR.Management;
 /*
 * Author: Alexis Clay Drain
 */
-
+public enum GameScene {
+    blueVortex,
+    chasm
+}
 
 public class GameManagerChasm : MonoBehaviour
 {
 	public GameBuild gameBuild = GameBuild.WebGL;
-	public AudioMixer audioMixer;
+	public GameScene currentGameScene;
+
+
+    public static LayerMask layerWorld;
+    public static LayerMask layerEntity;
+
+    public AudioMixer audioMixer;
 	public static float audioCutoffDistort = 1200f;
 
 	public static GameObject gameManagerChasmObj;
@@ -41,8 +50,13 @@ public class GameManagerChasm : MonoBehaviour
 	void Awake()
 	{
 		gameManagerChasmObj = gameObject;
+		currentGameScene = GameScene.chasm;
 
-		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
+        layerWorld = LayerMask.NameToLayer("World");
+		layerEntity = LayerMask.NameToLayer("Entity");
+
+
+        pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();

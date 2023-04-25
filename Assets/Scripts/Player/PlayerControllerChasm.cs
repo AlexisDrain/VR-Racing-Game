@@ -7,11 +7,13 @@ public class PlayerControllerChasm : MonoBehaviour
 
     public float forwardMoveSpeed = 5f;
     public float forwardMaxSpeed = 50f;
-	public float horizontalMoveSpeed = 10f;
+	public float horizontalMoveSpeed = 50f;
+    public float horizontalMaxSpeed = 10f;
+	public float horizontalDrag = 0.98f;
 
-	public float jumpPower = 10f;
-	private bool holdingJump = false;
+    public float jumpPower = 10f;
 	private bool onGround = true;
+	private float canJumpCountdown = 0f;
 
 	private Rigidbody myRigidbody;
 
@@ -23,31 +25,46 @@ public class PlayerControllerChasm : MonoBehaviour
 	}
 
 	private void Update() {
-		if (Input.GetButtonDown("Jump") && onGround == true) {
+		if ((Input.GetButton("Jump") || Input.GetButton("JumpAlt")) && onGround == true && canJumpCountdown <= 0f) {
 			myRigidbody.AddForce(new Vector3(0f, jumpPower, 0f), ForceMode.Impulse);
-			holdingJump = true;
-		}
-		if (Input.GetButtonUp("Jump") && myRigidbody.velocity.y > 0f && holdingJump == true) {
+			canJumpCountdown = 1f;
+
+        }
+		if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("JumpAlt")) && myRigidbody.velocity.y > 0f) {
 			myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, myRigidbody.velocity.y / 2, myRigidbody.velocity.z);
 		}
 
-		if (onGround == true) {
-			//holdingJump = false;
-		}
 	}
 	// Update is called once per frame
 	void FixedUpdate()
     {
-		float horizontalAxis = Input.GetAxis("Horizontal");
-		myRigidbody.AddForce(new Vector3(horizontalAxis * horizontalMoveSpeed, 0f, 0f), ForceMode.Force);
+		// onground
+		onGround = Physics.Linecast(transform.position, transform.position + Vector3.down, (1 << GameManagerChasm.layerWorld));
+		if(canJumpCountdown > 0f) {
+			canJumpCountdown -= 0.03f;
+		}
 
+		// forward speed
         if (myRigidbody.velocity.z < forwardMaxSpeed) {
 		    myRigidbody.AddForce(new Vector3(0f,0f,1f) * forwardMoveSpeed);
         }
 		else if (myRigidbody.velocity.z > forwardMaxSpeed) {
-			myRigidbody.velocity = new Vector3(0f, 0f, forwardMaxSpeed);
+			myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, myRigidbody.velocity.y, Mathf.Min(forwardMaxSpeed, myRigidbody.velocity.z));
 		}
 
+		// horizontal speed
+		float horizontalAxis = Input.GetAxis("Horizontal");
+		myRigidbody.AddForce(new Vector3(horizontalAxis * horizontalMoveSpeed, 0f, 0f), ForceMode.Force);
+		if (myRigidbody.velocity.x > horizontalMaxSpeed) {
+            myRigidbody.velocity = new Vector3(horizontalMaxSpeed, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        } else if (myRigidbody.velocity.x < -horizontalMaxSpeed) {
+            myRigidbody.velocity = new Vector3(-horizontalMaxSpeed, myRigidbody.velocity.y, myRigidbody.velocity.z);
+        }
+
+		// drag
+		myRigidbody.velocity = new Vector3(myRigidbody.velocity.x * horizontalDrag, myRigidbody.velocity.y, myRigidbody.velocity.z);
+
+		// death
 		if (transform.position.y <= -15f) {
 			GameManagerChasm.EndGame(); // end game has a check that player should be alive to endgame()
 		}

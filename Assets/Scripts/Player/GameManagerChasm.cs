@@ -18,7 +18,6 @@ public class GameManagerChasm : MonoBehaviour
 	public GameBuild gameBuild = GameBuild.WebGL;
 	public GameScene currentGameScene;
 
-
     public static LayerMask layerWorld;
     public static LayerMask layerEntity;
 
@@ -30,10 +29,14 @@ public class GameManagerChasm : MonoBehaviour
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
 	public static AudioSource musicAudioSrc;
-	public static GameObject pauseMenu;
+	public static Transform worldTransform;
+    public static GameObject pauseMenu;
 	public static GameObject deathMenu;
 	public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
+    public static GameObject playerCol;
+    
+    public static Vector3 playerCheckpoint;
 	// WebGL only
 	public static NGHelper ngHelper;
 
@@ -60,13 +63,18 @@ public class GameManagerChasm : MonoBehaviour
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
-		if (gameBuild == GameBuild.WebGL) {
+		worldTransform = GameObject.Find("World").transform;
+		
+
+        if (gameBuild == GameBuild.WebGL) {
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
 			uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
 			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
-		} else if (gameBuild == GameBuild.VR_Android) {
+			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+
+        } else if (gameBuild == GameBuild.VR_Android) {
 
 
 			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenuChasm");
@@ -78,7 +86,9 @@ public class GameManagerChasm : MonoBehaviour
 			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
 		}
 
-	}
+        playerCheckpoint = playerCol.transform.position;
+
+    }
 	private void Start() {
 		Time.timeScale = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
@@ -88,7 +98,7 @@ public class GameManagerChasm : MonoBehaviour
 
 	public void FixedUpdate() {
 		//OVRInput.FixedUpdate(); // Contrary to the Meta docs DO NOT CALL THIS
-		if (GameManager.playerIsAlive) {
+		if (GameManagerChasm.playerIsAlive) {
 			timeElapsedWhileAlive += Time.deltaTime;
 		}
 	}
@@ -100,7 +110,7 @@ public class GameManagerChasm : MonoBehaviour
 		
 
 
-		if (GameManager.playerIsAlive == false) {
+		if (GameManagerChasm.playerIsAlive == false) {
 			// player is dead
 			 if ((Input.GetButtonDown("Restart") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
@@ -124,8 +134,11 @@ public class GameManagerChasm : MonoBehaviour
 		uiScoreCounterBG.SetActive(true);
 		timeElapsedWhileAlive = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
-		
-		pauseMenu.SetActive(false);
+		playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
+		playerCol.transform.position = playerCheckpoint;
+
+
+        pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
 		
 		playerInPauseMenu = false;

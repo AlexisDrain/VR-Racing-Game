@@ -18,9 +18,9 @@ public class ResumeGame : MonoBehaviour
 	public void Resume() {
 		if(GameManager.playerIsAlive == false) {
             if(chasm) {
-                GameManagerChasm.StartGame();
+                GameManagerChasm.ResumeGame();
             } else {
-			    GameManager.StartGame();
+			    GameManager.ResumeGame();
 
             }
 		} else {

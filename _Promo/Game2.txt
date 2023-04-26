@@ -1,5 +1,6 @@
 TODO
 - roll camera on turning (like Mafia DE)
+- 3 second timer before game start
 - Cluster truck?
 - Levels: must get minimum coins to progress.
 - Curve world up, floor and enemies come to player.

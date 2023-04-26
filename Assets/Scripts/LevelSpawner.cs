@@ -5,13 +5,13 @@ using UnityEngine;
 /*
 * Author: Alexis Clay Drain
 */
-public class LevelSelector : MonoBehaviour
+public class LevelSpawner : MonoBehaviour
 {
     public int unlockedLevel = 0;
     public List<GameObject> levels = new List<GameObject>();
 
     void Start() {
-        SpawnLevel(unlockedLevel);
+        //SpawnLevel(unlockedLevel);
     }
 
     public void SpawnLevel(int level) {
@@ -19,5 +19,6 @@ public class LevelSelector : MonoBehaviour
         GameObject.Instantiate(newLevel, GameManagerChasm.worldTransform);
 
         GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().forwardMaxSpeed = newLevel.GetComponent<LevelValues>().playerMaxForwardSpeed;
+        GameManagerChasm.StartGame();
     }
 }

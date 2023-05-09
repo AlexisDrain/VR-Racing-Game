@@ -4864,9 +4864,7 @@ GameObject:
   - component: {fileID: 122765863}
   - component: {fileID: 122765858}
   - component: {fileID: 122765860}
-  - component: {fileID: 122765861}
   - component: {fileID: 122765862}
-  - component: {fileID: 122765864}
   m_Layer: 7
   m_Name: PlayerCol
   m_TagString: Untagged
@@ -5018,20 +5016,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &122765861
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122765854}
-  m_Material: {fileID: 13400000, guid: 5e32e38e083563843845077774e2ea60, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &122765862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5058,25 +5042,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 5
-  forwardMaxSpeed: 50
+  forwardMaxSpeed: 25
   horizontalMoveSpeed: 80
   horizontalMaxSpeed: 20
   horizontalDrag: 0.9
   jumpPower: 11
   gravityMultiplier: 1.5
---- !u!65 &122765864
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122765854}
-  m_Material: {fileID: 13400000, guid: 5e32e38e083563843845077774e2ea60, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  jumpAudioClip: {fileID: 8300000, guid: 213ba44b2309c1d4a85ce37b958a9fba, type: 3}
+  jumpPitch: {x: 0.8, y: 1.3}
+  landAudioClip: {fileID: 8300000, guid: f9944b6aafc04ea4d83bef40e8b0a5de, type: 3}
+  landPitch: {x: 0.7, y: 1.5}
+  dieAudioClip: {fileID: 8300000, guid: b324f1f3103ef4a4e8124eb413ce1a65, type: 3}
+  diePitch: {x: 0.8, y: 1.2}
 --- !u!1 &139207979
 GameObject:
   m_ObjectHideFlags: 0

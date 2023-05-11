@@ -227,9 +227,19 @@ public class GameManagerChasm : MonoBehaviour
 	public void ResetWorldPos() {
 		//GetComponent<GenerateObstacles>().PushBackEnemies();
 	}
-	public static AudioSource SpawnLoudAudio(AudioClip newAudioClip, float newVolume = 1f) {
+
+
+	public static AudioSource SpawnLoudAudio(AudioClip newAudioClip, Vector2 pitch = new Vector2(),float newVolume = 1f) {
+
+		float sfxPitch;
+		if(pitch.x <= 0.1f) {
+			sfxPitch = 1;
+        } else {
+			sfxPitch = Random.Range(pitch.x, pitch.y);
+        }
 
 		AudioSource audioObject = pool_LoudAudioSource.Spawn(new Vector3(0f, 0f, 0f)).GetComponent<AudioSource>();
+		audioObject.GetComponent<AudioSource>().pitch = sfxPitch;
 		audioObject.PlayWebGL(newAudioClip, newVolume);
 		return audioObject;
 		// audio object will set itself to inactive after done playing.

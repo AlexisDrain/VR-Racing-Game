@@ -112,6 +112,9 @@
         },
         {
             "m_Id": "a896734dfd15486fbcb51be1e84dd52b"
+        },
+        {
+            "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
         }
     ],
     "m_StickyNoteDatas": [],
@@ -436,7 +439,7 @@
     "m_Type": "UnityEditor.ShaderGraph.TimeNode",
     "m_ObjectId": "018b9362119d4f85a080609805e48da8",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
     },
     "m_Name": "Time",
     "m_DrawState": {
@@ -722,6 +725,17 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.GroupData",
+    "m_ObjectId": "142fe07a1b06449986353bbcdb2a23fa",
+    "m_Title": "Color Lerp",
+    "m_Position": {
+        "x": 10.0,
+        "y": 10.0
+    }
 }
 
 {
@@ -1227,7 +1241,7 @@
     "m_Type": "UnityEditor.ShaderGraph.ColorNode",
     "m_ObjectId": "597f1d20d9e84476b461395ce6ab36c7",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
     },
     "m_Name": "Color",
     "m_DrawState": {
@@ -1270,7 +1284,7 @@
     "m_Type": "UnityEditor.ShaderGraph.LerpNode",
     "m_ObjectId": "6083c3ad5a224de8826c9f659757e1bc",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
     },
     "m_Name": "Lerp",
     "m_DrawState": {
@@ -1598,7 +1612,7 @@
     "m_Type": "UnityEditor.ShaderGraph.ColorNode",
     "m_ObjectId": "877e2876b524407eac2c0969b9e39840",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
     },
     "m_Name": "Color",
     "m_DrawState": {
@@ -1722,7 +1736,7 @@
     "m_RefNameGeneratedByDisplayName": "Texture-Color",
     "m_DefaultReferenceName": "_Texture_Color",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
@@ -1783,7 +1797,7 @@
     "m_Type": "UnityEditor.ShaderGraph.SineNode",
     "m_ObjectId": "9b75634ecef5487b8e3afd90d7f7df3e",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "142fe07a1b06449986353bbcdb2a23fa"
     },
     "m_Name": "Sine",
     "m_DrawState": {

@@ -8,7 +8,8 @@ public class PlayerControllerChasm : MonoBehaviour
 
     public float forwardMoveSpeed = 5f;
     public float forwardMaxSpeed = 50f;
-	public float horizontalMoveSpeed = 50f;
+	public float forwardDrag = 0.9f;
+    public float horizontalMoveSpeed = 50f;
     public float horizontalMaxSpeed = 10f;
 	public float horizontalDrag = 0.98f;
 
@@ -18,7 +19,11 @@ public class PlayerControllerChasm : MonoBehaviour
 	private bool inAir = true;
 	private float canJumpCountdown = 0f;
 
-	private Rigidbody myRigidbody;
+    public Vector3 hoopPower = new Vector3(0f, 10f, 10f);
+    private float unlimittedForwardSpeedCountdown = 0f;
+
+
+    private Rigidbody myRigidbody;
 
 	[Header("SFX")]
 	public AudioClip jumpAudioClip;
@@ -27,8 +32,10 @@ public class PlayerControllerChasm : MonoBehaviour
     public Vector2 landPitch = new Vector2(0.8f, 1.2f);
     public AudioClip dieAudioClip;
     public Vector2 diePitch = new Vector2(0.8f, 1.2f);
+    public AudioClip hoopAudioClip;
+    public Vector2 hoopPitch = new Vector2(0.8f, 1.2f);
 
-	private AudioSource myAudioSource;
+    private AudioSource myAudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +59,12 @@ public class PlayerControllerChasm : MonoBehaviour
 		}
 
 	}
+
+	public void PlayerInHoop() {
+		unlimittedForwardSpeedCountdown = 1f;
+        myRigidbody.AddForce(hoopPower, ForceMode.Impulse);
+		GameManagerChasm.SpawnLoudAudio(hoopAudioClip, new Vector2(hoopPitch.x, hoopPitch.y));
+    }
 
 	// Update is called once per frame
 	void FixedUpdate() {
@@ -79,14 +92,17 @@ public class PlayerControllerChasm : MonoBehaviour
 
         if (canJumpCountdown > 0f) {
 			canJumpCountdown -= 0.03f;
-		}
+        }
+        if (unlimittedForwardSpeedCountdown > 0f) {
+            unlimittedForwardSpeedCountdown -= 0.03f;
+        }
 
         // forward speed
         if (myRigidbody.velocity.z < forwardMaxSpeed) {
 		    myRigidbody.AddForce(new Vector3(0f,0f,1f) * forwardMoveSpeed);
         }
-		else if (myRigidbody.velocity.z > forwardMaxSpeed) {
-			myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, myRigidbody.velocity.y, Mathf.Min(forwardMaxSpeed, myRigidbody.velocity.z));
+		else if (unlimittedForwardSpeedCountdown <= 0f && myRigidbody.velocity.z > forwardMaxSpeed) {
+			myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, myRigidbody.velocity.y, myRigidbody.velocity.z * forwardDrag);//Mathf.Min(forwardMaxSpeed, myRigidbody.velocity.z));
 		}
 
 		// horizontal speed

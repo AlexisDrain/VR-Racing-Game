@@ -10,12 +10,16 @@ public class PlayerEnemyCollision : MonoBehaviour
 {
 	public bool killPlayer;
 	public bool playWhooshSFX;
-	public Vector2 sfxPitchRange = new Vector2(0.6f, 1.5f);
+	public Vector2 sfxDeathPitchRange = new Vector2(0.6f, 1.5f);
 
 	private bool canWooshAgain = true;
 
 	void OnTriggerEnter(Collider col)
 	{
+
+		if(col.CompareTag("Hoop")) {
+			GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().PlayerInHoop();
+		}
 
 		if (col.CompareTag("Enemy")) {
 			
@@ -26,7 +30,7 @@ public class PlayerEnemyCollision : MonoBehaviour
 				canWooshAgain = false;
 				StartCoroutine(WhooshDelay());
 
-				GetComponent<AudioSource>().pitch = Random.Range(sfxPitchRange.x, sfxPitchRange.y);
+				GetComponent<AudioSource>().pitch = Random.Range(sfxDeathPitchRange.x, sfxDeathPitchRange.y);
 				GetComponent<AudioSource>().Play();
 			}
 			if (killPlayer && GameManager.playerIsAlive) {

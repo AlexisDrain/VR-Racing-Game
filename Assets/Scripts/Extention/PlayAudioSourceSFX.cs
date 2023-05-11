@@ -16,7 +16,7 @@ public class PlayAudioSourceSFX: MonoBehaviour {
 	public void PlayLoudSFXInGameManager(AudioClip newAudioClip) {
 
 		if (chasm == true) {
-			GameManagerChasm.SpawnLoudAudio(newAudioClip, overrideAudioSourceVolume);
+			GameManagerChasm.SpawnLoudAudio(newAudioClip, new Vector2(), overrideAudioSourceVolume);
 		} else {
 			GameManager.SpawnLoudAudio(newAudioClip, overrideAudioSourceVolume);
 		}

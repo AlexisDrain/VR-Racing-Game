@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: f7e57b4e558c63c4d8ce67e4c00785b9
-timeCreated: 1516032357
-licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,7 +8,6 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Tschichold Alternate
   fontNames:
   - Tschichold Alternate
   fallbackFontReferences:
@@ -19,6 +16,7 @@ TrueTypeFontImporter:
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

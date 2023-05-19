@@ -10,7 +10,7 @@ public class ResetWorldPosOnDistance : MonoBehaviour
     void FixedUpdate()
     {
         if(transform.position.z >= resetDistance) {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+            //transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
             if (GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().currentGameScene == GameScene.chasm) {
                 GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().ResetWorldPos();
             } else {

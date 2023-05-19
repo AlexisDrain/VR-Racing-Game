@@ -21,7 +21,12 @@ public class PlayerEnemyCollision : MonoBehaviour
 			GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().PlayerInHoop();
 		}
 
-		if (col.CompareTag("Enemy")) {
+        if (col.CompareTag("Goal")) {
+			print("TODO: increment unlocked levels incase its the most recent unlocked one");
+			GameManagerChasm.unlockedLevels += 1;
+			GameManagerChasm.PauseGame();
+        }
+        if (col.CompareTag("Enemy")) {
 			
 			if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive
 				&& (col.GetComponent<RemoveKillEnemy>() == null || killPlayer == false)) {

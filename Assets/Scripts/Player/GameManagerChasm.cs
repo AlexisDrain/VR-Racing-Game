@@ -225,8 +225,10 @@ public class GameManagerChasm : MonoBehaviour
 	}
 
 	public void ResetWorldPos() {
-		//GetComponent<GenerateObstacles>().PushBackEnemies();
-	}
+        playerXRig.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        //GetComponent<GenerateObstacles>().PushBackEnemies();
+
+    }
 
 
 	public static AudioSource SpawnLoudAudio(AudioClip newAudioClip, Vector2 pitch = new Vector2(),float newVolume = 1f) {

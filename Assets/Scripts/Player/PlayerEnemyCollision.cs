@@ -27,7 +27,8 @@ public class PlayerEnemyCollision : MonoBehaviour
 			GameManagerChasm.PauseGame();
         }
         if (col.CompareTag("Enemy")) {
-			
+
+			print("col with enemy");
 			if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive
 				&& (col.GetComponent<RemoveKillEnemy>() == null || killPlayer == false)) {
 				// an object with <RemoveKillEnemy>() means that hitting it will remove the collider that kills the player
@@ -38,13 +39,24 @@ public class PlayerEnemyCollision : MonoBehaviour
 				GetComponent<AudioSource>().pitch = Random.Range(sfxDeathPitchRange.x, sfxDeathPitchRange.y);
 				GetComponent<AudioSource>().Play();
 			}
-			if (killPlayer && GameManager.playerIsAlive) {
-				if (col.GetComponent<RemoveKillEnemy>() != null){
-					col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
-				} else {
-					GameManager.EndGame();
-				}
-			}
+            if (GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().currentGameScene == GameScene.chasm) {
+                if (killPlayer && GameManagerChasm.playerIsAlive) {
+                    if (col.GetComponent<RemoveKillEnemy>() != null) {
+                        col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
+                    } else {
+                        GameManagerChasm.EndGame();
+                    }
+                }
+            } else {
+                if (killPlayer && GameManager.playerIsAlive) {
+                    if (col.GetComponent<RemoveKillEnemy>() != null) {
+                        col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
+                    } else {
+                        GameManager.EndGame();
+                    }
+                }
+            }
+
 		}
 	}
 

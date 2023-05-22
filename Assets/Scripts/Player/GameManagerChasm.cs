@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.XR.Management;
+using Cinemachine;
 
 /*
 * Author: Alexis Clay Drain
@@ -33,6 +34,8 @@ public class GameManagerChasm : MonoBehaviour
     public static GameObject pauseMenu;
 	public static GameObject deathMenu;
     public static GameObject levelMenu;
+    public static GameObject canvasControls;
+    
     public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
     public static GameObject playerCol;
@@ -72,11 +75,13 @@ public class GameManagerChasm : MonoBehaviour
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
             levelMenu = GameObject.Find("Canvas/LevelMenuChasm");
+			canvasControls = GameObject.Find("Canvas/Controls_Jump");
             
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
             uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
 			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+
 
         } else if (gameBuild == GameBuild.VR_Android) {
 
@@ -112,10 +117,15 @@ public class GameManagerChasm : MonoBehaviour
 		if (Input.GetButtonDown("Pause") || OVRInput.GetDown(OVRInput.Button.Start)) {
 			PauseGame();
 		}
-		
+        if (Input.GetKeyDown(KeyCode.C)) {
+			ChangeCameraView();
+        }
 
+		if(Input.GetKeyDown(KeyCode.H)) {
+			canvasControls.SetActive(!canvasControls.activeSelf);
+        }
 
-		if (GameManagerChasm.playerIsAlive == false) {
+        if (GameManagerChasm.playerIsAlive == false) {
 			// player is dead
 			 if ((Input.GetButtonDown("Restart") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
@@ -128,6 +138,19 @@ public class GameManagerChasm : MonoBehaviour
 		// For VR only
 		if (OVRInput.GetDown(OVRInput.Button.One) && playerInPauseMenu == true) {
 			StartGame();
+		}
+	}
+	public static void ChangeCameraView() {
+
+		CinemachineVirtualCamera tps = playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
+		CinemachineVirtualCamera fps = playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
+
+		if (fps.Priority == 2) {
+			fps.Priority = 1;
+			tps.Priority = 2;
+		} else if (fps.Priority == 1) {
+			fps.Priority = 2;
+			tps.Priority = 1;
 		}
 	}
 	public static void StartGame() {

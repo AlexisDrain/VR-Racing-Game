@@ -34,6 +34,7 @@ public class GameManagerChasm : MonoBehaviour
     public static GameObject pauseMenu;
 	public static GameObject deathMenu;
     public static GameObject levelMenu;
+    public static GameObject endingMenu;
     public static GameObject canvasControls;
     
     public static GameObject uiScoreCounterBG;
@@ -75,7 +76,9 @@ public class GameManagerChasm : MonoBehaviour
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
             levelMenu = GameObject.Find("Canvas/LevelMenuChasm");
-			canvasControls = GameObject.Find("Canvas/Controls_Jump");
+            endingMenu = GameObject.Find("Canvas/EndingMenuChasm");
+            
+            canvasControls = GameObject.Find("Canvas/Controls_Jump");
             
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
             uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
@@ -127,12 +130,12 @@ public class GameManagerChasm : MonoBehaviour
 
         if (GameManagerChasm.playerIsAlive == false) {
 			// player is dead
-			 if ((Input.GetButtonDown("Restart") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
+			 if ((Input.GetButtonDown("Restart") || Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpAlt") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
 			}
 		}
-		// testing VR only
-		if (Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+		// VR only
+		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
 			StartGame();
 		}
 		// For VR only

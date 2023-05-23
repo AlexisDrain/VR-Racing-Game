@@ -19,6 +19,13 @@ https://opengameart.org/art-search-advanced?keys=fish&title=&field_art_tags_tid_
 ---------------------------------
 [Long Description - WebGL]
 
+Controls:
+P - Pause
+H - show or hide controls
+C - Change camera
+WASD or Arrow keys - Move
+Space or W or Up arrow - Jump
+R or any jump key - Respawn
 
 Music:
 -FEG 18 fadescape by SOUND AIRYLUVS

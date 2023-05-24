@@ -1,17 +1,6 @@
 TODO
 - roll camera on turning (like Mafia DE)
 - 3 second timer before game start
-- Cluster truck?
-- Levels: must get minimum coins to progress.
-- Curve world up, floor and enemies come to player.
-- jump button. (Pressed or held)
-- 3rd person view: Fish in sphere bowl?
-https://opengameart.org/content/bird-1
-https://opengameart.org/content/animal-pack-0
-https://opengameart.org/art-search-advanced?keys=fish&title=&field_art_tags_tid_op=or&field_art_tags_tid=&name=&field_art_type_tid%5B%5D=10&sort_by=count&sort_order=DESC&items_per_page=24&Collection=
-
-
-- falling and 1-hit kills
 
 - world behind is foggy
 

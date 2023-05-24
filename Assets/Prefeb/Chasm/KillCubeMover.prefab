@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 15cd27101510bd747ac7c49031413511, type: 2}
+  bounds: {x: 8, y: 8, z: 8}
 --- !u!114 &1596634952
 MonoBehaviour:
   m_ObjectHideFlags: 0

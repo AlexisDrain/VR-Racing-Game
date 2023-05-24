@@ -216,7 +216,7 @@ public class GameManagerChasm : MonoBehaviour
 
 		if(gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
 			timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
-			print("posting scores");
+			print("TODO: posting scores");
 			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
 			if (timeInMilliSeconds >= 60000) { // 1 minute
 				//ngHelper.UnlockMedalHexagon();

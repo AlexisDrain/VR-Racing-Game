@@ -25,13 +25,11 @@ public class HammerAnimator : MonoBehaviour
 
         if(isAnimating > 0f) {
             isAnimating -= 0.1f;
-            print("stuck in animation");
             return;
         }
 
         if(GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().canJumpCountdown >= 0.9f) { //  Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpAlt")
             if (hammerStateDown == true) {
-                print("move u[");
                 GetComponent<Animator>().SetTrigger("HammerUp");
                 hammerStateDown = false;
                 isAnimating = 1f;

@@ -1,5 +1,7 @@
 TODO
 - roll camera on turning (like Mafia DE)
+- Fix level counter on top left. Remove timer from final build
+- hammer sfx
 - 3 second timer before game start
 
 - world behind is foggy

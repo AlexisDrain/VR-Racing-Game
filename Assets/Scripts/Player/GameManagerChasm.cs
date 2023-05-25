@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.XR.Management;
 using Cinemachine;
+using UnityEngine.Events;
 
 /*
 * Author: Alexis Clay Drain
@@ -42,9 +43,11 @@ public class GameManagerChasm : MonoBehaviour
     public static GameObject playerCol;
     
     public static Vector3 playerCheckpointPos;
-	public static int unlockedLevels; 
-	// WebGL only
-	public static NGHelper ngHelper;
+	public static int unlockedLevels;
+
+    public static UnityEvent resetEnemyCollisions = new UnityEvent();
+    // WebGL only
+    public static NGHelper ngHelper;
 
 	// VR only
 
@@ -167,7 +170,7 @@ public class GameManagerChasm : MonoBehaviour
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
 		playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
 		playerCol.transform.position = playerCheckpointPos;
-
+		resetEnemyCollisions.Invoke();
 
         gameManagerChasmObj.GetComponent<NavigateMenus>().CloseAllMenus();
 

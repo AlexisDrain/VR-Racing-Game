@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EntitySpin : MonoBehaviour
 {
+    public float initialRotation = 0f;
+
     public Vector2 spinSpeedRange = new Vector2(3f, 15f);
 
     private Rigidbody myRigidbody;
@@ -12,8 +14,13 @@ public class EntitySpin : MonoBehaviour
     void Awake()
     {
 		myRigidbody = GetComponent<Rigidbody>();
+
+        GameManagerChasm.resetEnemyCollisions.AddListener(ResetEntity);
 	}
 
+    public void ResetEntity() {
+        transform.rotation = Quaternion.Euler(0f, 0f, initialRotation);
+    }
     // Update is called once per frame
     void OnEnable()
     {

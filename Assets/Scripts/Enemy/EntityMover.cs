@@ -20,12 +20,15 @@ public class EntityMover : MonoBehaviour
         startDelayCurrent = startDelay;
         pos1 = transform.position;
         pos2 = destinationTransform.position;
+
+        GameManagerChasm.resetEnemyCollisions.AddListener(ResetEntity);
+    }
+    public void ResetEntity() {
+        startDelayCurrent = startDelay;
+        goTo2 = true;
+        transform.position = pos1;
     }
 
-    public void OnEnable() {
-        //transform.position = pos1;
-        startDelayCurrent = startDelay;
-    }
 
     public void FixedUpdate() {
 

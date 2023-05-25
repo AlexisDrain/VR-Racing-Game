@@ -33,6 +33,9 @@ https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
 -SCS 10 Never Love Me by SOUND AIRYLUVS
 https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
 
+Hand image by "worker"
+https://openclipart.org/detail/190463/stop
+
 Hoop speedup sound:
 Sonniss\SoundHolder - Chainsaw\chainsaw gas small engine gas pressing and sawing high rpm mono
 

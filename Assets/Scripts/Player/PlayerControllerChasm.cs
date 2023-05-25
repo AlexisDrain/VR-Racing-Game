@@ -17,7 +17,8 @@ public class PlayerControllerChasm : MonoBehaviour
 	public float gravityMultiplier = 1.1f;
 	private bool onGround = false;
 	private bool inAir = true;
-	private float canJumpCountdown = 0f;
+	[HideInInspector]
+	public float canJumpCountdown = 0f; // for the hammer enemy
 
 	public Vector3 hoopPower = new Vector3(0f, 10f, 10f);
 	private float unlimittedForwardSpeedCountdown = 0f;

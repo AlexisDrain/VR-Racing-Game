@@ -6862,6 +6862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13146d7f97d2a94fb3cc3cba95e4dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRotation: 0
   spinSpeedRange: {x: 15, y: 80}
 --- !u!1 &4942367847825055811
 GameObject:

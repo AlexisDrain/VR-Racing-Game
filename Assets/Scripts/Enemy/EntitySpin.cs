@@ -7,6 +7,7 @@ public class EntitySpin : MonoBehaviour
     public float initialRotation = 0f;
 
     public Vector2 spinSpeedRange = new Vector2(3f, 15f);
+    public bool randomReverse = true;
 
     private Rigidbody myRigidbody;
 
@@ -27,7 +28,12 @@ public class EntitySpin : MonoBehaviour
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.angularVelocity = Vector3.zero;
 
-        float speed = (Random.Range(0,2) * 2-1) * Random.Range(spinSpeedRange.x,spinSpeedRange.y);
+        float speed = 0f;
+        if (randomReverse) {
+            speed = (Random.Range(0,2) * 2-1) * Random.Range(spinSpeedRange.x,spinSpeedRange.y);
+        } else {
+            speed = Random.Range(spinSpeedRange.x, spinSpeedRange.y);
+        }
 
 		myRigidbody.AddTorque(new Vector3(0f,0f, speed));
 

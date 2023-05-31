@@ -21,6 +21,7 @@ public class EntitySpin : MonoBehaviour
 
     public void ResetEntity() {
         transform.rotation = Quaternion.Euler(0f, 0f, initialRotation);
+        OnEnable();
     }
     // Update is called once per frame
     void OnEnable()

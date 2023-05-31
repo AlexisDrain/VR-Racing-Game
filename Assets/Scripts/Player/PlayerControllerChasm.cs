@@ -1,3 +1,4 @@
+using Cinemachine;
 using Meta.WitAi;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,8 +26,10 @@ public class PlayerControllerChasm : MonoBehaviour
 
 
 	private Rigidbody myRigidbody;
+    private CinemachineVirtualCamera tps;
+    private CinemachineVirtualCamera fps;
 
-	[Header("SFX")]
+    [Header("SFX")]
 	public AudioClip jumpAudioClip;
 	public Vector2 jumpPitch = new Vector2(0.8f, 1.2f);
 	public AudioClip landAudioClip;
@@ -43,8 +46,9 @@ public class PlayerControllerChasm : MonoBehaviour
 		myRigidbody = GetComponent<Rigidbody>();
 		myAudioSource = GetComponent<AudioSource>();
 
-
-	}
+        fps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
+		tps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
+    }
 
 	private void Update() {
 		if ((Input.GetButton("Jump") || Input.GetButton("JumpAlt")) && onGround == true && canJumpCountdown <= 0f) {
@@ -108,7 +112,9 @@ public class PlayerControllerChasm : MonoBehaviour
 
 		// horizontal speed
 		float horizontalAxis = Input.GetAxis("Horizontal");
-		myRigidbody.AddForce(new Vector3(horizontalAxis * horizontalMoveSpeed, 0f, 0f), ForceMode.Force);
+		fps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
+        tps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
+        myRigidbody.AddForce(new Vector3(horizontalAxis * horizontalMoveSpeed, 0f, 0f), ForceMode.Force);
 		if (myRigidbody.velocity.x > horizontalMaxSpeed) {
 			myRigidbody.velocity = new Vector3(horizontalMaxSpeed, myRigidbody.velocity.y, myRigidbody.velocity.z);
 		} else if (myRigidbody.velocity.x < -horizontalMaxSpeed) {

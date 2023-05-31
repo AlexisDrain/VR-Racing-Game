@@ -243,7 +243,7 @@ public class GameManagerChasm : MonoBehaviour
 		playerIsAlive = false;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
-			uiScoreCounterBG.SetActive(false);
+			//uiScoreCounterBG.SetActive(false);
         }
         gameManagerChasmObj.GetComponent<NavigateMenus>().OpenDeathMenu();
         //VR only

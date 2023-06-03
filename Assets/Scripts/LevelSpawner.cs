@@ -18,6 +18,7 @@ public class LevelSpawner : MonoBehaviour
         GameObject newLevel = levels[level];
         GameObject.Instantiate(newLevel, GameManagerChasm.worldTransform);
 
+        GameManagerChasm.uiLevelCounter.text = newLevel.GetComponent<LevelValues>().levelTitle;
         GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().forwardMaxSpeed = newLevel.GetComponent<LevelValues>().playerMaxForwardSpeed;
         GameManagerChasm.StartGame();
     }

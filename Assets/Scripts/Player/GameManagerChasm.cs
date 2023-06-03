@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.XR.Management;
 using Cinemachine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 /*
 * Author: Alexis Clay Drain
 */
@@ -42,6 +42,7 @@ public class GameManagerChasm : MonoBehaviour
     
     public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
+	public static Text uiLevelCounter;
     public static GameObject playerCol;
 
 	public static bool hardMode = false;
@@ -93,7 +94,8 @@ public class GameManagerChasm : MonoBehaviour
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
             uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
 			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
-			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+            uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+            playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
 
 
         } else if (gameBuild == GameBuild.VR_Android) {

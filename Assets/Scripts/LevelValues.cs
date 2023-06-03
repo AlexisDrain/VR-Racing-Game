@@ -7,5 +7,6 @@ using UnityEngine;
 */
 public class LevelValues : MonoBehaviour
 {
+    public string levelTitle = "Level 1 - Intro";
     public float playerMaxForwardSpeed = 25f;
 }

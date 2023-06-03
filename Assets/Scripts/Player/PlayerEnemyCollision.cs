@@ -24,7 +24,7 @@ public class PlayerEnemyCollision : MonoBehaviour
         if (col.CompareTag("Goal")) {
 			print("TODO: increment unlocked levels incase its the most recent unlocked one");
 			GameManagerChasm.unlockedLevels += 1;
-			GameManagerChasm.PauseGame();
+			GameManagerChasm.NextLevelMenu();
         }
         if (col.CompareTag("Enemy")) {
 

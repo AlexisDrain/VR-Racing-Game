@@ -36,13 +36,15 @@ public class GameManagerChasm : MonoBehaviour
     public static GameObject pauseMenu;
 	public static GameObject deathMenu;
     public static GameObject levelMenu;
+    public static GameObject nextLevelMenu;
     public static GameObject endingMenu;
     public static GameObject canvasControls;
     
     public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
     public static GameObject playerCol;
-    
+
+	public static bool hardMode = false;
     public static Vector3 playerCheckpointPos;
 	public static int unlockedLevels;
 
@@ -55,7 +57,8 @@ public class GameManagerChasm : MonoBehaviour
 	public static GameObject controllerRight;
 	public static GameObject controllerLeft;
 
-	public static bool playerIsAlive = false;
+    public static bool playerInNextLevel = false;
+    public static bool playerIsAlive = false;
 	public static bool playerInPauseMenu = true;
 	public static float timeElapsedWhileAlive; // score
 	public static float timeElapsedWhileAliveBest; // score
@@ -82,6 +85,7 @@ public class GameManagerChasm : MonoBehaviour
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
             levelMenu = GameObject.Find("Canvas/LevelMenuChasm");
+            nextLevelMenu = GameObject.Find("Canvas/NextLevelMenuChasm");
             endingMenu = GameObject.Find("Canvas/EndingMenuChasm");
             
             canvasControls = GameObject.Find("Canvas/Controls_Jump");
@@ -111,21 +115,33 @@ public class GameManagerChasm : MonoBehaviour
 		Time.timeScale = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
-
 		GetComponent<NavigateMenus>().OpenPauseMenu();
     }
 
 	public void FixedUpdate() {
 		//OVRInput.FixedUpdate(); // Contrary to the Meta docs DO NOT CALL THIS
 		if (GameManagerChasm.playerIsAlive) {
-			timeElapsedWhileAlive += Time.deltaTime;
+			if (GameManagerChasm.hardMode == false) {
+				timeElapsedWhileAlive += Time.deltaTime;
+			} else {
+                // hard mode. Time moves half as fast
+                timeElapsedWhileAlive += Time.deltaTime * 0.5f;
+            }
 		}
 	}
 	public void Update() {
 		//OVRInput.Update(); // Contrary to the Meta docs DO NOT CALL THIS
 		if (Input.GetButtonDown("Pause") || OVRInput.GetDown(OVRInput.Button.Start)) {
-			PauseGame();
+			if(GameManagerChasm.playerIsAlive == true) {
+                PauseGame();
+            } else {
+                // player is dead & hit pause button
+                StartGame();
+                PauseGame();
+            }
+			
 		}
+
         if (Input.GetKeyDown(KeyCode.C)) {
 			ChangeCameraView();
         }
@@ -134,14 +150,23 @@ public class GameManagerChasm : MonoBehaviour
 			canvasControls.SetActive(!canvasControls.activeSelf);
         }
 
+		if (GameManagerChasm.playerInNextLevel == true) {
+			if (Input.GetButtonDown("Restart") || Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpAlt") || OVRInput.GetDown(OVRInput.Button.One)) {
+				StartGame();
+				return;
+			}
+		}
+
+		// playerRestart
         if (GameManagerChasm.playerIsAlive == false) {
 			// player is dead
 			 if ((Input.GetButtonDown("Restart") || Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpAlt") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
 			}
-		}
-		// VR only
-		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+        }
+
+        // VR only
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
 			StartGame();
 		}
 		// For VR only
@@ -149,7 +174,11 @@ public class GameManagerChasm : MonoBehaviour
 			StartGame();
 		}
 	}
-	public static void ChangeCameraView() {
+	public static void SetHardMode(bool stateHard) {
+        GameManagerChasm.hardMode = stateHard;
+	}
+
+    public static void ChangeCameraView() {
 
 		CinemachineVirtualCamera tps = playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
 		CinemachineVirtualCamera fps = playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
@@ -166,13 +195,18 @@ public class GameManagerChasm : MonoBehaviour
 
 		//gameManagerObj.GetComponent<GenerateObstacles>().KillAllEnemies();
 
-		Time.timeScale = 1f;
+		if (GameManagerChasm.hardMode == true) {
+			Time.timeScale = 2f;
+		} else {
+            Time.timeScale = 1f;
+        }
 		playerIsAlive = true;
 		uiScoreCounterBG.SetActive(true);
 		timeElapsedWhileAlive = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
 		playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
-		playerCol.transform.position = playerCheckpointPos;
+        playerCol.GetComponent<Rigidbody>().position = playerCheckpointPos; // new bug in Unity 2022.3
+        playerCol.transform.position = playerCheckpointPos;
 		resetEnemyCollisions.Invoke();
 
         gameManagerChasmObj.GetComponent<NavigateMenus>().CloseAllMenus();
@@ -187,8 +221,13 @@ public class GameManagerChasm : MonoBehaviour
 		
 	}
 	public static void ResumeGame() {
-		Time.timeScale = 1f;
-		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
+        if (GameManagerChasm.hardMode == true) {
+            Time.timeScale = 2f;
+        } else {
+            Time.timeScale = 1f;
+        }
+
+        gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
 		uiScoreCounterBG.SetActive(true);
 
 		gameManagerChasmObj.GetComponent<NavigateMenus>().CloseAllMenus();
@@ -213,8 +252,22 @@ public class GameManagerChasm : MonoBehaviour
 			controllerLeft.gameObject.SetActive(true);
 		}
 	}
+    public static void NextLevelMenu() {
+        Time.timeScale = 0.15f;
+        playerIsAlive = false;
+        gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
+        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
+            //uiScoreCounterBG.SetActive(false);
+        }
+        gameManagerChasmObj.GetComponent<NavigateMenus>().OpenLevelMenu();
+        //VR only
+        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+            controllerRight.gameObject.SetActive(true);
+            controllerLeft.gameObject.SetActive(true);
+        }
+    }
 
-	public static void EndGame() {
+    public static void EndGame() {
 
 		if (playerIsAlive == false) {
 			return;

@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -403,7 +403,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -477,7 +479,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186570200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -503,14 +505,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Welcome to the future! The year is\u2026 2001\r\n\nIn the neon-lit realm
-    of cyberspace, where ones and zeros danced with electrifying fervor, an underground
-    challenge was about to commence. Hackers from all corners of the digital universe
-    had gathered, their fingers poised over keyboards, ready to engage in a daring
-    event like no other.\r\n\nThe track materialized before the racers, a complex
-    web of twisting code and virtual obstacles. The starting signal blared, and the
-    hackers raced into action, their avatars blending seamlessly with the vibrant
-    landscape of the digital domain. You are one of those hackers."
+  m_Text: "Welcome to the future! The year is\u2026 2001\r\n\nInnocent victims from
+    all walks of life were drawn into the clutches of The Institute, their fates
+    sealed by enigmatic figures who ran the establishment. The Institute's neon-lit
+    realm masked its true purpose: to harvest the life force of those unfortunate
+    enough to find themselves trapped within its walls.\n\nThe track materialized
+    before the victims, a complex web of twisting lines and virtual obstacles. The
+    starting signal blared, and the contestants raced into action, their avatars
+    blending seamlessly with the vibrant landscape of the cyber domain.\n\nYou are
+    one of those victims."
 --- !u!222 &1186570203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -764,9 +767,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

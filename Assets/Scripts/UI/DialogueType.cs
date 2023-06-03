@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 /*
 * Author: Alexis Clay Drain
@@ -25,6 +26,7 @@ public class DialogueType : MonoBehaviour
 
         finalText = GetComponent<Text>().text;
         myText.text = "";
+        myText.enabled = true; // disabled in the editor and enabled here so that the first frame doesn't show the full text
 
         StartCoroutine(Typewriter());
     }
@@ -53,7 +55,7 @@ public class DialogueType : MonoBehaviour
             myText.text += c;
             yield return new WaitForSeconds(.01f);
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
         StartCoroutine(startupGame());
         yield return null;
     }

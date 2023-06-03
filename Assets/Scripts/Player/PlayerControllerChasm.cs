@@ -45,7 +45,7 @@ public class PlayerControllerChasm : MonoBehaviour
 	{
 		myRigidbody = GetComponent<Rigidbody>();
 		myAudioSource = GetComponent<AudioSource>();
-
+        
         fps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
 		tps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
     }

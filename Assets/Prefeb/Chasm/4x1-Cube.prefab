@@ -337,5 +337,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
-  bounds: {x: 1, y: 1, z: 1}
+  bounds: {x: 5, y: 5, z: 5}
   lineRenderer: 0

@@ -42,6 +42,12 @@ https://openclipart.org/detail/190463/stop
 Hoop speedup sound:
 Sonniss\SoundHolder - Chainsaw\chainsaw gas small engine gas pressing and sawing high rpm mono
 
+Missile Fire sound:
+Sonniss\SoundMorph - Steampunk Weapons - Firestorm Flamer - set_1
+
+Missile Alive sound:
+Sonniss\Gregor Quendel - Designed Fire - Impacts - Large, ignition 03.wav
+
 Cheat codes:
 Alt+9 Unlock all levels
 

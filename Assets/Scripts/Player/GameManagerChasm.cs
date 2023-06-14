@@ -167,6 +167,10 @@ public class GameManagerChasm : MonoBehaviour
 			}
         }
 
+        // Test 
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F2) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
+			Time.timeScale = 0.1f;
+        }
         // VR only
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
 			StartGame();

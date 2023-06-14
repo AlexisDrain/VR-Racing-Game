@@ -14,13 +14,21 @@ public class HammerAnimator : MonoBehaviour
     private float isAnimating = 0f;
 
     void Start() {
-        if(hammerDownOnStart) {
+
+        GameManagerChasm.resetEnemyCollisions.AddListener(ResetHammer);
+        ResetHammer();
+    }
+    public void ResetHammer() {
+        if (hammerDownOnStart) {
             GetComponent<Animator>().SetTrigger("HammerDown");
             hammerStateDown = true;
             isAnimating = 1f;
+        } else {
+            GetComponent<Animator>().SetTrigger("HammerUp");
+            hammerStateDown = false;
+            isAnimating = 1f;
         }
     }
-
     public void Update() {
 
         if(isAnimating > 0f) {

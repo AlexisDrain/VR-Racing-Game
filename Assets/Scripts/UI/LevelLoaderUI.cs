@@ -11,9 +11,12 @@ public class LevelLoaderUI : MonoBehaviour
     }
 
     public void CheckUnlockedLevelButtons() {
-        for (int i = 1; i < transform.childCount - 1; i++) { // only check levels from 1 till 11. Leave 0 and 11
+        for (int i = 1; i < transform.childCount; i++) { // only check levels from 1 till 11. Leave 0
+
             if (i > GameManagerChasm.unlockedLevels) {
                 transform.GetChild(i).GetComponent<Button>().interactable = false;
+            } else {
+                transform.GetChild(i).GetComponent<Button>().interactable = true;
             }
 
         }

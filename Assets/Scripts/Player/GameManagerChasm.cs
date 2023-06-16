@@ -28,7 +28,8 @@ public class GameManagerChasm : MonoBehaviour
 
 	public static GameObject gameManagerChasmObj;
 	private static Pool pool_LoudAudioSource;
-	public static ParticleSystem particles_LazerEnd;
+    public static Pool pool_Explosions;
+    public static ParticleSystem particles_LazerEnd;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
 	public static AudioSource musicAudioSrc;
@@ -76,7 +77,9 @@ public class GameManagerChasm : MonoBehaviour
 
 
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
-		particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
+        pool_Explosions = transform.Find("Pool_Explosions").GetComponent<Pool>();
+        
+        particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
 		
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");

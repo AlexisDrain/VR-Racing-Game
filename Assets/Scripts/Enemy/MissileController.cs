@@ -19,6 +19,7 @@ public class MissileController : MonoBehaviour
     public AudioClip deathSound;
 
     private bool isAlive = false;
+    private bool hasExploded = false;
     private Vector3 startPosition;
     private Quaternion startRotation;
     private ParticleSystem particleSystem;
@@ -46,11 +47,15 @@ public class MissileController : MonoBehaviour
         particleSystem.Clear();
 
         isAlive = false;
+        hasExploded = false;
         myRigidbody.velocity = Vector3.zero;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (hasExploded == true) {
+            return;
+        }
         if (isAlive == false) {
             if (GameManagerChasm.playerCol.transform.position.z > transform.position.z - distanceFromPlayerToActivate) {
                 isAlive = true;
@@ -79,5 +84,11 @@ public class MissileController : MonoBehaviour
             transform.LookAt(targetTransform.position);
         }
 
+        if (Vector3.Distance(targetTransform.position, transform.position) < 1f) {
+            GameManagerChasm.SpawnLoudAudio(deathSound);
+            hasExploded = true;
+            GameObject explosion = GameManagerChasm.pool_Explosions.Spawn(transform.position);
+            explosion.GetComponent<Animator>().SetTrigger("StartExplosion");
+        }
     }
 }

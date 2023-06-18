@@ -35,7 +35,8 @@ public class GameManagerChasm : MonoBehaviour
 	public static GameObject playerXRig;
 	public static AudioSource musicAudioSrc;
 	public static Transform worldTransform;
-	public static GameObject pauseMenu;
+    public static GameObject resumeButton;
+    public static GameObject pauseMenu;
 	public static GameObject deathMenu;
 	public static GameObject levelMenu;
 	public static GameObject nextLevelMenu;
@@ -90,7 +91,9 @@ public class GameManagerChasm : MonoBehaviour
 		
 
 		if (gameBuild == GameBuild.WebGL) {
-			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
+            resumeButton = GameObject.Find("Canvas/PauseMenuChasm/MainMenu/Frame/Resume Game");
+            resumeButton.SetActive(false);
+            pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
 			levelMenu = GameObject.Find("Canvas/LevelMenuChasm");
 			nextLevelMenu = GameObject.Find("Canvas/NextLevelMenuChasm");
@@ -124,7 +127,8 @@ public class GameManagerChasm : MonoBehaviour
 		Time.timeScale = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
-		GetComponent<NavigateMenus>().OpenPauseMenu();
+
+        GetComponent<NavigateMenus>().OpenPauseMenu();
 	}
 
 	public void FixedUpdate() {
@@ -184,6 +188,11 @@ public class GameManagerChasm : MonoBehaviour
 	&& gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
 			print("Cheat Activated: Unlock all levels");
 			GameManagerChasm.unlockedLevels = 10;
+			GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
+			if (levelLoaderUI != null) {
+                levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
+
+			}
 		}
 		// VR only
 		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
@@ -235,8 +244,9 @@ public class GameManagerChasm : MonoBehaviour
 		}
 		playerIsAlive = true;
 		playerInNextLevel = false;
-		//uiScoreCounterBG.SetActive(true);
-		timeElapsedWhileAlive = 0f;
+		resumeButton.SetActive(true);
+        //uiScoreCounterBG.SetActive(true);
+        timeElapsedWhileAlive = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
 
         playerCol.GetComponent<Rigidbody>().velocity = new Vector3();

@@ -50,7 +50,7 @@ Missile Alive sound:
 Sonniss\Gregor Quendel - Designed Fire - Impacts - Large, ignition 03.wav
 
 Cheat codes:
-Alt+9 Unlock all levels
+LeftShift+F3 - Unlock all levels (you have to exit then enter the levels menu)
 
 ----------------------------
 Music:

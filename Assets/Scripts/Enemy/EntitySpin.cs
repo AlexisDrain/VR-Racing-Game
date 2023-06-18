@@ -12,31 +12,30 @@ public class EntitySpin : MonoBehaviour
     private Rigidbody myRigidbody;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
 		myRigidbody = GetComponent<Rigidbody>();
 
         GameManagerChasm.resetEnemyCollisions.AddListener(ResetEntity);
-	}
+        ResetEntity();
+
+    }
 
     public void ResetEntity() {
         transform.rotation = Quaternion.Euler(0f, 0f, initialRotation);
-        OnEnable();
-    }
-    // Update is called once per frame
-    void OnEnable()
-    {
+        myRigidbody.rotation = Quaternion.Euler(0f, 0f, initialRotation);
+
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.angularVelocity = Vector3.zero;
 
         float speed = 0f;
         if (randomReverse) {
-            speed = (Random.Range(0,2) * 2-1) * Random.Range(spinSpeedRange.x,spinSpeedRange.y);
+            speed = (Random.Range(0, 2) * 2 - 1) * Random.Range(spinSpeedRange.x, spinSpeedRange.y);
         } else {
             speed = Random.Range(spinSpeedRange.x, spinSpeedRange.y);
         }
 
-		myRigidbody.AddTorque(new Vector3(0f,0f, speed));
+        myRigidbody.AddTorque(new Vector3(0f, 0f, speed));
 
-	}
+    }
 }

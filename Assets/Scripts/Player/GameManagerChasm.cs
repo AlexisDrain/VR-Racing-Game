@@ -30,7 +30,8 @@ public class GameManagerChasm : MonoBehaviour
 	private static Pool pool_LoudAudioSource;
     public static Pool pool_Explosions;
     public static ParticleSystem particles_LazerEnd;
-	public static GameObject mainCameraObj;
+    public static ParticleSystem particles_Background;
+    public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
 	public static AudioSource musicAudioSrc;
 	public static Transform worldTransform;
@@ -41,8 +42,8 @@ public class GameManagerChasm : MonoBehaviour
 	public static GameObject endingMenu;
 	public static GameObject canvasControls;
 	
-	public static GameObject uiScoreCounterBG;
-	public static UIScoreCounter uiScoreCounter;
+	//public static GameObject uiScoreCounterBG;
+	//public static UIScoreCounter uiScoreCounter;
 	public static Text uiLevelCounter;
 	public static GameObject playerCol;
 
@@ -80,8 +81,9 @@ public class GameManagerChasm : MonoBehaviour
         pool_Explosions = transform.Find("Pool_Explosions").GetComponent<Pool>();
         
         particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
-		
-		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
+        particles_Background = GameObject.Find("WorldDontDelete/Particles_Background").GetComponent<ParticleSystem>();
+        
+        mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		worldTransform = GameObject.Find("World").transform;
@@ -97,8 +99,8 @@ public class GameManagerChasm : MonoBehaviour
 			canvasControls = GameObject.Find("Canvas/Controls_Jump");
 			
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
-			uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
-			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+			//uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+			//uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 			uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
 			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
 
@@ -108,8 +110,8 @@ public class GameManagerChasm : MonoBehaviour
 
 			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenuChasm");
 			deathMenu = GameObject.Find("World/CanvasVRWorld/DeathMenuChasm");
-			uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
-			uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+			//uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
+			//uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 
 			controllerRight = playerXRig.transform.Find("RightController").gameObject;
 			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
@@ -233,10 +235,11 @@ public class GameManagerChasm : MonoBehaviour
 		}
 		playerIsAlive = true;
 		playerInNextLevel = false;
-		uiScoreCounterBG.SetActive(true);
+		//uiScoreCounterBG.SetActive(true);
 		timeElapsedWhileAlive = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
-		playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
+
+        playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
 		playerCol.GetComponent<Rigidbody>().position = playerCheckpointPos; // new bug in Unity 2022.3
 		playerCol.transform.position = playerCheckpointPos;
 		resetEnemyCollisions.Invoke();
@@ -260,7 +263,7 @@ public class GameManagerChasm : MonoBehaviour
 		}
 
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
-		uiScoreCounterBG.SetActive(true);
+		//uiScoreCounterBG.SetActive(true);
 
 		gameManagerChasmObj.GetComponent<NavigateMenus>().CloseAllMenus();
 

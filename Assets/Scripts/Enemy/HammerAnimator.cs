@@ -8,40 +8,51 @@ using UnityEngine;
 public class HammerAnimator : MonoBehaviour
 {
     public bool hammerDownOnStart = false;
+    public AudioClip hammerDownSFX;
+    public AudioClip hammerUpSFX;
 
     private bool hammerStateDown = false;
     private float isAnimating = 2f;
 
+    private Animator myAnimator;
+    private AudioSource myAudioSource;
+
     void Start() {
+        myAnimator = transform.GetComponent<Animator>();
+        myAudioSource = transform.GetComponent<AudioSource>();
 
         GameManagerChasm.resetEnemyCollisions.AddListener(ResetHammer);
         ResetHammer();
     }
     public void ResetHammer() {
         if (hammerDownOnStart) {
-            GetComponent<Animator>().SetTrigger("HammerDown");
+            myAnimator.SetTrigger("HammerDown");
+            //myAudioSource.PlayWebGL(hammerDownSFX);
             hammerStateDown = true;
             isAnimating = 2f;
         } else {
-            GetComponent<Animator>().SetTrigger("HammerUp");
+            myAnimator.SetTrigger("HammerUp");
+            //myAudioSource.PlayWebGL(hammerUpSFX);
             hammerStateDown = false;
             isAnimating = 2f;
         }
     }
     public void Update() {
-
         if (isAnimating > 0f) {
             isAnimating -= 0.1f;
-            return;
         }
-
         if (GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().canJumpCountdown >= 0.9f) { //  Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpAlt")
+            if (isAnimating > 0f) {
+                return;
+            }
             if (hammerStateDown == true) {
-                GetComponent<Animator>().SetTrigger("HammerUp");
+                myAnimator.SetTrigger("HammerUp");
+                myAudioSource.PlayWebGL(hammerUpSFX);
                 hammerStateDown = false;
                 isAnimating = 2f;
             } else {
-                GetComponent<Animator>().SetTrigger("HammerDown");
+                myAnimator.SetTrigger("HammerDown");
+                myAudioSource.PlayWebGL(hammerDownSFX);
                 hammerStateDown = true;
                 isAnimating = 2f;
             }

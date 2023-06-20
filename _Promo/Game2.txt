@@ -1,6 +1,4 @@
 TODO
-- Remove timer from final build
-- whoosh sfx for enemies horizontlly around player
 - hammer sfx
 - spin missile target
 
@@ -42,6 +40,9 @@ https://openclipart.org/detail/190463/stop
 
 Hoop speedup sound:
 Sonniss\SoundHolder - Chainsaw\chainsaw gas small engine gas pressing and sawing high rpm mono
+
+Hammer Down & Up:
+Sonniss\SoundBits - Open & Close - Door_Basement_04_02
 
 Missile Fire sound:
 Sonniss\SoundMorph - Steampunk Weapons - Firestorm Flamer - set_1

@@ -306,7 +306,7 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenNextLevelMenu();
-		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel);
+		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
 		
 
 		//VR only

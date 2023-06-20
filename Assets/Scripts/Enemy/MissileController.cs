@@ -25,6 +25,7 @@ public class MissileController : MonoBehaviour
     private ParticleSystem particleSystem;
     private Rigidbody myRigidbody;
     private AudioSource audioSource;
+    private MeshRenderer myMeshRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +33,14 @@ public class MissileController : MonoBehaviour
 
         myRigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        myMeshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
         particleSystem = transform.Find("Graphics/Particles_LazerEnd").GetComponent<ParticleSystem>();
 
         startPosition = transform.position;
         startRotation = transform.rotation;
+        particleSystem.Clear();
+        particleSystem.Stop();
+        myMeshRenderer.enabled = false;
         GameManagerChasm.resetEnemyCollisions.AddListener(ResetMissile);
     }
 
@@ -45,6 +50,8 @@ public class MissileController : MonoBehaviour
         myRigidbody.position = startPosition;
         myRigidbody.rotation = startRotation;
         particleSystem.Clear();
+        particleSystem.Stop();
+        myMeshRenderer.enabled = false;
 
         isAlive = false;
         hasExploded = false;
@@ -54,12 +61,16 @@ public class MissileController : MonoBehaviour
     void FixedUpdate()
     {
         if (hasExploded == true) {
+            // rocket is stopped
             return;
         }
         if (isAlive == false) {
+            // fire rocket
             if (GameManagerChasm.playerCol.transform.position.z > transform.position.z - distanceFromPlayerToActivate) {
                 isAlive = true;
                 GameManagerChasm.SpawnLoudAudio(firingSound);
+                particleSystem.Play();
+                myMeshRenderer.enabled = true;
             }
 
             return;
@@ -85,10 +96,13 @@ public class MissileController : MonoBehaviour
         }
 
         if (Vector3.Distance(targetTransform.position, transform.position) < 1f) {
+            // kill rocket
             GameManagerChasm.SpawnLoudAudio(deathSound);
             hasExploded = true;
             GameObject explosion = GameManagerChasm.pool_Explosions.Spawn(transform.position);
             explosion.GetComponent<Animator>().SetTrigger("StartExplosion");
+            particleSystem.Stop();
+            myMeshRenderer.enabled = false;
         }
     }
 }

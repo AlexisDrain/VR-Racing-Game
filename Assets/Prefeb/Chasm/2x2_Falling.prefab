@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5404600189371725070}
   - component: {fileID: 215412298244736768}
   - component: {fileID: 7366532378747581344}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 2x2_Falling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b61374ddb5ebc2447a53a25bdc30a296, type: 2}
+  - {fileID: 2100000, guid: e706b5fbc5156b3489cff7736d111026, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -500,5 +500,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0522e8d4a2aa8f242bbc081a5b4a2d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromPlayerToActivate: 15
+  distanceFromPlayerToActivate: 25
   fallSFX: {fileID: 8300000, guid: f4df14cce10c0654c9e637fe16ee9371, type: 3}

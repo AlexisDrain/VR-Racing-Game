@@ -25,6 +25,7 @@ public class HammerAnimator : MonoBehaviour
         ResetHammer();
     }
     public void ResetHammer() {
+
         if (hammerDownOnStart) {
             myAnimator.SetTrigger("HammerDown");
             //myAudioSource.PlayWebGL(hammerDownSFX);

@@ -184,20 +184,25 @@ public class GameManagerChasm : MonoBehaviour
 		}
 
 		// Test 
-		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F2)
-			&& gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
-			Time.timeScale = 0.1f;
-		}
+		//if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F2)
+		//	&& gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
+			//Time.timeScale = 0.1f;
+		//}
+
+		// cheat code: Unlock all levels
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F3)
-	&& gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
-			print("Cheat Activated: Unlock all levels");
-			GameManagerChasm.unlockedLevels = 10;
-			GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
-			if (levelLoaderUI != null) {
+			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad3)
+			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha3)) {
+            print("Cheat Activated: Unlock all levels");
+            GameManagerChasm.unlockedLevels = 10;
+            GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
+            if (levelLoaderUI != null) {
                 levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
 
-			}
-		}
+            }
+        }
+
+
 		// VR only
 		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
 			StartGame();

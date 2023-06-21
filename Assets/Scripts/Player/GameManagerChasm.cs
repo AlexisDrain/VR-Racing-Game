@@ -46,11 +46,14 @@ public class GameManagerChasm : MonoBehaviour
 	//public static GameObject uiScoreCounterBG;
 	//public static UIScoreCounter uiScoreCounter;
 	public static Text uiLevelCounter;
-	public static GameObject playerCol;
+    public static Text uiDeathCounter;
+    public static GameObject playerCol;
 
 	public static bool hardMode = false;
-	public static Vector3 playerCheckpointPos;
-	public static int unlockedLevels;
+    public static bool startedGameFromLevelOne = false;
+    public static Vector3 playerCheckpointPos;
+    public static int currentDeaths;
+    public static int unlockedLevels;
 	public static int currentLevel;
 	
 
@@ -102,9 +105,10 @@ public class GameManagerChasm : MonoBehaviour
 			canvasControls = GameObject.Find("Canvas/Controls_Jump");
 			
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
-			//uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
-			//uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
-			uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+            //uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+            //uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+            uiDeathCounter = GameObject.Find("Canvas/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
+            uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
 			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
 
 
@@ -205,6 +209,11 @@ public class GameManagerChasm : MonoBehaviour
 	}
 	public static void SetHardMode(bool stateHard) {
 		GameManagerChasm.hardMode = stateHard;
+		if(GameManagerChasm.playerIsAlive) {
+			GameManagerChasm.StartGame();
+            GameManagerChasm.PauseGame();
+			GameManagerChasm.gameManagerChasmObj.GetComponent<NavigateMenus>().OpenLevelMenu();
+        }
 	}
 
 	public static void ChangeCameraView() {

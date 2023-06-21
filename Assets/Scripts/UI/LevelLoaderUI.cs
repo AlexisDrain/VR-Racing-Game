@@ -21,11 +21,20 @@ public class LevelLoaderUI : MonoBehaviour
 
         }
     }
-    // Update is called once per frame
+
     public void SpawnLevel(int levelOnButton)
     {
+        // medal management
+        if (levelOnButton == 0) {
+            GameManagerChasm.startedGameFromLevelOne = true;
+        } else {
+            GameManagerChasm.startedGameFromLevelOne = false;
+        }
+        GameManagerChasm.currentDeaths = 0;
+        GameManagerChasm.uiDeathCounter.text = GameManagerChasm.currentDeaths.ToString();
+
+        // actual level spawning
         GameManagerChasm.gameManagerChasmObj.GetComponent<LevelSpawner>().SpawnLevel(levelOnButton);
-        // transform.parent.GetComponent<NavigateMenus>().CloseAllMenus();
 
 	}
 }

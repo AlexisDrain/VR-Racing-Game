@@ -131,6 +131,8 @@ public class PlayerControllerChasm : MonoBehaviour
         }
 	}
 	public void KillPlayer() {
+		GameManagerChasm.currentDeaths += 1;
+		GameManagerChasm.uiDeathCounter.text = GameManagerChasm.currentDeaths.ToString();
 
         myAudioSource.pitch = Random.Range(diePitch.x, diePitch.y);
         myAudioSource.PlayWebGL(dieAudioClip);

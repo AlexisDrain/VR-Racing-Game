@@ -1,11 +1,9 @@
-TODO
-- hammer sfx
-- spin missile target
 
+TODO:
 
 VR:
 - world behind is foggy
-
+- VR Ending. Better ending that looks like intro + credits
 
 ---------------------------------
 [Long Description - WebGL]
@@ -35,11 +33,14 @@ https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
 -SCS 10 Never Love Me by SOUND AIRYLUVS
 https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
 
+Menu button sounds:
+Halfquake by Muddasheep
+
 Hand image by "worker"
 https://openclipart.org/detail/190463/stop
 
-Hoop speedup sound:
-Sonniss\SoundHolder - Chainsaw\chainsaw gas small engine gas pressing and sawing high rpm mono
+Rock fall sound:
+Sonniss\Alexander Kopeikin - Rocks\rock tumble down debris long 06
 
 Hammer Down & Up:
 Sonniss\SoundBits - Open & Close - Door_Basement_04_02
@@ -47,11 +48,11 @@ Sonniss\SoundBits - Open & Close - Door_Basement_04_02
 Missile Fire sound:
 Sonniss\SoundMorph - Steampunk Weapons - Firestorm Flamer - set_1
 
-Missile Alive sound:
-Sonniss\Gregor Quendel - Designed Fire - Impacts - Large, ignition 03.wav
+Various SFX (Missile collision, goal reached, death)
+BFXR
 
 Cheat codes:
-LeftShift+F3 - Unlock all levels (you have to exit then enter the levels menu)
+LeftShift+F3 - Unlock all levels
 
 ----------------------------
 Music:

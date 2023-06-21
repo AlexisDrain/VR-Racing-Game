@@ -126,9 +126,14 @@ public class PlayerControllerChasm : MonoBehaviour
 
 		// death
 		if (transform.position.y <= -15f && GameManagerChasm.playerIsAlive) {
-			myAudioSource.pitch = Random.Range(diePitch.x, diePitch.y);
-			myAudioSource.PlayWebGL(dieAudioClip);
-			GameManagerChasm.EndGame(); // end game has a check that player should be alive to endgame()
-		}
+			KillPlayer();
+
+        }
 	}
+	public void KillPlayer() {
+
+        myAudioSource.pitch = Random.Range(diePitch.x, diePitch.y);
+        myAudioSource.PlayWebGL(dieAudioClip);
+        GameManagerChasm.EndGame(); // end game has a check that player should be alive to endgame()
+    }
 }

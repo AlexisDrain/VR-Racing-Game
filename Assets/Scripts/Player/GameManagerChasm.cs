@@ -315,8 +315,26 @@ public class GameManagerChasm : MonoBehaviour
 			controllerLeft.gameObject.SetActive(true);
 		}
 	}
+    public static void WinGame() {
+        Time.timeScale = 0f;
+        playerIsAlive = true;
+        playerInNextLevel = false;
+        resumeButton.SetActive(false);
+        gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
+        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
+            //uiScoreCounterBG.SetActive(false);
+        }
+        gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
+        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 
-	public static void EndGame() {
+
+        //VR only
+        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+            controllerRight.gameObject.SetActive(true);
+            controllerLeft.gameObject.SetActive(true);
+        }
+    }
+    public static void EndGame() {
 
 		if (playerIsAlive == false) {
 			return;

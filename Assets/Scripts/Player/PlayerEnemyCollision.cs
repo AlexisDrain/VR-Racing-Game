@@ -13,16 +13,27 @@ public class PlayerEnemyCollision : MonoBehaviour
 	public Vector2 sfxDeathPitchRange = new Vector2(0.6f, 1.5f);
 
 	private bool canWooshAgain = true;
+	public AudioClip goalAudioClip;
+    public AudioClip somosAudioClip;
 
-	void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
 	{
+
+		if (GameManagerChasm.playerIsAlive == false) {
+			return;
+		}
 
 		if(col.CompareTag("Hoop")) {
 			GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().PlayerInHoop();
 		}
 
         if (col.CompareTag("Goal")) {
+			GameManagerChasm.SpawnLoudAudio(goalAudioClip);
 			GameManagerChasm.NextLevelMenu();
+        }
+        if (col.CompareTag("Somos")) {
+            GameManagerChasm.SpawnLoudAudio(somosAudioClip);
+            GameManagerChasm.WinGame();
         }
         if (col.CompareTag("Enemy")) {
 
@@ -42,7 +53,7 @@ public class PlayerEnemyCollision : MonoBehaviour
                     if (col.GetComponent<RemoveKillEnemy>() != null) {
                         col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
                     } else {
-                        GameManagerChasm.EndGame();
+						GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().KillPlayer();
                     }
                 }
             } else {

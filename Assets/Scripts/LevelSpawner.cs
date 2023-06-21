@@ -21,7 +21,6 @@ public class LevelSpawner : MonoBehaviour
         }
 
         GameManagerChasm.currentLevel = level;
-
         GameObject newLevel = levels[level];
         GameObject.Instantiate(newLevel, new Vector3(0f, 0f, 0f), Quaternion.identity, GameManagerChasm.worldTransform);
 

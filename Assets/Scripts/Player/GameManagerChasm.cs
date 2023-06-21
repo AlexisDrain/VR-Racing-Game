@@ -234,12 +234,11 @@ public class GameManagerChasm : MonoBehaviour
 		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 		GameManagerChasm.currentLevel = GameManagerChasm.currentLevel + 1;
 
-		if(GameManagerChasm.currentLevel == 10) {
-			GameManagerChasm.gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
-			return;
-		}
-
 		GameManagerChasm.gameManagerChasmObj.GetComponent<LevelSpawner>().SpawnLevel(GameManagerChasm.currentLevel);
+		//if(GameManagerChasm.currentLevel == 10) {
+		//	GameManagerChasm.gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
+		//	return;
+		//}
 	}
 
 	public static void StartGame() {

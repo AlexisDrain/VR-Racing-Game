@@ -9,7 +9,7 @@ public class HammerAnimator : MonoBehaviour
 {
     public bool hammerDownOnStart = false;
     public AudioClip hammerDownSFX;
-    public AudioClip hammerUpSFX;
+    //public AudioClip hammerUpSFX;
 
     private bool hammerStateDown = false;
     private float isAnimating = 2f;
@@ -47,14 +47,20 @@ public class HammerAnimator : MonoBehaviour
             }
             if (hammerStateDown == true) {
                 myAnimator.SetTrigger("HammerUp");
-                myAudioSource.PlayWebGL(hammerUpSFX);
                 hammerStateDown = false;
                 isAnimating = 2f;
             } else {
                 myAnimator.SetTrigger("HammerDown");
-                myAudioSource.PlayWebGL(hammerDownSFX);
                 hammerStateDown = true;
                 isAnimating = 2f;
+            }
+            // special case for level 10: hammer sound only plays if close to hammers
+            if (GameManagerChasm.currentLevel != 9) {
+                myAudioSource.PlayWebGL(hammerDownSFX);
+
+            } else if (GameManagerChasm.playerCol.transform.position.z > transform.position.z - 45f
+                && GameManagerChasm.playerCol.transform.position.z < transform.position.z + 5f) {
+                myAudioSource.PlayWebGL(hammerDownSFX);
             }
         }
     }

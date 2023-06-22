@@ -22,7 +22,7 @@ public class MissileController : MonoBehaviour
     private bool hasExploded = false;
     private Vector3 startPosition;
     private Quaternion startRotation;
-    private ParticleSystem particleSystem;
+    private ParticleSystem myParticleSystem;
     private Rigidbody myRigidbody;
     private AudioSource audioSource;
     private MeshRenderer myMeshRenderer;
@@ -34,12 +34,12 @@ public class MissileController : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         myMeshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
-        particleSystem = transform.Find("Graphics/Particles_LazerEnd").GetComponent<ParticleSystem>();
+        myParticleSystem = transform.Find("Graphics/Particles_LazerEnd").GetComponent<ParticleSystem>();
 
         startPosition = transform.position;
         startRotation = transform.rotation;
-        particleSystem.Clear();
-        particleSystem.Stop();
+        myParticleSystem.Clear();
+        myParticleSystem.Stop();
         myMeshRenderer.enabled = false;
         GameManagerChasm.resetEnemyCollisions.AddListener(ResetMissile);
     }
@@ -49,8 +49,8 @@ public class MissileController : MonoBehaviour
         transform.rotation = startRotation;
         myRigidbody.position = startPosition;
         myRigidbody.rotation = startRotation;
-        particleSystem.Clear();
-        particleSystem.Stop();
+        myParticleSystem.Clear();
+        myParticleSystem.Stop();
         myMeshRenderer.enabled = false;
 
         isAlive = false;
@@ -69,7 +69,7 @@ public class MissileController : MonoBehaviour
             if (GameManagerChasm.playerCol.transform.position.z > transform.position.z - distanceFromPlayerToActivate) {
                 isAlive = true;
                 GameManagerChasm.SpawnLoudAudio(firingSound);
-                particleSystem.Play();
+                myParticleSystem.Play();
                 myMeshRenderer.enabled = true;
             }
 
@@ -101,7 +101,7 @@ public class MissileController : MonoBehaviour
             hasExploded = true;
             GameObject explosion = GameManagerChasm.pool_Explosions.Spawn(transform.position);
             explosion.GetComponent<Animator>().SetTrigger("StartExplosion");
-            particleSystem.Stop();
+            myParticleSystem.Stop();
             myMeshRenderer.enabled = false;
         }
     }

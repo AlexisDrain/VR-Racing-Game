@@ -13,7 +13,7 @@ High-speed, skill-demanding action game!
 [Long Description - WebGL]
 
 High-speed, skill-demanding action game!
-This game takes about 10-20 minutes to complete (7 minutes if you don't die at all!)
+This game has 11 unique levels and takes about 10-20 minutes to complete (7 minutes if you don't die at all!)
 VR version of this game is coming in a week or two on the Oculus Quest 2!
 
 Controls

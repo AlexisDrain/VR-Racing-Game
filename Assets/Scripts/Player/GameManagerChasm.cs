@@ -28,15 +28,15 @@ public class GameManagerChasm : MonoBehaviour
 
 	public static GameObject gameManagerChasmObj;
 	private static Pool pool_LoudAudioSource;
-    public static Pool pool_Explosions;
-    public static ParticleSystem particles_LazerEnd;
-    public static ParticleSystem particles_Background;
-    public static GameObject mainCameraObj;
+	public static Pool pool_Explosions;
+	public static ParticleSystem particles_LazerEnd;
+	public static ParticleSystem particles_Background;
+	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
 	public static AudioSource musicAudioSrc;
 	public static Transform worldTransform;
-    public static GameObject resumeButton;
-    public static GameObject pauseMenu;
+	public static GameObject resumeButton;
+	public static GameObject pauseMenu;
 	public static GameObject deathMenu;
 	public static GameObject levelMenu;
 	public static GameObject nextLevelMenu;
@@ -46,14 +46,14 @@ public class GameManagerChasm : MonoBehaviour
 	//public static GameObject uiScoreCounterBG;
 	//public static UIScoreCounter uiScoreCounter;
 	public static Text uiLevelCounter;
-    public static Text uiDeathCounter;
-    public static GameObject playerCol;
+	public static Text uiDeathCounter;
+	public static GameObject playerCol;
 
 	public static bool hardMode = false;
-    public static bool startedGameFromLevelOne = false;
-    public static Vector3 playerCheckpointPos;
-    public static int currentDeaths;
-    public static int unlockedLevels;
+	public static bool startedGameFromLevelOne = false;
+	public static Vector3 playerCheckpointPos;
+	public static int currentDeaths;
+	public static int unlockedLevels;
 	public static int currentLevel;
 	
 
@@ -82,21 +82,21 @@ public class GameManagerChasm : MonoBehaviour
 
 
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
-        pool_Explosions = transform.Find("Pool_Explosions").GetComponent<Pool>();
-        
-        particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
-        particles_Background = GameObject.Find("WorldDontDelete/Particles_Background").GetComponent<ParticleSystem>();
-        
-        mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
+		pool_Explosions = transform.Find("Pool_Explosions").GetComponent<Pool>();
+		
+		particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
+		particles_Background = GameObject.Find("WorldDontDelete/Particles_Background").GetComponent<ParticleSystem>();
+		
+		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		worldTransform = GameObject.Find("World").transform;
 		
 
 		if (gameBuild == GameBuild.WebGL) {
-            resumeButton = GameObject.Find("Canvas/PauseMenuChasm/MainMenu/Frame/Resume Game");
-            resumeButton.SetActive(false);
-            pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
+			resumeButton = GameObject.Find("Canvas/PauseMenuChasm/MainMenu/Frame/Resume Game");
+			resumeButton.SetActive(false);
+			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
 			deathMenu = GameObject.Find("Canvas/DeathMenuChasm");
 			levelMenu = GameObject.Find("Canvas/LevelMenuChasm");
 			nextLevelMenu = GameObject.Find("Canvas/NextLevelMenuChasm");
@@ -105,10 +105,10 @@ public class GameManagerChasm : MonoBehaviour
 			canvasControls = GameObject.Find("Canvas/Controls_Jump");
 			
 			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
-            //uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
-            //uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
-            uiDeathCounter = GameObject.Find("Canvas/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
-            uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+			//uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+			//uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+			uiDeathCounter = GameObject.Find("Canvas/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
+			uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
 			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
 
 
@@ -132,7 +132,7 @@ public class GameManagerChasm : MonoBehaviour
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
 
 
-        GetComponent<NavigateMenus>().OpenPauseMenu();
+		GetComponent<NavigateMenus>().OpenPauseMenu();
 	}
 
 	public void FixedUpdate() {
@@ -193,14 +193,14 @@ public class GameManagerChasm : MonoBehaviour
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F3)
 			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad3)
 			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha3)) {
-            print("Cheat Activated: Unlock all levels");
-            GameManagerChasm.unlockedLevels = 10;
-            GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
-            if (levelLoaderUI != null) {
-                levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
+			print("Cheat Activated: Unlock all levels");
+			GameManagerChasm.unlockedLevels = 10;
+			GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
+			if (levelLoaderUI != null) {
+				levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
 
-            }
-        }
+			}
+		}
 
 
 		// VR only
@@ -216,9 +216,9 @@ public class GameManagerChasm : MonoBehaviour
 		GameManagerChasm.hardMode = stateHard;
 		if(GameManagerChasm.playerIsAlive) {
 			GameManagerChasm.StartGame();
-            GameManagerChasm.PauseGame();
+			GameManagerChasm.PauseGame();
 			GameManagerChasm.gameManagerChasmObj.GetComponent<NavigateMenus>().OpenLevelMenu();
-        }
+		}
 	}
 
 	public static void ChangeCameraView() {
@@ -258,11 +258,11 @@ public class GameManagerChasm : MonoBehaviour
 		playerIsAlive = true;
 		playerInNextLevel = false;
 		resumeButton.SetActive(true);
-        //uiScoreCounterBG.SetActive(true);
-        timeElapsedWhileAlive = 0f;
+		//uiScoreCounterBG.SetActive(true);
+		timeElapsedWhileAlive = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", 0f);
 
-        playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
+		playerCol.GetComponent<Rigidbody>().velocity = new Vector3();
 		playerCol.GetComponent<Rigidbody>().position = playerCheckpointPos; // new bug in Unity 2022.3
 		playerCol.transform.position = playerCheckpointPos;
 		resetEnemyCollisions.Invoke();
@@ -319,6 +319,7 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenNextLevelMenu();
+		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(GameManagerChasm.currentLevel);
 		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
 		
 
@@ -328,26 +329,30 @@ public class GameManagerChasm : MonoBehaviour
 			controllerLeft.gameObject.SetActive(true);
 		}
 	}
-    public static void WinGame() {
-        Time.timeScale = 0f;
-        playerIsAlive = true;
-        playerInNextLevel = false;
-        resumeButton.SetActive(false);
-        gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
-        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
-            //uiScoreCounterBG.SetActive(false);
-        }
-        gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
-        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
+	public static void WinGame() {
+		Time.timeScale = 0f;
+		playerIsAlive = true;
+		playerInNextLevel = false;
+		resumeButton.SetActive(false);
+		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
+		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.WebGL) {
+			//uiScoreCounterBG.SetActive(false);
+		}
+		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
 
+		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(10);
+		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
+			gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockFewerThanTenMedal();
+		}
+		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 
-        //VR only
-        if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-            controllerRight.gameObject.SetActive(true);
-            controllerLeft.gameObject.SetActive(true);
-        }
-    }
-    public static void EndGame() {
+		//VR only
+		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(true);
+			controllerLeft.gameObject.SetActive(true);
+		}
+	}
+	public static void EndGame() {
 
 		if (playerIsAlive == false) {
 			return;
@@ -362,15 +367,15 @@ public class GameManagerChasm : MonoBehaviour
 			}
 			//ngHelper.SubmitScores(timeInMilliSeconds);
 		} else if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			print("posting scores");
+			print("TODO 2: posting scores");
 			if(timeElapsedWhileAliveBest < timeElapsedWhileAlive) {
 				timeElapsedWhileAliveBest = timeElapsedWhileAlive;
 
-				int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
-				if (timeInMilliSeconds >= 60000) { // 1 minute
-					Oculus.Platform.Achievements.Unlock("Hexagon");
-				}
-				Oculus.Platform.Leaderboards.WriteEntry("SurvivalTime", (long) timeInMilliSeconds);
+				//int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+				//if (timeInMilliSeconds >= 60000) { // 1 minute
+				//	Oculus.Platform.Achievements.Unlock("Hexagon");
+				//}
+				//Oculus.Platform.Leaderboards.WriteEntry("SurvivalTime", (long) timeInMilliSeconds);
 			}
 
 		}

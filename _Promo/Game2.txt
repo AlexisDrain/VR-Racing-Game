@@ -16,13 +16,18 @@ High-speed, skill-demanding action game!
 This game takes about 10-20 minutes to complete (7 minutes if you don't die at all!)
 VR version of this game is coming in a week or two on the Oculus Quest 2!
 
-Controls:
+Controls
+[Keyboard]:
 P - Pause
 H - show or hide controls
 C - Change camera
 WASD or Arrow keys - Move
 Space or W or Up arrow - Jump
 R or any jump key - Respawn
+
+[Xbox One Controller]
+Left thumbstick - Move
+A or B - Jump
 
 Music:
 -FEG 18 fadescape by SOUND AIRYLUVS
@@ -32,26 +37,28 @@ https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
 
 Cheat code: "Hold LeftShift + 3" to unlock all levels.
 ---------------------------
-[Credits]
+[Credits-Ingame]
 
-Credits:
 Game by Alexis Clay
-https://alexclay.itch.io/
+<color=#0099ff>https://alexclay.itch.io/</color>
+
+Cheat code: "Hold LeftShift+3" to unlock all levels
 
 Music:
 -FEG 18 fadescape by SOUND AIRYLUVS
-https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
+<color=#0099ff>https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx</color>
 -SCS 10 Never Love Me by SOUND AIRYLUVS
-https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
+<color=#0099ff>https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx</color>
 
+SFX:
 Menu button sounds:
 Halfquake by Muddasheep
 
 Hand image by "worker"
-https://openclipart.org/detail/190463/stop
+<color=#0099ff>https://openclipart.org/detail/190463/stop</color>
 
 Rock fall sound:
-Sonniss\Alexander Kopeikin - Rocks\rock tumble down debris long 06
+Sonniss\Alexander Kopeikin - Rocks - rock tumble down debris long 06
 
 Hammer Down & Up:
 Sonniss\SoundBits - Open & Close - Door_Basement_04_02
@@ -61,9 +68,6 @@ Sonniss\SoundMorph - Steampunk Weapons - Firestorm Flamer - set_1
 
 Various SFX (Missile collision, goal reached, death)
 BFXR
-
-Cheat codes:
-LeftShift+3 - Unlock all levels
 
 ----------------------------
 

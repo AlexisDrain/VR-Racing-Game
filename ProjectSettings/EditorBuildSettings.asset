@@ -5,9 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+  - enabled: 0
+    path: Assets/Scenes/WebGL_Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/VR_Scene.unity
+    guid: 89653740743a16046bd59677fef83afe
+  - enabled: 1
+    path: Assets/Scenes/Chasm_Intro.unity
+    guid: 897d96b2d560fa445a28af3f21f21166
+  - enabled: 0
+    path: Assets/Scenes/Chasm_WebGL_Scene.unity
+    guid: fe220e3e0bc092148a637071419574b9
+  - enabled: 1
+    path: Assets/Scenes/Chasm_VR_Game.unity
+    guid: a6e6975caa9f9fe438972aedeb3b3ef0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
@@ -20,4 +32,6 @@ EditorBuildSettings:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a9a6963505ddf7f4d886008c6dc86122,
+      type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: f6ba8fc5cd9358f43837b479a90b2ead,
       type: 2}

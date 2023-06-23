@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class ResumeGame : MonoBehaviour
 {
+    public bool chasm = false;
     // Update is called once per frame
     public void StartGame()
     {
-        GameManager.StartGame();
+        if(chasm) {
+            GameManagerChasm.StartGame();
+        } else {
+            GameManager.StartGame();
+
+        }
     }
 	public void Resume() {
 		if(GameManager.playerIsAlive == false) {
-			GameManager.StartGame();
+            if(chasm) {
+                GameManagerChasm.ResumeGame();
+            } else {
+			    GameManager.ResumeGame();
+
+            }
 		} else {
-            GameManager.ResumeGame();
+            if (chasm) {
+                GameManagerChasm.ResumeGame();
+            } else {
+                GameManager.ResumeGame();
+            }
         }
 
 	}

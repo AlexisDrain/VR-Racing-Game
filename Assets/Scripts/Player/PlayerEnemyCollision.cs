@@ -10,15 +10,34 @@ public class PlayerEnemyCollision : MonoBehaviour
 {
 	public bool killPlayer;
 	public bool playWhooshSFX;
-	public Vector2 sfxPitchRange = new Vector2(0.6f, 1.5f);
+	public Vector2 sfxDeathPitchRange = new Vector2(0.6f, 1.5f);
 
 	private bool canWooshAgain = true;
+	public AudioClip goalAudioClip;
+    public AudioClip somosAudioClip;
 
-	void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
 	{
 
-		if (col.CompareTag("Enemy")) {
-			
+		if (GameManagerChasm.playerIsAlive == false) {
+			return;
+		}
+
+		if(col.CompareTag("Hoop")) {
+			GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().PlayerInHoop();
+		}
+
+        if (col.CompareTag("Goal")) {
+			GameManagerChasm.SpawnLoudAudio(goalAudioClip);
+			GameManagerChasm.NextLevelMenu();
+        }
+        if (col.CompareTag("Somos")) {
+            GameManagerChasm.SpawnLoudAudio(somosAudioClip);
+            GameManagerChasm.WinGame();
+        }
+        if (col.CompareTag("Enemy")) {
+
+			print("col with enemy");
 			if (playWhooshSFX && canWooshAgain && GameManager.playerIsAlive
 				&& (col.GetComponent<RemoveKillEnemy>() == null || killPlayer == false)) {
 				// an object with <RemoveKillEnemy>() means that hitting it will remove the collider that kills the player
@@ -26,16 +45,27 @@ public class PlayerEnemyCollision : MonoBehaviour
 				canWooshAgain = false;
 				StartCoroutine(WhooshDelay());
 
-				GetComponent<AudioSource>().pitch = Random.Range(sfxPitchRange.x, sfxPitchRange.y);
+				GetComponent<AudioSource>().pitch = Random.Range(sfxDeathPitchRange.x, sfxDeathPitchRange.y);
 				GetComponent<AudioSource>().Play();
 			}
-			if (killPlayer && GameManager.playerIsAlive) {
-				if (col.GetComponent<RemoveKillEnemy>() != null){
-					col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
-				} else {
-					GameManager.EndGame();
-				}
-			}
+            if (GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().currentGameScene == GameScene.chasm) {
+                if (killPlayer && GameManagerChasm.playerIsAlive) {
+                    if (col.GetComponent<RemoveKillEnemy>() != null) {
+                        col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
+                    } else {
+						GameManagerChasm.playerCol.GetComponent<PlayerControllerChasm>().KillPlayer();
+                    }
+                }
+            } else {
+                if (killPlayer && GameManager.playerIsAlive) {
+                    if (col.GetComponent<RemoveKillEnemy>() != null) {
+                        col.GetComponent<RemoveKillEnemy>().DelelteKillEnemyCollider();
+                    } else {
+                        GameManager.EndGame();
+                    }
+                }
+            }
+
 		}
 	}
 

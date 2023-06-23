@@ -1,74 +1,77 @@
-Todo:
-- publish on Itch.io
+
+TODO:
 
 VR:
-- Oculus+PC VR version
-- camera offset in VR builds BUT NOT on Android
-- Bug: WebGL version has double the mouse screen pos (we won't need to fix it)
-
-MAAYBE TODO
-- mobile
-
-
----------------------
-
-Name of game:
-Web cylindar
-Web race
-Dodge
-Vortex
-Vortexal
-+Blue Vortex
-Hyper Speed
-
-----------------------------------------
-
-[Short Description]
-Adrenaline-fueled, high-speed arcade game!
-
-----------------------------------------
-
-[Long Description]
-Controls:
-Move player using mouse.
-Make sure the game is focused (accepts mouse position) by clicking once.
--
-Adrenaline-fueled, high-speed arcade game!
-
-Music:
-Fallen & Dirty Angel by THE PHASE
-https://www.jamendo.com/album/13125/dogma
-
-SFX:
-Menu button sounds from Halfquake by Muddasheep
-"Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
-BFXR explosion
-
-----------------------------------------
-Credits:
-Made by Alexis Clay
-https://alexclay.itch.io
-
-Music:
-Fallen & Dirty Angel by THE PHASE
-https://www.jamendo.com/album/13125/dogma 
-
-SFX:
--"Airborne Sound - Airy Whooshes" by Nikolay Overchenko & Sonniss
--BFXR explosion
--Menu: Half-quake by Muddasheep: https://www.muddasheep.com/#creations/games/halfquaketrilogy
-
-Font:
--Tschichold Alt Bold https://www.dafont.com/tschichold.font
-
-----------------------------------------
-
-Game 2 TODO
-
-- Curve world up, floor and enemies come to player.
-- jump button. (Pressed or held)
-- 3rd person view or 1st person.
-
-- falling and 1-hit kills
-
 - world behind is foggy
+- VR Ending. Better ending that looks like intro + credits
+---------------------------------
+Short Description - WebGL]
+
+High-speed, skill-demanding action game!
+
+---------------------------------
+[Long Description - WebGL]
+
+High-speed, skill-demanding action game!
+This game has 11 unique levels and takes about 10-20 minutes to complete (7 minutes if you don't die at all!)
+VR version of this game is coming in a week or two on the Oculus Quest 2!
+
+Controls
+[Keyboard]:
+P - Pause
+H - show or hide controls
+C - Change camera
+WASD or Arrow keys - Move
+Space or W or Up arrow - Jump
+R or any jump key - Respawn
+
+[Xbox One Controller]
+Left thumbstick - Move
+A or B - Jump
+
+Music:
+-FEG 18 fadescape by SOUND AIRYLUVS
+https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
+-SCS 10 Never Love Me by SOUND AIRYLUVS
+https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
+
+Cheat code: "Hold LeftShift + 3" to unlock all levels.
+---------------------------
+[Credits-Ingame]
+
+Game by Alexis Clay
+<color=#0099ff>https://alexclay.itch.io/</color>
+
+Cheat code: "Hold LeftShift+3" to unlock all levels
+
+Music:
+-FEG 18 fadescape by SOUND AIRYLUVS
+<color=#0099ff>https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx</color>
+-SCS 10 Never Love Me by SOUND AIRYLUVS
+<color=#0099ff>https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx</color>
+
+SFX:
+Menu button sounds:
+Halfquake by Muddasheep
+
+Hand image by "worker"
+<color=#0099ff>https://openclipart.org/detail/190463/stop</color>
+
+Rock fall sound:
+Sonniss\Alexander Kopeikin - Rocks - rock tumble down debris long 06
+
+Hammer Down & Up:
+Sonniss\SoundBits - Open & Close - Door_Basement_04_02
+
+Missile Fire sound:
+Sonniss\SoundMorph - Steampunk Weapons - Firestorm Flamer - set_1
+
+Various SFX (Missile collision, goal reached, death)
+BFXR
+
+----------------------------
+
+[Unused] Music:
+https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
+https://wowsound.com/account/playlist-folders/c5e3461b-2fd9-47a9-98fe-39505eca8ea4.aspx
+https://freemusicarchive.org/music/soundtrack-4-life/dubstep-attack

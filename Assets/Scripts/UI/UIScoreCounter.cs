@@ -45,10 +45,16 @@ public class UIScoreCounter : MonoBehaviour
 
 			myText.text = "<size=30>Your score is:</size>\n"
 				+ "<color=#0095FF>" + FormatTime(GameManager.timeElapsedWhileAlive) + "</color>"
-				+ "<color=#aaaaaa><size=30>\nYour personal best is:</size>\n"
+				+ "<color=#aaaaaa><size=30>\nYour personal best this session is:</size>\n"
 				+ FormatTime(GameManager.timeElapsedWhileAliveBest)
-				+ "</color>\n"
-				+ "<color=#aaaaaa><size=25>Scores on Newgrounds.com</size></color>";
+				+ "</color>\n";
+
+				if (GameManager.gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.WebGL) {
+					myText.text += "<color=#aaaaaa><size=25>Scores on Newgrounds.com</size></color>";
+				} else if (GameManager.gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+					myText.text += "<color=#aaaaaa><size=25>Scores on Oculus home.</size></color>";
+				}
+
 		} else {
 			myText.text = FormatTime(GameManager.timeElapsedWhileAlive);
 		}

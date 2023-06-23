@@ -1,3 +1,4 @@
+using Oculus.Interaction.Unity.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,19 @@ using UnityEngine.XR.Management;
 /*
 * Author: Alexis Clay Drain
 */
+
+public enum GameBuild {
+	WebGL,
+	VR_Android
+}
+
 public class GameManager : MonoBehaviour
 {
-
+	public GameBuild gameBuild = GameBuild.WebGL;
 	public AudioMixer audioMixer;
 	public static float audioCutoffDistort = 1200f;
 
 	public static GameObject gameManagerObj;
-	public static NGHelper ngHelper;
 	private static Pool pool_LoudAudioSource;
 	public static GameObject mainCameraObj;
 	public static GameObject playerXRig;
@@ -23,6 +29,13 @@ public class GameManager : MonoBehaviour
 	public static GameObject deathMenu;
 	public static GameObject uiScoreCounterBG;
 	public static UIScoreCounter uiScoreCounter;
+	// WebGL only
+	public static NGHelper ngHelper;
+
+	// VR only
+
+	public static GameObject controllerRight;
+	public static GameObject controllerLeft;
 
 	public static bool playerIsAlive = false;
 	public static bool playerInPauseMenu = true;
@@ -33,15 +46,28 @@ public class GameManager : MonoBehaviour
 	{
 		gameManagerObj = gameObject;
 
-		ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
 		pool_LoudAudioSource = transform.Find("Pool_LoudAudioSource").GetComponent<Pool>();
 		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
-		pauseMenu = GameObject.Find("Canvas/PauseMenu");
-		deathMenu = GameObject.Find("Canvas/DeathMenu");
-		uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
-		uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+		if (gameBuild == GameBuild.WebGL) {
+			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
+			pauseMenu = GameObject.Find("Canvas/PauseMenu");
+			deathMenu = GameObject.Find("Canvas/DeathMenu");
+			uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
+			uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+		} else if (gameBuild == GameBuild.VR_Android) {
+
+
+			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenu");
+			deathMenu = GameObject.Find("World/CanvasVRWorld/DeathMenu");
+			uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
+			uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+
+			controllerRight = playerXRig.transform.Find("RightController").gameObject;
+			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
+		}
+
 	}
 	private void Start() {
 		Time.timeScale = 0f;
@@ -51,20 +77,32 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void FixedUpdate() {
+		//OVRInput.FixedUpdate(); // Contrary to the Meta docs DO NOT CALL THIS
 		if (GameManager.playerIsAlive) {
 			timeElapsedWhileAlive += Time.deltaTime;
 		}
 	}
 	public void Update() {
-		if (Input.GetButtonDown("Pause")) {
+		//OVRInput.Update(); // Contrary to the Meta docs DO NOT CALL THIS
+		if (Input.GetButtonDown("Pause") || OVRInput.GetDown(OVRInput.Button.Start)) {
 			PauseGame();
 		}
+		
+
 
 		if (GameManager.playerIsAlive == false) {
 			// player is dead
-			 if (Input.GetButtonDown("Restart") && playerInPauseMenu == false) {
+			 if ((Input.GetButtonDown("Restart") || OVRInput.GetDown(OVRInput.Button.One)) && playerInPauseMenu == false) {
 				StartGame();
 			}
+		}
+		// testing VR only
+		if (Input.GetKeyUp(KeyCode.F1) && gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			StartGame();
+		}
+		// For VR only
+		if (OVRInput.GetDown(OVRInput.Button.One) && playerInPauseMenu == true) {
+			StartGame();
 		}
 	}
 	public static void StartGame() {
@@ -81,16 +119,28 @@ public class GameManager : MonoBehaviour
 		deathMenu.SetActive(false);
 		
 		playerInPauseMenu = false;
+
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(false);
+			controllerLeft.gameObject.SetActive(false);
+		}
+		
 	}
 	public static void ResumeGame() {
 		Time.timeScale = 1f;
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", 0f);
 		uiScoreCounterBG.SetActive(true);
-
+		
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(false);
 
 		playerInPauseMenu = false;
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(false);
+			controllerLeft.gameObject.SetActive(false);
+		}
 	}
 	public static void PauseGame() {
 
@@ -100,26 +150,50 @@ public class GameManager : MonoBehaviour
 		pauseMenu.SetActive(true);
 		deathMenu.SetActive(false);
 		playerInPauseMenu = true;
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(true);
+			controllerLeft.gameObject.SetActive(true);
+		}
 	}
 
 	public static void EndGame() {
-		timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
 
-		print("posting scores");
-		int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
-		if (timeInMilliSeconds >= 60000) { // 1 minute
-			ngHelper.UnlockMedalHexagon();
+		if(gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.WebGL) {
+			timeElapsedWhileAliveBest = Mathf.Max(timeElapsedWhileAliveBest, timeElapsedWhileAlive);
+			print("posting scores");
+			int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+			if (timeInMilliSeconds >= 60000) { // 1 minute
+				//ngHelper.UnlockMedalHexagon();
+			}
+			//ngHelper.SubmitScores(timeInMilliSeconds);
+		} else if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			print("posting scores");
+			if(timeElapsedWhileAliveBest < timeElapsedWhileAlive) {
+				timeElapsedWhileAliveBest = timeElapsedWhileAlive;
+
+				int timeInMilliSeconds = (int)(timeElapsedWhileAliveBest * 1000f);
+				if (timeInMilliSeconds >= 60000) { // 1 minute
+					Oculus.Platform.Achievements.Unlock("Hexagon");
+				}
+				Oculus.Platform.Leaderboards.WriteEntry("SurvivalTime", (long) timeInMilliSeconds);
+			}
+
 		}
-		ngHelper.SubmitScores(timeInMilliSeconds);
-
 
 		Time.timeScale = 0.15f;
 		playerIsAlive = false;
-		uiScoreCounterBG.SetActive(false);
 		gameManagerObj.GetComponent<GameManager>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
-
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.WebGL) {
+			uiScoreCounterBG.SetActive(false);
+		}
 		pauseMenu.SetActive(false);
 		deathMenu.SetActive(true);
+		//VR only
+		if (gameManagerObj.GetComponent<GameManager>().gameBuild == GameBuild.VR_Android) {
+			controllerRight.gameObject.SetActive(true);
+			controllerLeft.gameObject.SetActive(true);
+		}
 	}
 
 	public void ResetWorldPos() {

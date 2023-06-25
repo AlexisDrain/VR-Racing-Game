@@ -1,9 +1,22 @@
 
 TODO:
-
 VR:
-- world behind is foggy
+- Replace keyboard controls + menus
+- remove 3rd person
+- make world slightly less Upward, or tilt the game camera somehow
+- make the playerCol a child of the camera (so that moving the camera also moves the player hitbox)
 - VR Ending. Better ending that looks like intro + credits
+- Music/SFX sliders should be buttons
+- credits tab should be 2 pages/buttons instead of a view scroll
+- Make Oculus + SideQuest art (make a cubemap, make a video)
+- publish on
+https://sidequestvr.com/app/15595
+https://applabgamelist.com/Best
+https://developer.oculus.com/manage/
+
+
+- KeyStore is in _Promo/Game2/
+
 ---------------------------------
 Short Description - WebGL]
 

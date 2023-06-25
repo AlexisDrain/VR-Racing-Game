@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VR_Scene.unity
     guid: 89653740743a16046bd59677fef83afe
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chasm_Intro.unity
     guid: 897d96b2d560fa445a28af3f21f21166
   - enabled: 0

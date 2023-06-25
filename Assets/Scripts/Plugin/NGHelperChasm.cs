@@ -1,3 +1,6 @@
+
+#if PLATFORM_ANDROID != true
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -120,3 +123,5 @@ public class NGHelperChasm : MonoBehaviour
 	}
 	*/
 }
+
+#endif

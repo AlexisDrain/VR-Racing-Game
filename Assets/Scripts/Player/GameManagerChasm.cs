@@ -91,9 +91,9 @@ public class GameManagerChasm : MonoBehaviour
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		worldTransform = GameObject.Find("World").transform;
-		
+        playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
 
-		if (gameBuild == GameBuild.WebGL) {
+        if (gameBuild == GameBuild.WebGL) {
 			resumeButton = GameObject.Find("Canvas/PauseMenuChasm/MainMenu/Frame/Resume Game");
 			resumeButton.SetActive(false);
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
@@ -109,18 +109,31 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 			uiDeathCounter = GameObject.Find("Canvas/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
 			uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
-			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+			
 
 
 		} else if (gameBuild == GameBuild.VR_Android) {
 
-
+            /*
 			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenuChasm");
 			deathMenu = GameObject.Find("World/CanvasVRWorld/DeathMenuChasm");
-			//uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
-			//uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+            //uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
+            //uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+			*/
+            resumeButton = GameObject.Find("WorldDontDelete/CanvasVRWorld/PauseMenuChasm/MainMenu/Frame/Resume Game");
+            resumeButton.SetActive(false);
+            pauseMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/PauseMenuChasm");
+            deathMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/DeathMenuChasm");
+            levelMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/LevelMenuChasm");
+            nextLevelMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/NextLevelMenuChasm");
+            endingMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/EndingMenuChasm");
 
-			controllerRight = playerXRig.transform.Find("RightController").gameObject;
+            canvasControls = GameObject.Find("WorldDontDelete/CanvasVRWorld/Controls_Jump");
+
+            uiDeathCounter = GameObject.Find("WorldDontDelete/CanvasVRWorld/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
+            uiLevelCounter = GameObject.Find("WorldDontDelete/CanvasVRWorld/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+
+            controllerRight = playerXRig.transform.Find("RightController").gameObject;
 			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
 		}
 
@@ -319,7 +332,9 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenNextLevelMenu();
+#if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(GameManagerChasm.currentLevel);
+#endif
 		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
 		
 
@@ -339,11 +354,12 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
-
+		#if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(10);
 		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
 			gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockFewerThanTenMedal();
 		}
+#endif
 		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 
 		//VR only

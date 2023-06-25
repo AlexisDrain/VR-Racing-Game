@@ -112,8 +112,12 @@ public class PlayerControllerChasm : MonoBehaviour
 
 		// horizontal speed
 		float horizontalAxis = Input.GetAxis("Horizontal");
-		fps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
-        tps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
+
+        if (GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild != GameBuild.VR_Android) {
+            fps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
+			tps.m_Lens.Dutch = Mathf.Lerp(fps.m_Lens.Dutch, -horizontalAxis * 2f, 0.1f); // view roll
+		}
+
         myRigidbody.AddForce(new Vector3(horizontalAxis * horizontalMoveSpeed, 0f, 0f), ForceMode.Force);
 		if (myRigidbody.velocity.x > horizontalMaxSpeed) {
 			myRigidbody.velocity = new Vector3(horizontalMaxSpeed, myRigidbody.velocity.y, myRigidbody.velocity.z);
@@ -129,6 +133,7 @@ public class PlayerControllerChasm : MonoBehaviour
 			KillPlayer();
 
         }
+
 	}
 	public void KillPlayer() {
 		GameManagerChasm.currentDeaths += 1;

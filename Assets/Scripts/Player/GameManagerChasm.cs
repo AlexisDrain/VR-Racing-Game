@@ -288,7 +288,13 @@ public class GameManagerChasm : MonoBehaviour
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
 			controllerRight.gameObject.SetActive(false);
 			controllerLeft.gameObject.SetActive(false);
-		}
+
+            if (GameManagerChasm.currentLevel == 0) {
+				canvasControls.SetActive(true);
+            } else {
+                canvasControls.SetActive(false);
+            }
+        }
 		
 	}
 	public static void ResumeGame() {

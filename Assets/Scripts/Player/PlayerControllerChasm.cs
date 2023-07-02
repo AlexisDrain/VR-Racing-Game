@@ -4,8 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerChasm : MonoBehaviour
-{
+public class PlayerControllerChasm : MonoBehaviour {
 
 	public float forwardMoveSpeed = 5f;
 	public float forwardMaxSpeed = 50f;
@@ -24,7 +23,7 @@ public class PlayerControllerChasm : MonoBehaviour
 	public Vector3 hoopPower = new Vector3(0f, 10f, 10f);
 	private float unlimittedForwardSpeedCountdown = 0f;
 
-
+	private bool vr = false;
 	private Rigidbody myRigidbody;
     private CinemachineVirtualCamera tps;
     private CinemachineVirtualCamera fps;
@@ -46,8 +45,13 @@ public class PlayerControllerChasm : MonoBehaviour
 		myRigidbody = GetComponent<Rigidbody>();
 		myAudioSource = GetComponent<AudioSource>();
         
-        fps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
-		tps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
+		if (GameManagerChasm.gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
+			vr = true;
+		} else {
+			vr = false;
+            fps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam2-FPS").GetComponent<CinemachineVirtualCamera>();
+            tps = GameManagerChasm.playerXRig.transform.Find("PlayerCol/CM vcam1-3PS").GetComponent<CinemachineVirtualCamera>();
+        }
     }
 
 	private void Update() {
@@ -74,12 +78,23 @@ public class PlayerControllerChasm : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate() {
 		RaycastHit hit = new RaycastHit();
-		// check right side
-		onGround = Physics.Linecast(transform.position + new Vector3(0.5f, 0f), transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-		// check left side
-		if (hit.transform == null) {
-			onGround = Physics.Linecast(transform.position + new Vector3(-0.5f, 0f), transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-		}
+
+		if (vr == false) {
+            // check right side
+            onGround = Physics.Linecast(transform.position + new Vector3(0.5f, 0f), transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+            // check left side
+            if (hit.transform == null) {
+                onGround = Physics.Linecast(transform.position + new Vector3(-0.5f, 0f), transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+            }
+        } else {
+            // check right side
+            onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+            // check left side
+            if (hit.transform == null) {
+                onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+            }
+        }
+
 
 		if(inAir && onGround && canJumpCountdown <= 0f) {
 			inAir = false;
@@ -89,7 +104,11 @@ public class PlayerControllerChasm : MonoBehaviour
 
 		if(onGround == true) {
 			myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, 0f, myRigidbody.velocity.z);
-			transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
+			if (vr == false) {
+				transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
+			} else {
+                transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
+            }
 		} else {
 			// increase gravity
 			myRigidbody.AddForce(Physics.gravity * gravityMultiplier);

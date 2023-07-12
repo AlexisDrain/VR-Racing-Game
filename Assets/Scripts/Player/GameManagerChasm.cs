@@ -136,12 +136,12 @@ public class GameManagerChasm : MonoBehaviour
             playerCol = GameObject.Find("XRRig/PlayerCol").gameObject;
             mainCameraObj = GameObject.Find("XRRig/PlayerCol/Main Camera");
 
-            uiDeathCounter = GameObject.Find("XRRig/LeftController/CanvasVRWorld/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
-            uiLevelCounter = GameObject.Find("XRRig/LeftController/CanvasVRWorld/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+            uiDeathCounter = GameObject.Find("XRRig/PlayerCol/LeftController/CanvasVRWorld/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
+            uiLevelCounter = GameObject.Find("XRRig/PlayerCol/LeftController/CanvasVRWorld/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
 
-            controllerRight = playerXRig.transform.Find("RightController").gameObject;
-			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
-            controllerRightLine = playerXRig.transform.Find("RightController/Line").GetComponent<LineRenderer>();
+            controllerRight = playerXRig.transform.Find("PlayerCol/RightController").gameObject;
+			controllerLeft = playerXRig.transform.Find("PlayerCol/LeftController").gameObject;
+            controllerRightLine = playerXRig.transform.Find("PlayerCol/RightController/Line").GetComponent<LineRenderer>();
         }
 
 		playerCheckpointPos = playerCol.transform.position;
@@ -150,7 +150,6 @@ public class GameManagerChasm : MonoBehaviour
 	private void Start() {
 		Time.timeScale = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
-
 
 		GetComponent<NavigateMenus>().OpenPauseMenu();
 	}

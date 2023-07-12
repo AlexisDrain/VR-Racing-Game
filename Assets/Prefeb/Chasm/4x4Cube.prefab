@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2472374618636540750
 MonoBehaviour:
@@ -671,9 +671,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6608205068648661841}
   m_Material: {fileID: 13400000, guid: 5e32e38e083563843845077774e2ea60, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 16, y: 4, z: 16}
   m_Center: {x: -7, y: 2, z: 5}
 --- !u!114 &9030315024008858225
@@ -689,3 +697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
+  bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0

@@ -20,7 +20,7 @@ public class PlayerControllerChasm : MonoBehaviour {
 	[HideInInspector]
 	public float canJumpCountdown = 0f; // for the hammer enemy
 
-	public Vector3 hoopPower = new Vector3(0f, 10f, 10f);
+    public Vector3 hoopPower = new Vector3(0f, 10f, 10f);
 	private float unlimittedForwardSpeedCountdown = 0f;
 
 	private bool vr = false;
@@ -56,11 +56,15 @@ public class PlayerControllerChasm : MonoBehaviour {
 
 	private void Update() {
 		if ((Input.GetButton("Jump") || Input.GetButton("JumpAlt")) && onGround == true && canJumpCountdown <= 0f) {
+			if (vr == true) {
+				//transform.position = new Vector3(transform.position.x, GameManagerChasm.mainCameraObj.transform.position.y, transform.position.z);
+			}
+
 			myRigidbody.AddForce(new Vector3(0f, jumpPower, 0f), ForceMode.Impulse);
 			canJumpCountdown = 1f;
-			inAir = true;
+            inAir = true;
 
-			myAudioSource.pitch = Random.Range(jumpPitch.x, jumpPitch.y);
+            myAudioSource.pitch = Random.Range(jumpPitch.x, jumpPitch.y);
 			myAudioSource.PlayWebGL(jumpAudioClip);
 		}
 		if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("JumpAlt")) && myRigidbody.velocity.y > 0f) {
@@ -80,19 +84,23 @@ public class PlayerControllerChasm : MonoBehaviour {
 		RaycastHit hit = new RaycastHit();
 
 		if (vr == false) {
-            // check right side
-            onGround = Physics.Linecast(transform.position + new Vector3(0.5f, 0f), transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-            // check left side
-            if (hit.transform == null) {
-                onGround = Physics.Linecast(transform.position + new Vector3(-0.5f, 0f), transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-            }
-        } else {
-            // check right side
-            onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-            // check left side
-            if (hit.transform == null) {
-                onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
-            }
+			// check right side
+			onGround = Physics.Linecast(transform.position + new Vector3(0.5f, 0f), transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+			// check left side
+			if (hit.transform == null) {
+				onGround = Physics.Linecast(transform.position + new Vector3(-0.5f, 0f), transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+			}
+		} else {
+			if (canJumpCountdown <= 0.01f) {  // sometimes the player gets stuck when too close to the ground in VR, so dont check ground on jump
+                // check right side
+                onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+				// check left side
+				if (hit.transform == null) {
+					onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
+				}
+			} else {
+				onGround = false;
+			}
         }
 
 
@@ -107,7 +115,12 @@ public class PlayerControllerChasm : MonoBehaviour {
 			if (vr == false) {
 				transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
 			} else {
-                transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
+				if(transform.position.y < 1f + hit.point.y) {
+					print("push up");
+                    myRigidbody.AddForce(Vector3.up * 12f, ForceMode.Force);
+                    //transform.position = new Vector3(transform.position.x, 1f + hit.point.y, transform.position.z);
+                }
+                //transform.position = new Vector3(transform.position.x, hit.point.y + 0.5f, transform.position.z);
             }
 		} else {
 			// increase gravity
@@ -116,8 +129,13 @@ public class PlayerControllerChasm : MonoBehaviour {
 
 		if (canJumpCountdown > 0f) {
 			canJumpCountdown -= 0.03f;
-		}
-		if (unlimittedForwardSpeedCountdown > 0f) {
+        }
+       // if (vrDontCheckGround > 0f) {
+       //     vrDontCheckGround -= 0.03f;
+       // }
+        
+
+        if (unlimittedForwardSpeedCountdown > 0f) {
 			unlimittedForwardSpeedCountdown -= 0.03f;
 		}
 

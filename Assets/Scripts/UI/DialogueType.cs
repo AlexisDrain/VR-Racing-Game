@@ -10,7 +10,10 @@ using UnityEngine.UIElements;
 */
 public class DialogueType : MonoBehaviour
 {
-
+    [Header("VR stuff")]
+    public bool chasm = false;
+    private bool dimmingLight = false;
+    public Light blueLight;
     [Header("stuff to delete at the end")]
     public Text text1;
     public Text text2;
@@ -32,17 +35,31 @@ public class DialogueType : MonoBehaviour
     }
 
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.Space) || OVRInput.Get(OVRInput.Button.One)) {
             StopCoroutine(Typewriter());
             StartCoroutine(startupGame());
+        }
+        if (dimmingLight) {
+            if(blueLight.range > 0.1f) {
+                blueLight.range = Mathf.Lerp(blueLight.range, 0f, 0.01f);
+            } else {
+                blueLight.range = 0f;
+            }
         }
     }
 
     IEnumerator startupGame() {
         text1.enabled = false;
         text2.enabled = false;
+        dimmingLight = true;
+
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Chasm_WebGL_Scene");
+
+        if (chasm) {
+            SceneManager.LoadScene("Chasm_VR_Game");
+        } else {
+            SceneManager.LoadScene("Chasm_WebGL_Scene");
+        }
     }
 
     IEnumerator Typewriter() {

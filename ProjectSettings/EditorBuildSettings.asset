@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Chasm_WebGL_Scene.unity
     guid: fe220e3e0bc092148a637071419574b9
   - enabled: 1
+    path: Assets/Scenes/Chasm_VRIntro.unity
+    guid: 58ed048ff3ad02945b7a548359be2aae
+  - enabled: 1
     path: Assets/Scenes/Chasm_VR_Game.unity
     guid: a6e6975caa9f9fe438972aedeb3b3ef0
   m_configObjects:

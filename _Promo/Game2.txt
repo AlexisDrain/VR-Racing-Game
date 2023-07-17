@@ -1,21 +1,16 @@
 
-TODO:
 VR:
-- Replace keyboard controls + menus
-- remove 3rd person
-- make world slightly less Upward, or tilt the game camera somehow
-- make the playerCol a child of the camera (so that moving the camera also moves the player hitbox)
-- VR Ending. Better ending that looks like intro + credits
-- Music/SFX sliders should be buttons
-- credits tab should be 2 pages/buttons instead of a view scroll
-- Make Oculus + SideQuest art (make a cubemap, make a video)
 - publish on
 https://sidequestvr.com/app/15595
 https://applabgamelist.com/Best
 https://developer.oculus.com/manage/
 
-
 - KeyStore is in _Promo/Game2/
+
+Note for Oculus: to publish on the oculus store use "ovr-platform-util" remove the two permissions from "Assets/Plugin/AndroidManifest.xml:
+
+  <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" tools:node="remove" />
 
 ---------------------------------
 Short Description - WebGL]
@@ -49,6 +44,31 @@ https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
 https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
 
 Cheat code: "Hold LeftShift + 3" to unlock all levels.
+---------------------------
+[Long Description - VR]
+
+Play the online, 2d version of this game on Newgrounds.com:  
+https://www.newgrounds.com/portal/view/888588
+
+*****************
+
+High-speed, skill-demanding action game!
+This game has 11 unique levels and takes about 10-20 minutes to complete (7 minutes if you don't die at all!)
+
+Controls:
+- This game is playable using only one hand.
+- Left or Right thumbstick - Move
+- X or Y or A or Index Triggers - Jump
+- Hold jump to go further
+- Left menu button - Pause
+- Cheat code: "A + B" for 5 seconds to unlock all levels.
+
+Music:
+-FEG 18 fadescape by SOUND AIRYLUVS
+https://wowsound.com/our-music/tracks/feg-18-fadescape-full-loop.aspx
+-SCS 10 Never Love Me by SOUND AIRYLUVS
+https://wowsound.com/our-music/tracks/scs-10-never-love-me-full-loop.aspx
+
 ---------------------------
 [Credits-Ingame]
 

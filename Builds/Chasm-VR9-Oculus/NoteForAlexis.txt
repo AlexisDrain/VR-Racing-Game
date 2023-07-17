@@ -1,0 +1,4 @@
+This is basically the same as the "Chasm-VR9" build, but we removed two permissions from "Assets/Plugin/AndroidManifest.xml:
+
+  <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" tools:node="remove" />

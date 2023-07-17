@@ -133,7 +133,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 2
+  bundleVersion: 12
   preloadedAssets:
   - {fileID: 11400000, guid: c499d571ef562784cbb7c7f3cf7c8ef2, type: 2}
   metroInputSource: 0
@@ -159,11 +159,12 @@ PlayerSettings:
     Standalone: com.DefaultCompany.com.unity.template.vr
     WebGL: com.AlexisClay.VR-Racing-Game
   buildNumber:
+    Bratwurst: 0
     Standalone: 0
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 12
   AndroidMinSdkVersion: 29
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -184,6 +185,8 @@ PlayerSettings:
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 12.0
+  bratwurstSdkVersion: 0
+  bratwurstTargetOSVersionString: 16.4
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -231,8 +234,10 @@ PlayerSettings:
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
+  bratwurstManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
+  bratwurstManualSigningProvisioningProfileType: 0
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
@@ -277,60 +282,30 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
+      m_Icon: {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
-      m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
       m_Width: 324
       m_Height: 324
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
       m_Width: 216
       m_Height: 216
       m_Kind: 2
@@ -351,7 +326,7 @@ PlayerSettings:
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 631c1fea87263a346a2474184f1b97eb, type: 3}
+      - {fileID: 2800000, guid: d23d1fbb8f8115544b1695e11f293d75, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 1
@@ -385,6 +360,42 @@ PlayerSettings:
       m_Width: 36
       m_Height: 36
       m_Kind: 1
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
       m_SubKind: 
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
@@ -775,7 +786,6 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 2
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0

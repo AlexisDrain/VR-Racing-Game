@@ -40,9 +40,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921606422808992518}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 60, y: 60, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1921606423135759377
@@ -422,6 +430,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 2bfec950d6df9df44975a0ccfd28504a, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 72c452e4b8c2f314b83a0628c999ccb4, type: 2}
+  bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0
 --- !u!1 &1921606423534877648
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,3 +630,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: bb10e56a910dc9042951ce5058c724f8, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 2a1e6f99297a14041b1ec53b12a46260, type: 2}
+  bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0

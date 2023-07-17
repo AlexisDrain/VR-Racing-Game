@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3926922748233610100
 MonoBehaviour:
@@ -608,19 +608,11 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1577
+  m_VersionIndex: 1580
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 42
-    b: 43
-  - a: 49
-    b: 50
-  - a: 58
-    b: 59
-  - a: 65
-    b: 66
-  m_SelectedVertices: 2a0000002b00000031000000320000003a0000003b0000004100000042000000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!23 &568603199670706471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -705,5 +697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
   bounds: {x: 5, y: 5, z: 5}
   lineRenderer: 0

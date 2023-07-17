@@ -91,7 +91,7 @@ public class PlayerControllerChasm : MonoBehaviour {
 				onGround = Physics.Linecast(transform.position + new Vector3(-0.5f, 0f), transform.position + new Vector3(-0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
 			}
 		} else {
-			if (canJumpCountdown <= 0.01f) {  // sometimes the player gets stuck when too close to the ground in VR, so dont check ground on jump
+			if (canJumpCountdown <= 0.5f) {  // sometimes the player gets stuck when too close to the ground in VR, so dont check ground on jump
                 // check right side
                 onGround = Physics.Linecast(GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f), GameManagerChasm.mainCameraObj.transform.position + new Vector3(0.5f, 0f) + Vector3.down, out hit, (1 << GameManagerChasm.layerWorld));
 				// check left side
@@ -116,8 +116,7 @@ public class PlayerControllerChasm : MonoBehaviour {
 				transform.position = new Vector3(transform.position.x, hit.point.y + 1f, transform.position.z);
 			} else {
 				if(transform.position.y < 1f + hit.point.y) {
-					print("push up");
-                    myRigidbody.AddForce(Vector3.up * 12f, ForceMode.Force);
+                    myRigidbody.AddForce(Vector3.up * 20f, ForceMode.Force);
                     //transform.position = new Vector3(transform.position.x, 1f + hit.point.y, transform.position.z);
                 }
                 //transform.position = new Vector3(transform.position.x, hit.point.y + 0.5f, transform.position.z);

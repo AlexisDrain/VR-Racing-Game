@@ -35,6 +35,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &4433010902214629431
 LineRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,16 +123,20 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
+  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &4433010902214629430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 02b7ba526172eca438e23ba44086631a, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 983b4559b49e80841a1658f4db8a499d, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 1
 --- !u!1 &4433010902215582738
@@ -462,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 10, y: 10, z: 10}
   lineRenderer: 0
 --- !u!1 &4433010902347213792
@@ -504,9 +511,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4433010902347213792}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 50, y: 1, z: 1}
   m_Center: {x: 25, y: 0, z: 0}
 --- !u!1 &4433010903064361880
@@ -877,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 10, y: 10, z: 10}
   lineRenderer: 0
 --- !u!1 &7179993943612842257
@@ -914,6 +930,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &5843804218099718306
 LineRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1001,16 +1018,20 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
+  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &5889324623206266031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,5 +1045,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 02b7ba526172eca438e23ba44086631a, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 983b4559b49e80841a1658f4db8a499d, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 1

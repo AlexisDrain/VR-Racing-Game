@@ -41,7 +41,7 @@ public class DialogueType : MonoBehaviour
         }
         if (dimmingLight) {
             if(blueLight.range > 0.1f) {
-                blueLight.range = Mathf.Lerp(blueLight.range, 0f, 0.01f);
+                blueLight.range = Mathf.Lerp(blueLight.range, 0f, 0.05f);
             } else {
                 blueLight.range = 0f;
             }

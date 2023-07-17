@@ -457,5 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
   bounds: {x: 8, y: 8, z: 8}
   lineRenderer: 0

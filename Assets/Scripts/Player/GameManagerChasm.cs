@@ -60,10 +60,12 @@ public class GameManagerChasm : MonoBehaviour
 	public static UnityEvent resetEnemyCollisions = new UnityEvent();
 	// WebGL only
 	public static NGHelper ngHelper;
+    public static OculusAPIHelper oculusAPIHelper;
+    
 
-	// VR only
+    // VR only
 
-	public static GameObject controllerRight;
+    public static GameObject controllerRight;
 	public static GameObject controllerLeft;
     public static LineRenderer controllerRightLine;
     
@@ -142,6 +144,8 @@ public class GameManagerChasm : MonoBehaviour
             controllerRight = playerXRig.transform.Find("PlayerCol/RightController").gameObject;
 			controllerLeft = playerXRig.transform.Find("PlayerCol/LeftController").gameObject;
             controllerRightLine = playerXRig.transform.Find("PlayerCol/RightController/Line").GetComponent<LineRenderer>();
+
+            oculusAPIHelper = transform.Find("OculusAPI").GetComponent<OculusAPIHelper>();
         }
 
 		playerCheckpointPos = playerCol.transform.position;
@@ -224,7 +228,7 @@ public class GameManagerChasm : MonoBehaviour
 		}
 		if (OVRInput.Get(OVRInput.Button.One) && OVRInput.Get(OVRInput.Button.Two)) {
 			cheat_HoldToEnableAllLevels += 0.1f;
-			if(cheat_HoldToEnableAllLevels == 10f) {
+			if(cheat_HoldToEnableAllLevels >= 10f) {
                 print("VR Cheat Activated: Unlock all levels");
                 GameManagerChasm.unlockedLevels = 10;
                 GameObject levelLoaderUI = GameObject.Find("WorldDontDelete/CanvasVRWorld/LevelMenuChasm/Frame/Levels");
@@ -246,10 +250,27 @@ public class GameManagerChasm : MonoBehaviour
 				print("PC Cheat Activated: Start game without menu");
 				StartGame();
 			}
-            
+        }
+        // cheat code: next level
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F5)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad5)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha5)) {
+            if (gameBuild == GameBuild.VR_Android) {
+                print("PC Cheat Activated: next level");
+				NextLevelMenu();
+            }
+        }
+        // cheat code: set hard mode
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F6)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad6)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha6)) {
+            if (gameBuild == GameBuild.VR_Android) {
+                print("PC Cheat Activated: hard mode");
+				SetHardMode(!GameManagerChasm.hardMode);
+            }
         }
     }
-	public static void SetHardMode(bool stateHard) {
+    public static void SetHardMode(bool stateHard) {
 		GameManagerChasm.hardMode = stateHard;
 		if(GameManagerChasm.playerIsAlive) {
 			GameManagerChasm.StartGame();
@@ -368,7 +389,9 @@ public class GameManagerChasm : MonoBehaviour
 #if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(GameManagerChasm.currentLevel);
 #endif
-		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
+        oculusAPIHelper.UnlockLevelMedal(GameManagerChasm.currentLevel);
+
+        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
 		
 
 		//VR only
@@ -388,13 +411,17 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
-		#if PLATFORM_ANDROID != true
+#if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(10);
 		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
 			gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockFewerThanTenMedal();
 		}
 #endif
-		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
+        oculusAPIHelper.UnlockLevelMedal(10);
+		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
+			oculusAPIHelper.UnlockFewerThanTenMedal();
+        }
+        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {

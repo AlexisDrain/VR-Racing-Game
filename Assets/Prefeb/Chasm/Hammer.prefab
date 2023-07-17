@@ -697,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0
 --- !u!1 &7587317904621207944
@@ -730,7 +731,7 @@ Transform:
   - {fileID: 7587317904102766889}
   - {fileID: 7587317903325461940}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3862815662069417800
 PrefabInstance:
@@ -813,7 +814,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6688103899254092745, guid: 633328021bd28174ebf273ee4dabc21e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6404133161515528062}
   m_SourcePrefab: {fileID: 100100000, guid: 633328021bd28174ebf273ee4dabc21e, type: 3}
 --- !u!4 &7587317903325461940 stripped
 Transform:
@@ -821,3 +826,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3862815662069417800}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7587317904329634945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6688103899254092745, guid: 633328021bd28174ebf273ee4dabc21e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3862815662069417800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6404133161515528062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7587317904329634945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93b3bbe5ba5670478a777c2d04e02a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
+  bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0

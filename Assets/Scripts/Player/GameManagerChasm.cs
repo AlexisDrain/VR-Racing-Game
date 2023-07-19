@@ -60,13 +60,17 @@ public class GameManagerChasm : MonoBehaviour
 	public static UnityEvent resetEnemyCollisions = new UnityEvent();
 	// WebGL only
 	public static NGHelper ngHelper;
+    public static OculusAPIHelper oculusAPIHelper;
+    
 
-	// VR only
+    // VR only
 
-	public static GameObject controllerRight;
+    public static GameObject controllerRight;
 	public static GameObject controllerLeft;
+    public static LineRenderer controllerRightLine;
+    
 
-	public static bool playerInNextLevel = false;
+    public static bool playerInNextLevel = false;
 	public static bool playerIsAlive = false;
 	public static bool playerInPauseMenu = true;
 	public static float timeElapsedWhileAlive; // score
@@ -87,13 +91,12 @@ public class GameManagerChasm : MonoBehaviour
 		particles_LazerEnd = transform.Find("Particles_LazerEnd").GetComponent<ParticleSystem>();
 		particles_Background = GameObject.Find("WorldDontDelete/Particles_Background").GetComponent<ParticleSystem>();
 		
-		mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
+		//mainCameraObj = GameObject.Find("XRRig/Camera Offset/Main Camera");
 		playerXRig = GameObject.Find("XRRig");
 		musicAudioSrc = transform.Find("Music").GetComponent<AudioSource>();
 		worldTransform = GameObject.Find("World").transform;
-		
 
-		if (gameBuild == GameBuild.WebGL) {
+        if (gameBuild == GameBuild.WebGL) {
 			resumeButton = GameObject.Find("Canvas/PauseMenuChasm/MainMenu/Frame/Resume Game");
 			resumeButton.SetActive(false);
 			pauseMenu = GameObject.Find("Canvas/PauseMenuChasm");
@@ -103,26 +106,47 @@ public class GameManagerChasm : MonoBehaviour
 			endingMenu = GameObject.Find("Canvas/EndingMenuChasm");
 			
 			canvasControls = GameObject.Find("Canvas/Controls_Jump");
-			
-			ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
+
+            playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+
+            ngHelper = transform.Find("NewgroundsIO").GetComponent<NGHelper>();
 			//uiScoreCounterBG = GameObject.Find("Canvas/TimeScoreBG").gameObject;
 			//uiScoreCounter = GameObject.Find("Canvas/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
 			uiDeathCounter = GameObject.Find("Canvas/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
 			uiLevelCounter = GameObject.Find("Canvas/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
-			playerCol = playerXRig.transform.Find("PlayerCol").gameObject;
+			
 
 
 		} else if (gameBuild == GameBuild.VR_Android) {
 
-
+            /*
 			pauseMenu = GameObject.Find("World/CanvasVRWorld/PauseMenuChasm");
 			deathMenu = GameObject.Find("World/CanvasVRWorld/DeathMenuChasm");
-			//uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
-			//uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+            //uiScoreCounterBG = GameObject.Find("World/CanvasVRWorld/TimeScoreBG").gameObject;
+            //uiScoreCounter = GameObject.Find("World/CanvasVRWorld/TimeScoreBG/TimeScore").GetComponent<UIScoreCounter>();
+			*/
+            resumeButton = GameObject.Find("WorldDontDelete/CanvasVRWorld/PauseMenuChasm/MainMenu/Frame/Resume Game");
+            resumeButton.SetActive(false);
+            pauseMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/PauseMenuChasm");
+            deathMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/DeathMenuChasm");
+            levelMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/LevelMenuChasm");
+            nextLevelMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/NextLevelMenuChasm");
+            endingMenu = GameObject.Find("WorldDontDelete/CanvasVRWorld/EndingMenuChasm");
 
-			controllerRight = playerXRig.transform.Find("RightController").gameObject;
-			controllerLeft = playerXRig.transform.Find("LeftController").gameObject;
-		}
+            canvasControls = GameObject.Find("WorldDontDelete/CanvasVRWorld/Controls_Jump");
+
+            playerCol = GameObject.Find("XRRig/PlayerCol").gameObject;
+            mainCameraObj = GameObject.Find("XRRig/PlayerCol/Main Camera");
+
+            uiDeathCounter = GameObject.Find("XRRig/PlayerCol/LeftController/CanvasVRWorld/CurrentDeathsBG/DeathCounter").GetComponent<Text>();
+            uiLevelCounter = GameObject.Find("XRRig/PlayerCol/LeftController/CanvasVRWorld/CurrentLevelBG/TextCurrentLevel").GetComponent<Text>();
+
+            controllerRight = playerXRig.transform.Find("PlayerCol/RightController").gameObject;
+			controllerLeft = playerXRig.transform.Find("PlayerCol/LeftController").gameObject;
+            controllerRightLine = playerXRig.transform.Find("PlayerCol/RightController/Line").GetComponent<LineRenderer>();
+
+            oculusAPIHelper = transform.Find("OculusAPI").GetComponent<OculusAPIHelper>();
+        }
 
 		playerCheckpointPos = playerCol.transform.position;
 
@@ -130,7 +154,6 @@ public class GameManagerChasm : MonoBehaviour
 	private void Start() {
 		Time.timeScale = 0f;
 		gameManagerChasmObj.GetComponent<GameManagerChasm>().audioMixer.SetFloat("MusicCutoff", audioCutoffDistort);
-
 
 		GetComponent<NavigateMenus>().OpenPauseMenu();
 	}
@@ -146,6 +169,9 @@ public class GameManagerChasm : MonoBehaviour
 			}
 		}
 	}
+
+	private float cheat_HoldToEnableAllLevels = 0f;
+
 	public void Update() {
 		//OVRInput.Update(); // Contrary to the Meta docs DO NOT CALL THIS
 		if (Input.GetButtonDown("Pause") || OVRInput.GetDown(OVRInput.Button.Start)) {
@@ -193,26 +219,58 @@ public class GameManagerChasm : MonoBehaviour
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F3)
 			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad3)
 			|| Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha3)) {
-			print("Cheat Activated: Unlock all levels");
+			print("PC Cheat Activated: Unlock all levels");
 			GameManagerChasm.unlockedLevels = 10;
 			GameObject levelLoaderUI = GameObject.Find("Canvas/LevelMenuChasm/Frame/Levels");
 			if (levelLoaderUI != null) {
 				levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
-
 			}
 		}
+		if (OVRInput.Get(OVRInput.Button.One) && OVRInput.Get(OVRInput.Button.Two)) {
+			cheat_HoldToEnableAllLevels += 0.1f;
+			if(cheat_HoldToEnableAllLevels >= 10f) {
+                print("VR Cheat Activated: Unlock all levels");
+                GameManagerChasm.unlockedLevels = 10;
+                GameObject levelLoaderUI = GameObject.Find("WorldDontDelete/CanvasVRWorld/LevelMenuChasm/Frame/Levels");
+                if (levelLoaderUI != null) {
+                    levelLoaderUI.GetComponent<LevelLoaderUI>().CheckUnlockedLevelButtons();
+                }
+                cheat_HoldToEnableAllLevels = 0f;
+            }
+        } else {
+			cheat_HoldToEnableAllLevels = 0f;
+        }
 
 
-		// VR only
-		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.F1) && gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			StartGame();
-		}
-		// For VR only
-		if (OVRInput.GetDown(OVRInput.Button.One) && playerInPauseMenu == true) {
-			StartGame();
-		}
-	}
-	public static void SetHardMode(bool stateHard) {
+        // cheat code: start game without using menu
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F4)
+            || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad4)
+            || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha4)) {
+			if(gameBuild == GameBuild.VR_Android) {
+				print("PC Cheat Activated: Start game without menu");
+				StartGame();
+			}
+        }
+        // cheat code: next level
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F5)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad5)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha5)) {
+            if (gameBuild == GameBuild.VR_Android) {
+                print("PC Cheat Activated: next level");
+				NextLevelMenu();
+            }
+        }
+        // cheat code: set hard mode
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.F6)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Keypad6)
+    || Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha6)) {
+            if (gameBuild == GameBuild.VR_Android) {
+                print("PC Cheat Activated: hard mode");
+				SetHardMode(!GameManagerChasm.hardMode);
+            }
+        }
+    }
+    public static void SetHardMode(bool stateHard) {
 		GameManagerChasm.hardMode = stateHard;
 		if(GameManagerChasm.playerIsAlive) {
 			GameManagerChasm.StartGame();
@@ -273,9 +331,16 @@ public class GameManagerChasm : MonoBehaviour
 
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(false);
-			controllerLeft.gameObject.SetActive(false);
-		}
+			//controllerRight.gameObject.SetActive(false);
+			//controllerLeft.gameObject.SetActive(false);
+			controllerRightLine.enabled = false;
+
+            if (GameManagerChasm.currentLevel == 0) {
+				canvasControls.SetActive(true);
+            } else {
+                canvasControls.SetActive(false);
+            }
+        }
 		
 	}
 	public static void ResumeGame() {
@@ -293,9 +358,10 @@ public class GameManagerChasm : MonoBehaviour
 		playerInPauseMenu = false;
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(false);
-			controllerLeft.gameObject.SetActive(false);
-		}
+            controllerRightLine.enabled = false;
+            //controllerRight.gameObject.SetActive(false);
+            //controllerLeft.gameObject.SetActive(false);
+        }
 	}
 	public static void PauseGame() {
 
@@ -306,9 +372,10 @@ public class GameManagerChasm : MonoBehaviour
 		playerInPauseMenu = true;
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(true);
-			controllerLeft.gameObject.SetActive(true);
-		}
+            controllerRightLine.enabled = true;
+            //controllerRight.gameObject.SetActive(true);
+            //controllerLeft.gameObject.SetActive(true);
+        }
 	}
 	public static void NextLevelMenu() {
 		Time.timeScale = 0.15f;
@@ -319,15 +386,20 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenNextLevelMenu();
+#if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(GameManagerChasm.currentLevel);
-		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
+#endif
+        oculusAPIHelper.UnlockLevelMedal(GameManagerChasm.currentLevel);
+
+        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel+1);
 		
 
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(true);
-			controllerLeft.gameObject.SetActive(true);
-		}
+            controllerRightLine.enabled = false;
+            //controllerRight.gameObject.SetActive(true);
+            //controllerLeft.gameObject.SetActive(true);
+        }
 	}
 	public static void WinGame() {
 		Time.timeScale = 0f;
@@ -339,18 +411,24 @@ public class GameManagerChasm : MonoBehaviour
 			//uiScoreCounterBG.SetActive(false);
 		}
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenEndingMenu();
-
+#if PLATFORM_ANDROID != true
 		gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockLevelMedal(10);
 		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
 			gameManagerChasmObj.GetComponent<NGHelperChasm>().UnlockFewerThanTenMedal();
 		}
-		GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
+#endif
+        oculusAPIHelper.UnlockLevelMedal(10);
+		if (GameManagerChasm.startedGameFromLevelOne == true && GameManagerChasm.currentDeaths <= 10) { // 10 deaths OR LESS is inclusive to the medal
+			oculusAPIHelper.UnlockFewerThanTenMedal();
+        }
+        GameManagerChasm.unlockedLevels = Mathf.Max(GameManagerChasm.unlockedLevels, GameManagerChasm.currentLevel + 1);
 
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(true);
-			controllerLeft.gameObject.SetActive(true);
-		}
+            controllerRightLine.enabled = true;
+            //controllerRight.gameObject.SetActive(true);
+            //controllerLeft.gameObject.SetActive(true);
+        }
 	}
 	public static void EndGame() {
 
@@ -389,9 +467,10 @@ public class GameManagerChasm : MonoBehaviour
 		gameManagerChasmObj.GetComponent<NavigateMenus>().OpenDeathMenu();
 		//VR only
 		if (gameManagerChasmObj.GetComponent<GameManagerChasm>().gameBuild == GameBuild.VR_Android) {
-			controllerRight.gameObject.SetActive(true);
-			controllerLeft.gameObject.SetActive(true);
-		}
+            controllerRightLine.enabled = true;
+            //controllerRight.gameObject.SetActive(true);
+            //controllerLeft.gameObject.SetActive(true);
+        }
 	}
 
 	public void ResetWorldPos() {

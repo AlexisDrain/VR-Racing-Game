@@ -32,6 +32,9 @@ public class PlayerEnemyCollision : MonoBehaviour
 			GameManagerChasm.NextLevelMenu();
         }
         if (col.CompareTag("Somos")) {
+			GameObject somos = GameObject.Find("World/WorldFinal(Clone)/Somos");
+			somos.SetActive(false);
+
             GameManagerChasm.SpawnLoudAudio(somosAudioClip);
             GameManagerChasm.WinGame();
         }

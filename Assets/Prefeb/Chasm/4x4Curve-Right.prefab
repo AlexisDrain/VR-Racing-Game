@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: d3ba2aa80f609c44984ff8ca119cf017, type: 2}
+  vrNewMat: {fileID: 2100000, guid: ba9bac5dc53a1144eb746bdf7eb85cfd, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0
 --- !u!1001 &5273675253225658520

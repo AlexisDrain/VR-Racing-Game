@@ -32,7 +32,7 @@ Transform:
   - {fileID: 5527023243446869604}
   - {fileID: 2396948049095381435}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2850840883837811621
 BoxCollider:
@@ -3643,6 +3643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 30, y: 200, z: 30}
   lineRenderer: 0
 --- !u!1 &5353969865773442905
@@ -3657,6 +3658,7 @@ GameObject:
   - component: {fileID: 337523180552658711}
   - component: {fileID: 1035434472936508450}
   - component: {fileID: 3924644644700669335}
+  - component: {fileID: 7098431673105659461}
   m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
@@ -3946,3 +3948,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5353969865773442905}
   m_Mesh: {fileID: 0}
+--- !u!114 &7098431673105659461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353969865773442905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93b3bbe5ba5670478a777c2d04e02a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMat: {fileID: 2100000, guid: 4ac16537426f8384583bbc3fbff42198, type: 2}
+  vrNewMat: {fileID: 2100000, guid: f2387c2515cc05e48b8a3f6bc4d79203, type: 2}
+  bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0

@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0
 --- !u!1 &4376317373129851075
@@ -415,7 +416,7 @@ Transform:
   - {fileID: 7706422856981238215}
   - {fileID: 3888189472562549257}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5827812988228622880
 MonoBehaviour:
@@ -718,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 15cd27101510bd747ac7c49031413511, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 562d8f556a317ee4996a22e0c280c546, type: 2}
   bounds: {x: 8, y: 8, z: 8}
   lineRenderer: 0
 --- !u!1 &8183237308603304079
@@ -1063,6 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0
 --- !u!1 &8299054314117845660
@@ -1408,6 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0
 --- !u!1 &8719620523916081987
@@ -1753,5 +1757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
   bounds: {x: 1, y: 1, z: 1}
   lineRenderer: 0

@@ -45,10 +45,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3809467939033827024}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -1560,9 +1571,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5934861436845866171}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
@@ -3070,9 +3089,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093451263730055559}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
@@ -4580,9 +4607,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8248559424139644456}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
@@ -4639,9 +4674,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8564750812144385630}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 28, y: 28, z: 1.0000001}
   m_Center: {x: 0, y: 0, z: 1}
 --- !u!1001 &2935932650154868713
@@ -4649,6 +4692,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 3809467939033827027}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba,
@@ -4750,7 +4794,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f69c88b2b93153458ba06a15a7ae96d, type: 2}
+      objectReference: {fileID: 2100000, guid: 40742a2a95960d84aa4cf12a4099f8a4, type: 2}
     - target: {fileID: -7511558181221131132, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba,
         type: 3}
       propertyPath: m_SelectedEditorRenderState
@@ -4768,6 +4812,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3451118302482216456, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1174004292347565541}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4137164127718433257}
   m_SourcePrefab: {fileID: 100100000, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba, type: 3}
 --- !u!1 &2630083358834459320 stripped
 GameObject:
@@ -13933,7 +13988,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: 15cd27101510bd747ac7c49031413511, type: 2}
+  vrNewMat: {fileID: 2100000, guid: 562d8f556a317ee4996a22e0c280c546, type: 2}
   bounds: {x: 1, y: 1, z: 1}
+  lineRenderer: 0
 --- !u!4 &3401412122600462338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b0f9a3b23ca38a54c8a9c4a3e99a76ba,

@@ -25,7 +25,7 @@ public class VRCanvasPointer : MonoBehaviour
 
 	private Vector3 GetEnd() {
 		float distance = GetCanvasDistance();
-		Vector3 endPosition = CalculateEnd(10f);
+		Vector3 endPosition = CalculateEnd(20f);
 
 		if (distance != 0f) {
 			endPosition = CalculateEnd(distance);
@@ -44,7 +44,7 @@ public class VRCanvasPointer : MonoBehaviour
 		RaycastResult closestResult = FindFirstRaycast(results);
 		float distance = closestResult.distance;
 
-		distance = Mathf.Clamp(distance, 0f, 10f);
+		distance = Mathf.Clamp(distance, 0f, 20f);
 		return distance;
 	}
 

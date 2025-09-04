@@ -1,3 +1,7 @@
+KeyStore password: asdfgh
+BlueVortex Project key password: asdfgh
+BlueChasm Project key password: AWNDO92r18h9*AHWD)(81h402r98hd0(DA)(
+
 VR:
 - camera offset in VR builds
 
